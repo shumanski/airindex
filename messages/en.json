@@ -1,0 +1,186 @@
+{
+  "meta": {
+    "title": "Air Quality Index Today — Check AQI Forecast & Health Advice",
+    "description": "Check the air quality index today for any location. Hourly AQI forecast, pollutant levels (PM2.5, PM10, NO₂, O₃), and health advice.",
+    "h1": "Air Quality Index Today"
+  },
+  "location": {
+    "searchPlaceholder": "Search for a location...",
+    "detectingLocation": "Detecting your location...",
+    "unknownLocation": "Unknown location",
+    "detectMyLocation": "Detect my location"
+  },
+  "aqi": {
+    "good": "Good",
+    "moderate": "Moderate",
+    "unhealthySensitive": "Unhealthy for Sensitive Groups",
+    "unhealthy": "Unhealthy",
+    "veryUnhealthy": "Very Unhealthy",
+    "hazardous": "Hazardous",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "peak": "Peak",
+    "at": "at",
+    "peakAt": "peak at {time}",
+    "forecast": "Forecast",
+    "localTime": "Local time",
+    "now": "Now",
+    "todayMax": "Today",
+    "tomorrowMax": "Tomorrow",
+    "trend": "5-Day AQI Forecast",
+    "trendCity": "5-Day AQI Forecast for {city}",
+    "trendPeakNote": "Daily peak AQI values",
+    "chartSubtitle": "Hourly air quality index for {city}",
+    "hourlyTable": "Show hourly data table",
+    "hour": "Time",
+    "loadError": "Unable to load air quality data. Please refresh the page.",
+    "advice_good": "Air quality is satisfactory — it's a great day to be active outside",
+    "advice_moderate": "Unusually sensitive people should consider reducing prolonged or intense outdoor activity",
+    "advice_unhealthySensitive": "Sensitive groups should reduce prolonged or intense outdoor activity | Take more breaks and watch for symptoms such as coughing or shortness of breath",
+    "advice_unhealthy": "Everyone should reduce prolonged or intense outdoor activity | Sensitive groups should avoid outdoor exertion | Consider moving activities indoors",
+    "advice_veryUnhealthy": "Everyone should avoid prolonged or intense outdoor exertion | Sensitive groups should avoid all outdoor physical activity | Move activities indoors or reschedule",
+    "advice_hazardous": "Health warning — everyone should avoid all outdoor physical activity | Stay indoors and keep activity levels light | Follow tips for keeping particle levels low indoors"
+  },
+  "pollutantAqi": {
+    "title": "What's in the Air",
+    "dominantNote": "Main contributor: {pollutant}"
+  },
+  "pollutants": {
+    "title": "Pollutant Levels (WHO Guidelines)"
+  },
+  "seo": {
+    "aboutTitle": "About the Air Quality Index",
+    "whatIsAqi": "What is the Air Quality Index (AQI)?",
+    "whatIsAqiAnswer": "The Air Quality Index (AQI) is a tool developed by the <epa>U.S. Environmental Protection Agency (EPA)</epa> to communicate how clean or polluted the air is and what health effects may be of concern. The AQI runs from 0 to 500 and is divided into six color-coded categories: Good, Moderate, Unhealthy for Sensitive Groups, Unhealthy, Very Unhealthy, and Hazardous.",
+    "howToRead": "How do I read the AQI values?",
+    "howToReadAnswer": "Lower AQI values mean cleaner air. An AQI of 0–50 (green) is Good, 51–100 (yellow) is Moderate, 101–150 (orange) is Unhealthy for Sensitive Groups, 151–200 (red) is Unhealthy, 201–300 (purple) is Very Unhealthy, and 301–500 (maroon) is Hazardous. When the AQI exceeds 100, air quality is considered unhealthy — at first for sensitive groups, then for everyone as the AQI rises.",
+    "sensitiveGroups": "Who are the sensitive groups?",
+    "sensitiveGroupsAnswer": "Sensitive groups include people with heart or lung disease, older adults, children and teenagers, people who are pregnant, and people who are active outdoors. These groups are more likely to be affected when air quality is poor. If you are in a sensitive group, you can reduce your exposure by taking fewer and shorter outdoor walks when the AQI is elevated.",
+    "pollutants": "Which pollutants are measured?",
+    "pollutantsAnswer": "The AQI covers five major pollutants regulated under the Clean Air Act: ground-level ozone (O₃), particle pollution (PM₂.₅ and PM₁₀), carbon monoxide (CO), sulfur dioxide (SO₂), and nitrogen dioxide (NO₂). An AQI value is calculated for each pollutant, and the highest value determines the overall AQI.",
+    "dataSource": "Where does the air quality data come from?",
+    "dataSourceAnswer": "The hourly air quality data comes from the <cams>Copernicus Atmosphere Monitoring Service (CAMS)</cams>, which provides global atmospheric composition forecasts. The data is accessed via <openmeteo>Open-Meteo</openmeteo>, which provides free, open-source weather and air quality APIs. The AQI categories and health guidance follow the <epa>EPA AirNow</epa> technical standard (EPA-454/B-24-002).",
+    "healthEffects": "What are the health effects of poor air quality?",
+    "healthEffectsAnswer": "Poor air quality can cause respiratory issues, aggravate asthma and allergies, and increase the risk of cardiovascular problems. Fine particles (PM₂.₅) can penetrate deep into the lungs and bloodstream. The <who>World Health Organization</who> estimates that air pollution causes millions of premature deaths worldwide each year.",
+    "forecastUpdate": "How often is the air quality forecast updated?",
+    "forecastUpdateAnswer": "The <cams>CAMS</cams> air quality forecast is updated regularly using atmospheric models. Weather data such as temperature and cloud cover comes from <openmeteo>Open-Meteo</openmeteo>. The forecast provides up to 5 days of hourly air quality predictions.",
+    "aqiLevelsTitle": "AQI Levels (US EPA Standard)",
+    "sources": "AQI categories and health guidance: EPA AirNow (EPA-454/B-24-002, May 2024). Air quality data: CAMS/Copernicus via Open-Meteo."
+  },
+  "disclaimer": {
+    "heading": "Disclaimer",
+    "general": "This website is for informational purposes only and does not constitute medical advice. Air quality data and health guidance are approximate and should not replace professional medical advice.",
+    "accuracy": "AQI forecasts are based on atmospheric models. Actual air quality may vary due to local emissions, wind patterns, and other environmental factors.",
+    "externalApi": "Air quality and weather data is sourced from third-party APIs (Open-Meteo/CAMS). We do not guarantee accuracy or availability."
+  },
+  "sources": {
+    "aqiData": "Air quality & weather data:",
+    "geodata": "Location data:"
+  },
+  "language": {
+    "en": "English",
+    "sv": "Svenska",
+    "no": "Norsk",
+    "da": "Dansk",
+    "de": "Deutsch",
+    "nl": "Nederlands",
+    "it": "Italiano",
+    "es": "Español",
+    "fr": "Français",
+    "pt": "Português",
+    "pl": "Polski"
+  },
+  "city": {
+    "title": "Air Quality in {city} — AQI Forecast & Pollutant Levels",
+    "description": "Current air quality index in {city}, {country}. Hourly AQI forecast, pollutant levels (PM2.5, PM10, NO₂, O₃), and health advice.",
+    "h1": "Air Quality in {city}",
+    "h1Prefix": "Air Quality in",
+    "summaryDesc": "Current AQI, hourly chart, peak times and 5-day forecast for {city}, {country}.",
+    "summaryNow": "Now:",
+    "summaryPeak": "Peak today:",
+    "nearbyLabel": "Check air quality in:"
+  },
+  "crossPromo": {
+    "uvPrefix": "Check UV exposure too?",
+    "uvLink": "See UV index in {city} on UVI.today"
+  },
+  "pwa": {
+    "install": "Add to home screen"
+  },
+  "feedback": {
+    "title": "Your Feedback",
+    "description": "Help us improve Air Index Today — share your thoughts or suggest changes.",
+    "good": "Useful",
+    "bad": "Needs work",
+    "placeholder": "What could be better? (optional)",
+    "submit": "Send",
+    "thanks": "Thanks for your feedback!"
+  },
+  "footer": {
+    "about": "About",
+    "privacy": "Privacy",
+    "contact": "Contact"
+  },
+  "about": {
+    "title": "About Air Index Today",
+    "metaDescription": "Air Index Today provides free air quality index forecasts using data from the Copernicus Atmosphere Monitoring Service (CAMS) via Open-Meteo.",
+    "whatIs_title": "What is Air Index Today?",
+    "whatIs_text": "Air Index Today is a free air quality monitoring service. It shows the current US AQI (EPA standard), hourly forecasts, pollutant breakdowns (PM2.5, PM10, NO₂, O₃, SO₂, CO), a 5-day AQI trend, and health recommendations aligned with AirNow guidelines.",
+    "dataSources_title": "Data sources",
+    "dataSources_cams": "Air quality data from the Copernicus Atmosphere Monitoring Service via",
+    "dataSources_epa": "US AQI scale, categories, and health guidance from the U.S. Environmental Protection Agency (EPA AirNow)",
+    "howItWorks_title": "How it works",
+    "howItWorks_text": "Air quality data comes from the Copernicus Atmosphere Monitoring Service (CAMS), which uses atmospheric modeling and satellite observations for air quality forecasts worldwide. Weather data (temperature, conditions) comes from the Open-Meteo forecast API.",
+    "free_title": "Free and ad-supported",
+    "free_text": "Air Index Today is free to use. The service is supported by non-intrusive advertising. We do not sell personal data or require user accounts.",
+    "contact_title": "Contact",
+    "contact_text": "Air Index Today is a project by",
+    "contact_link": "Contact us →"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "metaDescription": "Air Index Today privacy policy. We collect no personal data, use no cookies, and require no accounts.",
+    "lastUpdated": "Last updated: January 2025",
+    "whoWeAre_title": "1. Who we are",
+    "whoWeAre_text": "This policy covers airindex.today, an air quality index forecast service operated by SimpleMeteo.",
+    "whatWeCollect_title": "2. What data is processed",
+    "ipGeo_title": "IP-based geolocation",
+    "ipGeo_text": "When you first visit the site, your IP address is processed server-side using the IP2Location LITE database to determine your approximate location for the air quality forecast. The IP address is not stored, logged, or transmitted to any third party.",
+    "analytics_title": "Analytics",
+    "analytics_text": "We use Simple Analytics, a privacy-first analytics service based in the Netherlands (EU). It collects no personal data, sets no cookies, and does not track individual visitors.",
+    "localStorage_title": "Local preferences",
+    "localStorage_text": "Your language and temperature unit preferences are stored in your browser's localStorage. This data never leaves your device.",
+    "airQualityApi_title": "Air quality API requests",
+    "airQualityApi_text": "When you view an air quality forecast, your selected location's coordinates are sent to Open-Meteo and the CAMS API to retrieve air quality and weather data. No personal information is included in these requests.",
+    "whatWeDoNot_title": "3. What we do NOT collect",
+    "whatWeDoNot_text": "We do not use cookies. We do not require user accounts or authentication. We do not collect names, emails, or phone numbers. We do not track individual users across sessions. We do not sell or share any data with advertisers or third parties.",
+    "cookies_title": "4. Cookies",
+    "cookies_text": "airindex.today sets no tracking cookies, no analytics cookies, and no advertising cookies.",
+    "thirdParties_title": "5. Third-party services",
+    "thirdParty_openmeteo": "Air quality and weather data provider. Receives only location coordinates. No personal data.",
+    "thirdParty_sa": "Privacy-first analytics. Based in the EU. Collects no personal data. No cookies.",
+    "thirdParty_ip2": "Local IP geolocation database. IP is processed server-side only, never transmitted externally.",
+    "thirdParty_cloudflare": "CDN and DDoS protection. Routes traffic through its network. See Cloudflare privacy policy.",
+    "gdpr_title": "6. Your rights (GDPR)",
+    "gdpr_text": "Since we do not store personal data in any database, most GDPR data subject rights (access, rectification, erasure, portability) are not applicable. If you have questions, contact us via the link below.",
+    "children_title": "7. Children",
+    "children_text": "This website is not directed at children under 16. We do not knowingly process personal data from children.",
+    "changes_title": "8. Changes",
+    "changes_text": "If our data practices change materially, this page will be updated before those changes take effect.",
+    "contact_title": "9. Contact",
+    "contact_text": "Questions about this policy?"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "heading": "Page not found",
+    "description": "The page you're looking for doesn't exist or has moved.",
+    "goHome": "Check Air Quality"
+  },
+  "cityInfo": {
+    "heading": "About {city}",
+    "country": "Country",
+    "timezone": "Timezone",
+    "coordinates": "Coordinates",
+    "population": "Population"
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "meta": {
+    "title": "Indice di qualità dell'aria oggi — Previsioni AQI e consigli per la salute",
+    "description": "Controlla l'indice di qualità dell'aria oggi per qualsiasi località. Previsioni AQI orarie, livelli di inquinanti (PM2.5, PM10, NO₂, O₃) e consigli per la salute.",
+    "h1": "Indice di qualità dell'aria oggi"
+  },
+  "location": {
+    "searchPlaceholder": "Cerca una località...",
+    "detectingLocation": "Rilevamento della posizione...",
+    "unknownLocation": "Posizione sconosciuta",
+    "detectMyLocation": "Rileva la mia posizione"
+  },
+  "aqi": {
+    "good": "Buona",
+    "moderate": "Moderata",
+    "unhealthySensitive": "Insalubre per gruppi sensibili",
+    "unhealthy": "Insalubre",
+    "veryUnhealthy": "Molto insalubre",
+    "hazardous": "Pericolosa",
+    "today": "Oggi",
+    "tomorrow": "Domani",
+    "peak": "Picco",
+    "at": "alle",
+    "peakAt": "picco alle {time}",
+    "forecast": "Previsioni",
+    "localTime": "Ora locale",
+    "now": "Ora",
+    "todayMax": "Oggi",
+    "tomorrowMax": "Domani",
+    "trend": "Previsioni AQI a 5 giorni",
+    "trendCity": "Previsioni AQI a 5 giorni per {city}",
+    "trendPeakNote": "Valori AQI di picco giornalieri",
+    "chartSubtitle": "Indice di qualità dell'aria orario per {city}",
+    "hourlyTable": "Mostra tabella dati orari",
+    "hour": "Ora",
+    "loadError": "Impossibile caricare i dati sulla qualità dell'aria. Aggiorna la pagina.",
+    "advice_good": "La qualità dell'aria è soddisfacente — è un'ottima giornata per essere attivi all'aperto",
+    "advice_moderate": "Le persone particolarmente sensibili dovrebbero considerare di ridurre le attività prolungate o intense all'aperto",
+    "advice_unhealthySensitive": "I gruppi sensibili dovrebbero ridurre le attività prolungate o intense all'aperto | Fai più pause e presta attenzione a sintomi come tosse o fiato corto",
+    "advice_unhealthy": "Tutti dovrebbero ridurre le attività prolungate o intense all'aperto | I gruppi sensibili dovrebbero evitare lo sforzo all'aperto | Considera di spostare le attività al chiuso",
+    "advice_veryUnhealthy": "Tutti dovrebbero evitare sforzi prolungati o intensi all'aperto | I gruppi sensibili dovrebbero evitare qualsiasi attività fisica all'aperto | Sposta le attività al chiuso o riprogrammale",
+    "advice_hazardous": "Allerta sanitaria — tutti dovrebbero evitare qualsiasi attività fisica all'aperto | Resta in casa e mantieni un livello di attività leggero | Segui i consigli per mantenere bassi i livelli di particolato in ambienti chiusi"
+  },
+  "pollutantAqi": {
+    "title": "Cosa c'è nell'aria",
+    "dominantNote": "Contribuente principale: {pollutant}"
+  },
+  "pollutants": {
+    "title": "Livelli inquinanti (linee guida OMS)"
+  },
+  "seo": {
+    "aboutTitle": "Informazioni sull'indice di qualità dell'aria",
+    "whatIsAqi": "Cos'è l'indice di qualità dell'aria (AQI)?",
+    "whatIsAqiAnswer": "L'indice di qualità dell'aria (AQI) è uno strumento sviluppato dalla <epa>U.S. Environmental Protection Agency (EPA)</epa> per comunicare quanto l'aria sia pulita o inquinata e quali effetti sulla salute possano essere preoccupanti. L'AQI va da 0 a 500 ed è suddiviso in sei categorie con codice colore: Buona, Moderata, Insalubre per gruppi sensibili, Insalubre, Molto insalubre e Pericolosa.",
+    "howToRead": "Come si leggono i valori AQI?",
+    "howToReadAnswer": "Valori AQI più bassi significano aria più pulita. Un AQI di 0–50 (verde) è Buona, 51–100 (giallo) è Moderata, 101–150 (arancione) è Insalubre per gruppi sensibili, 151–200 (rosso) è Insalubre, 201–300 (viola) è Molto insalubre e 301–500 (marrone) è Pericolosa. Quando l'AQI supera 100, la qualità dell'aria è considerata insalubre — prima per i gruppi sensibili, poi per tutti man mano che l'AQI aumenta.",
+    "sensitiveGroups": "Chi sono i gruppi sensibili?",
+    "sensitiveGroupsAnswer": "I gruppi sensibili includono persone con malattie cardiache o polmonari, anziani, bambini e adolescenti, donne in gravidanza e persone attive all'aperto. Questi gruppi sono più a rischio quando la qualità dell'aria è scarsa. Se fai parte di un gruppo sensibile, puoi ridurre l'esposizione facendo passeggiate più brevi e meno frequenti all'aperto quando l'AQI è elevato.",
+    "pollutants": "Quali inquinanti vengono misurati?",
+    "pollutantsAnswer": "L'AQI copre cinque principali inquinanti regolamentati dal Clean Air Act: ozono a livello del suolo (O₃), particolato (PM₂.₅ e PM₁₀), monossido di carbonio (CO), biossido di zolfo (SO₂) e biossido di azoto (NO₂). Un valore AQI viene calcolato per ogni inquinante e il valore più alto determina l'AQI complessivo.",
+    "dataSource": "Da dove provengono i dati sulla qualità dell'aria?",
+    "dataSourceAnswer": "I dati orari sulla qualità dell'aria provengono dal <cams>Copernicus Atmosphere Monitoring Service (CAMS)</cams>, che fornisce previsioni globali sulla composizione atmosferica. I dati sono accessibili tramite <openmeteo>Open-Meteo</openmeteo>, che offre API gratuite e open source per meteo e qualità dell'aria. Le categorie AQI e i consigli sanitari seguono lo standard tecnico di <epa>EPA AirNow</epa> (EPA-454/B-24-002).",
+    "healthEffects": "Quali sono gli effetti sulla salute della scarsa qualità dell'aria?",
+    "healthEffectsAnswer": "La scarsa qualità dell'aria può causare problemi respiratori, aggravare asma e allergie e aumentare il rischio di malattie cardiovascolari. Le particelle fini (PM₂.₅) possono penetrare in profondità nei polmoni e nel flusso sanguigno. L'<who>Organizzazione Mondiale della Sanità</who> stima che l'inquinamento atmosferico causi milioni di morti premature in tutto il mondo ogni anno.",
+    "forecastUpdate": "Con quale frequenza vengono aggiornate le previsioni sulla qualità dell'aria?",
+    "forecastUpdateAnswer": "Le previsioni sulla qualità dell'aria del <cams>CAMS</cams> vengono aggiornate regolarmente utilizzando modelli atmosferici. I dati meteorologici come temperatura e nuvolosità provengono da <openmeteo>Open-Meteo</openmeteo>. Le previsioni forniscono fino a 5 giorni di previsioni orarie sulla qualità dell'aria.",
+    "aqiLevelsTitle": "Livelli AQI (standard US EPA)",
+    "sources": "Categorie AQI e consigli sanitari: EPA AirNow (EPA-454/B-24-002, maggio 2024). Dati sulla qualità dell'aria: CAMS/Copernicus via Open-Meteo."
+  },
+  "disclaimer": {
+    "heading": "Avvertenza",
+    "general": "Questo sito web è solo a scopo informativo e non costituisce consulenza medica. I dati sulla qualità dell'aria e le indicazioni sanitarie sono approssimativi e non devono sostituire il parere medico professionale.",
+    "accuracy": "Le previsioni AQI si basano su modelli atmosferici. La qualità dell'aria effettiva può variare a causa di emissioni locali, condizioni del vento e altri fattori ambientali.",
+    "externalApi": "I dati sulla qualità dell'aria e meteorologici provengono da API di terze parti (Open-Meteo/CAMS). Non garantiamo accuratezza o disponibilità."
+  },
+  "sources": {
+    "aqiData": "Dati su qualità dell'aria e meteo:",
+    "geodata": "Dati sulla posizione:"
+  },
+  "language": {
+    "en": "English",
+    "sv": "Svenska",
+    "no": "Norsk",
+    "da": "Dansk",
+    "de": "Deutsch",
+    "nl": "Nederlands",
+    "it": "Italiano",
+    "es": "Español",
+    "fr": "Français",
+    "pt": "Português",
+    "pl": "Polski"
+  },
+  "city": {
+    "title": "Qualità dell'aria a {city} — Previsioni AQI e livelli di inquinanti",
+    "description": "Indice di qualità dell'aria attuale a {city}, {country}. Previsioni AQI orarie, livelli di inquinanti (PM2.5, PM10, NO₂, O₃) e consigli per la salute.",
+    "h1": "Qualità dell'aria a {city}",
+    "h1Prefix": "Qualità dell'aria a",
+    "summaryDesc": "AQI attuale, grafico orario, orari di picco e previsioni a 5 giorni per {city}, {country}.",
+    "summaryNow": "Ora:",
+    "summaryPeak": "Picco oggi:",
+    "nearbyLabel": "Controlla la qualità dell'aria a:"
+  },
+  "crossPromo": {
+    "uvPrefix": "Controllare anche l'esposizione UV?",
+    "uvLink": "Vedi l'indice UV a {city} su UVI.today"
+  },
+  "pwa": {
+    "install": "Aggiungi alla schermata Home"
+  },
+  "feedback": {
+    "title": "Il tuo feedback",
+    "description": "Aiutaci a migliorare Air Index Today — condividi le tue opinioni o suggerisci modifiche.",
+    "good": "Utile",
+    "bad": "Da migliorare",
+    "placeholder": "Cosa potrebbe essere migliore? (facoltativo)",
+    "submit": "Invia",
+    "thanks": "Grazie per il tuo feedback!"
+  },
+  "footer": {
+    "about": "Chi siamo",
+    "privacy": "Privacy",
+    "contact": "Contatti"
+  },
+  "about": {
+    "title": "Informazioni su Air Index Today",
+    "metaDescription": "Air Index Today offre previsioni gratuite dell'indice di qualità dell'aria utilizzando dati del Copernicus Atmosphere Monitoring Service (CAMS) tramite Open-Meteo.",
+    "whatIs_title": "Cos'è Air Index Today?",
+    "whatIs_text": "Air Index Today è un servizio gratuito per il monitoraggio della qualità dell'aria. Mostra l'AQI attuale secondo lo standard EPA statunitense, previsioni orarie, dettaglio degli inquinanti (PM2.5, PM10, NO₂, O₃, SO₂, CO), un trend AQI a 5 giorni e raccomandazioni per la salute basate sulle linee guida AirNow.",
+    "dataSources_title": "Fonti dei dati",
+    "dataSources_cams": "Dati sulla qualità dell'aria dal Copernicus Atmosphere Monitoring Service tramite",
+    "dataSources_epa": "Categorie AQI e consigli sanitari da EPA AirNow",
+    "howItWorks_title": "Come funziona",
+    "howItWorks_text": "I dati sulla qualità dell'aria provengono dal Copernicus Atmosphere Monitoring Service (CAMS), che utilizza modelli atmosferici e osservazioni satellitari per previsioni sulla qualità dell'aria a livello mondiale. I dati meteorologici (temperatura, condizioni) provengono dall'API di previsione Open-Meteo.",
+    "free_title": "Gratuito e supportato da pubblicità",
+    "free_text": "Air Index Today è gratuito. Il servizio è supportato da pubblicità discreta. Non vendiamo dati personali e non richiediamo account utente.",
+    "contact_title": "Contatti",
+    "contact_text": "Air Index Today è un progetto di",
+    "contact_link": "Contattaci →"
+  },
+  "privacy": {
+    "title": "Informativa sulla privacy",
+    "metaDescription": "Informativa sulla privacy di Air Index Today. Non raccogliamo dati personali, non usiamo cookie e non richiediamo account.",
+    "lastUpdated": "Ultimo aggiornamento: gennaio 2025",
+    "whoWeAre_title": "1. Chi siamo",
+    "whoWeAre_text": "Questa informativa riguarda airindex.today, un servizio di previsioni dell'indice di qualità dell'aria gestito da SimpleMeteo.",
+    "whatWeCollect_title": "2. Quali dati vengono trattati",
+    "ipGeo_title": "Geolocalizzazione basata su IP",
+    "ipGeo_text": "Quando visiti il sito per la prima volta, il tuo indirizzo IP viene elaborato lato server utilizzando il database IP2Location LITE per determinare la tua posizione approssimativa per la previsione della qualità dell'aria. L'indirizzo IP non viene memorizzato, registrato o trasmesso a terzi.",
+    "analytics_title": "Analisi",
+    "analytics_text": "Utilizziamo Simple Analytics, un servizio di analisi rispettoso della privacy con sede nei Paesi Bassi (UE). Non raccoglie dati personali, non imposta cookie e non traccia i singoli visitatori.",
+    "localStorage_title": "Preferenze locali",
+    "localStorage_text": "Le tue preferenze di lingua e unità di temperatura sono memorizzate nel localStorage del browser. Questi dati non lasciano mai il tuo dispositivo.",
+    "airQualityApi_title": "Richieste API per la qualità dell'aria",
+    "airQualityApi_text": "Quando visualizzi una previsione sulla qualità dell'aria, le coordinate della località selezionata vengono inviate a Open-Meteo e all'API CAMS per recuperare dati su qualità dell'aria e meteo. Nessuna informazione personale è inclusa in queste richieste.",
+    "whatWeDoNot_title": "3. Cosa NON raccogliamo",
+    "whatWeDoNot_text": "Non usiamo cookie. Non richiediamo account utente o autenticazione. Non raccogliamo nomi, indirizzi email o numeri di telefono. Non tracciamo i singoli utenti tra le sessioni. Non vendiamo o condividiamo dati con inserzionisti o terze parti.",
+    "cookies_title": "4. Cookie",
+    "cookies_text": "airindex.today non imposta cookie di tracciamento, cookie di analisi o cookie pubblicitari.",
+    "thirdParties_title": "5. Servizi di terze parti",
+    "thirdParty_openmeteo": "Fornitore di dati su qualità dell'aria e meteo. Riceve solo le coordinate della posizione. Nessun dato personale.",
+    "thirdParty_sa": "Analisi rispettosa della privacy. Con sede nell'UE. Non raccoglie dati personali. Nessun cookie.",
+    "thirdParty_ip2": "Database locale di geolocalizzazione IP. L'IP viene elaborato solo lato server, mai trasmesso esternamente.",
+    "thirdParty_cloudflare": "CDN e protezione DDoS. Instrada il traffico attraverso la sua rete. Consulta l'informativa sulla privacy di Cloudflare.",
+    "gdpr_title": "6. I tuoi diritti (GDPR)",
+    "gdpr_text": "Poiché non memorizziamo dati personali in alcun database, la maggior parte dei diritti GDPR (accesso, rettifica, cancellazione, portabilità) non sono applicabili. Per domande, contattaci tramite il link sottostante.",
+    "children_title": "7. Minori",
+    "children_text": "Questo sito web non è rivolto a minori di 16 anni. Non trattiamo consapevolmente dati personali di minori.",
+    "changes_title": "8. Modifiche",
+    "changes_text": "Se le nostre pratiche sui dati cambiano in modo sostanziale, questa pagina verrà aggiornata prima che le modifiche entrino in vigore.",
+    "contact_title": "9. Contatti",
+    "contact_text": "Domande su questa informativa?"
+  },
+  "notFound": {
+    "title": "Pagina non trovata",
+    "heading": "Pagina non trovata",
+    "description": "La pagina che stai cercando non esiste o è stata spostata.",
+    "goHome": "Controlla la qualità dell'aria"
+  },
+  "cityInfo": {
+    "heading": "Informazioni su {city}",
+    "country": "Paese",
+    "timezone": "Fuso orario",
+    "coordinates": "Coordinate",
+    "population": "Popolazione"
+  }
+}

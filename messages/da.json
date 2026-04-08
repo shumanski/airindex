@@ -1,0 +1,186 @@
+{
+  "meta": {
+    "title": "Luftkvalitetsindeks i dag — AQI-prognose og sundhedsråd",
+    "description": "Tjek luftkvalitetsindekset i dag for en hvilken som helst placering. Timevis AQI-prognose, forureningsniveauer (PM2.5, PM10, NO₂, O₃) og sundhedsråd.",
+    "h1": "Luftkvalitetsindeks i dag"
+  },
+  "location": {
+    "searchPlaceholder": "Søg efter en placering...",
+    "detectingLocation": "Finder din placering...",
+    "unknownLocation": "Ukendt placering",
+    "detectMyLocation": "Find min placering"
+  },
+  "aqi": {
+    "good": "God",
+    "moderate": "Moderat",
+    "unhealthySensitive": "Usundt for følsomme grupper",
+    "unhealthy": "Usundt",
+    "veryUnhealthy": "Meget usundt",
+    "hazardous": "Farligt",
+    "today": "I dag",
+    "tomorrow": "I morgen",
+    "peak": "Top",
+    "at": "kl.",
+    "peakAt": "top kl. {time}",
+    "forecast": "Prognose",
+    "localTime": "Lokal tid",
+    "now": "Nu",
+    "todayMax": "I dag",
+    "tomorrowMax": "I morgen",
+    "trend": "5-dages AQI-prognose",
+    "trendCity": "5-dages AQI-prognose for {city}",
+    "trendPeakNote": "Daglige topværdier for AQI",
+    "chartSubtitle": "Timevis luftkvalitetsindeks for {city}",
+    "hourlyTable": "Vis timedata",
+    "hour": "Tid",
+    "loadError": "Kunne ikke indlæse luftkvalitetsdata. Opdater venligst siden.",
+    "advice_good": "Luftkvaliteten er tilfredsstillende — det er en fantastisk dag at være aktiv udendørs",
+    "advice_moderate": "Usædvanligt følsomme personer bør overveje at reducere langvarig eller intens udendørsaktivitet",
+    "advice_unhealthySensitive": "Følsomme grupper bør reducere langvarig eller intens udendørsaktivitet | Tag flere pauser og vær opmærksom på symptomer som hoste eller åndenød",
+    "advice_unhealthy": "Alle bør reducere langvarig eller intens udendørsaktivitet | Følsomme grupper bør undgå anstrengelse udendørs | Overvej at flytte aktiviteter indendørs",
+    "advice_veryUnhealthy": "Alle bør undgå langvarig eller intens anstrengelse udendørs | Følsomme grupper bør undgå al fysisk aktivitet udendørs | Flyt aktiviteter indendørs eller udskyd dem",
+    "advice_hazardous": "Sundhedsadvarsel — alle bør undgå al fysisk aktivitet udendørs | Bliv indendørs og hold aktivitetsniveauet lavt | Følg tips til at holde partikelniveauerne lave indendørs"
+  },
+  "pollutantAqi": {
+    "title": "Hvad er i luften",
+    "dominantNote": "Største bidragyder: {pollutant}"
+  },
+  "pollutants": {
+    "title": "Forureningsniveauer (WHO-retningslinjer)"
+  },
+  "seo": {
+    "aboutTitle": "Om luftkvalitetsindekset",
+    "whatIsAqi": "Hvad er luftkvalitetsindeks (AQI)?",
+    "whatIsAqiAnswer": "Luftkvalitetsindekset (AQI) er et værktøj udviklet af <epa>U.S. Environmental Protection Agency (EPA)</epa> til at kommunikere, hvor ren eller forurenet luften er, og hvilke sundhedseffekter der kan være bekymrende. AQI går fra 0 til 500 og er opdelt i seks farvekodede kategorier: God, Moderat, Usundt for følsomme grupper, Usundt, Meget usundt og Farligt.",
+    "howToRead": "Hvordan læser jeg AQI-værdierne?",
+    "howToReadAnswer": "Lavere AQI-værdier betyder renere luft. En AQI på 0–50 (grøn) er God, 51–100 (gul) er Moderat, 101–150 (orange) er Usundt for følsomme grupper, 151–200 (rød) er Usundt, 201–300 (lilla) er Meget usundt og 301–500 (mørkerød) er Farligt. Når AQI overstiger 100, anses luftkvaliteten for usund — først for følsomme grupper, derefter for alle efterhånden som AQI stiger.",
+    "sensitiveGroups": "Hvem er de følsomme grupper?",
+    "sensitiveGroupsAnswer": "Følsomme grupper omfatter personer med hjerte- eller lungesygdomme, ældre, børn og teenagere, gravide og personer der er aktive udendørs. Disse grupper har større risiko for at blive påvirket, når luftkvaliteten er dårlig. Hvis du tilhører en følsom gruppe, kan du reducere din eksponering ved at tage færre og kortere ture udendørs, når AQI er forhøjet.",
+    "pollutants": "Hvilke forureninger måles?",
+    "pollutantsAnswer": "AQI dækker fem hovedforureninger reguleret under Clean Air Act: jordniveau-ozon (O₃), partikelforurening (PM₂.₅ og PM₁₀), kulilte (CO), svovldioxid (SO₂) og nitrogendioxid (NO₂). En AQI-værdi beregnes for hver forurening, og den højeste værdi bestemmer den samlede AQI.",
+    "dataSource": "Hvor kommer luftkvalitetsdataene fra?",
+    "dataSourceAnswer": "Timevis luftkvalitetsdata kommer fra <cams>Copernicus Atmosphere Monitoring Service (CAMS)</cams>, som leverer globale prognoser for atmosfærens sammensætning. Data tilgås via <openmeteo>Open-Meteo</openmeteo>, som tilbyder gratis open source-API'er til vejr og luftkvalitet. AQI-kategorier og sundhedsråd følger den tekniske standard fra <epa>EPA AirNow</epa> (EPA-454/B-24-002).",
+    "healthEffects": "Hvilke sundhedseffekter har dårlig luftkvalitet?",
+    "healthEffectsAnswer": "Dårlig luftkvalitet kan forårsage luftvejsproblemer, forværre astma og allergier og øge risikoen for hjerte-kar-sygdomme. Fine partikler (PM₂.₅) kan trænge dybt ind i lungerne og blodbanen. <who>Verdenssundhedsorganisationen</who> anslår, at luftforurening forårsager millioner af for tidlige dødsfald verden over hvert år.",
+    "forecastUpdate": "Hvor ofte opdateres luftkvalitetsprognosen?",
+    "forecastUpdateAnswer": "<cams>CAMS</cams>-prognosen for luftkvalitet opdateres regelmæssigt med atmosfæriske modeller. Vejrdata som temperatur og skydække kommer fra <openmeteo>Open-Meteo</openmeteo>. Prognosen giver op til 5 dages timevise luftkvalitetsprediktioner.",
+    "aqiLevelsTitle": "AQI-niveauer (US EPA-standard)",
+    "sources": "AQI-kategorier og sundhedsråd: EPA AirNow (EPA-454/B-24-002, maj 2024). Luftkvalitetsdata: CAMS/Copernicus via Open-Meteo."
+  },
+  "disclaimer": {
+    "heading": "Ansvarsfraskrivelse",
+    "general": "Dette websted er kun til informationsformål og udgør ikke medicinsk rådgivning. Luftkvalitetsdata og sundhedsanbefalinger er omtrentlige og bør ikke erstatte professionel medicinsk rådgivning.",
+    "accuracy": "AQI-prognoser er baseret på atmosfæriske modeller. Faktisk luftkvalitet kan variere på grund af lokale udledninger, vindmønstre og andre miljøfaktorer.",
+    "externalApi": "Luftkvalitets- og vejrdata hentes fra tredjeparts API'er (Open-Meteo/CAMS). Vi garanterer ikke nøjagtighed eller tilgængelighed."
+  },
+  "sources": {
+    "aqiData": "Luftkvalitets- og vejrdata:",
+    "geodata": "Placeringsdata:"
+  },
+  "language": {
+    "en": "English",
+    "sv": "Svenska",
+    "no": "Norsk",
+    "da": "Dansk",
+    "de": "Deutsch",
+    "nl": "Nederlands",
+    "it": "Italiano",
+    "es": "Español",
+    "fr": "Français",
+    "pt": "Português",
+    "pl": "Polski"
+  },
+  "city": {
+    "title": "Luftkvalitet i {city} — AQI-prognose og forureningsniveauer",
+    "description": "Aktuel luftkvalitetsindeks i {city}, {country}. Timevis AQI-prognose, forureningsniveauer (PM2.5, PM10, NO₂, O₃) og sundhedsråd.",
+    "h1": "Luftkvalitet i {city}",
+    "h1Prefix": "Luftkvalitet i",
+    "summaryDesc": "Aktuelt AQI, timediagram, toptider og 5-dages prognose for {city}, {country}.",
+    "summaryNow": "Nu:",
+    "summaryPeak": "Top i dag:",
+    "nearbyLabel": "Tjek luftkvalitet i:"
+  },
+  "crossPromo": {
+    "uvPrefix": "Tjek UV-eksponering også?",
+    "uvLink": "Se UV-indeks i {city} på UVI.today"
+  },
+  "pwa": {
+    "install": "Tilføj til startskærmen"
+  },
+  "feedback": {
+    "title": "Din feedback",
+    "description": "Hjælp os med at forbedre Air Index Today — del dine tanker eller foreslå ændringer.",
+    "good": "Nyttig",
+    "bad": "Brug for forbedring",
+    "placeholder": "Hvad kan blive bedre? (valgfrit)",
+    "submit": "Send",
+    "thanks": "Tak for din feedback!"
+  },
+  "footer": {
+    "about": "Om os",
+    "privacy": "Privatliv",
+    "contact": "Kontakt"
+  },
+  "about": {
+    "title": "Om Air Index Today",
+    "metaDescription": "Air Index Today tilbyder gratis prognoser for luftkvalitetsindeks med data fra Copernicus Atmosphere Monitoring Service (CAMS) via Open-Meteo.",
+    "whatIs_title": "Hvad er Air Index Today?",
+    "whatIs_text": "Air Index Today er en gratis tjeneste til overvågning af luftkvalitet. Den viser aktuelt AQI i henhold til den amerikanske EPA-standard, timevise prognoser, forureningsopdeling (PM2.5, PM10, NO₂, O₃, SO₂, CO), en 5-dages AQI-trend og sundhedsanbefalinger baseret på AirNow-retningslinjer.",
+    "dataSources_title": "Datakilder",
+    "dataSources_cams": "Luftkvalitetsdata fra Copernicus Atmosphere Monitoring Service via",
+    "dataSources_epa": "AQI-kategorier og sundhedsråd fra EPA AirNow",
+    "howItWorks_title": "Sådan fungerer det",
+    "howItWorks_text": "Luftkvalitetsdata kommer fra Copernicus Atmosphere Monitoring Service (CAMS), som bruger atmosfærisk modellering og satellitobservationer til luftkvalitetsprognoser verden over. Vejrdata (temperatur, forhold) kommer fra Open-Meteos prognose-API.",
+    "free_title": "Gratis og reklamefinansieret",
+    "free_text": "Air Index Today er gratis at bruge. Tjenesten finansieres af diskret reklame. Vi sælger ingen personoplysninger og kræver ingen brugerkonti.",
+    "contact_title": "Kontakt",
+    "contact_text": "Air Index Today er et projekt af",
+    "contact_link": "Kontakt os →"
+  },
+  "privacy": {
+    "title": "Privatlivspolitik",
+    "metaDescription": "Air Index Todays privatlivspolitik. Vi indsamler ingen personoplysninger, bruger ingen cookies og kræver ingen konti.",
+    "lastUpdated": "Sidst opdateret: januar 2025",
+    "whoWeAre_title": "1. Hvem vi er",
+    "whoWeAre_text": "Denne politik gælder airindex.today, en tjeneste til prognoser af luftkvalitetsindeks drevet af SimpleMeteo.",
+    "whatWeCollect_title": "2. Hvilke data behandles",
+    "ipGeo_title": "IP-baseret geolokalisering",
+    "ipGeo_text": "Når du første gang besøger webstedet, behandles din IP-adresse på serversiden med IP2Location LITE-databasen for at bestemme din omtrentlige placering til luftkvalitetsprognosen. IP-adressen gemmes ikke, logges ikke og sendes ikke videre til nogen tredjepart.",
+    "analytics_title": "Analyse",
+    "analytics_text": "Vi bruger Simple Analytics, en privatlivsvenlig analysetjeneste baseret i Holland (EU). Den indsamler ingen personoplysninger, sætter ingen cookies og sporer ikke individuelle besøgende.",
+    "localStorage_title": "Lokale indstillinger",
+    "localStorage_text": "Dine sprog- og temperaturindstillinger gemmes i browserens localStorage. Disse data forlader aldrig din enhed.",
+    "airQualityApi_title": "API-forespørgsler for luftkvalitet",
+    "airQualityApi_text": "Når du ser en luftkvalitetsprognose, sendes koordinaterne for din valgte placering til Open-Meteo og CAMS API for at hente luftkvalitets- og vejrdata. Ingen personlig information er inkluderet i disse forespørgsler.",
+    "whatWeDoNot_title": "3. Hvad vi IKKE indsamler",
+    "whatWeDoNot_text": "Vi bruger ingen cookies. Vi kræver ingen brugerkonti eller autentificering. Vi indsamler ikke navne, e-mailadresser eller telefonnumre. Vi sporer ikke individuelle brugere på tværs af sessioner. Vi sælger eller deler ingen data med annoncører eller tredjeparter.",
+    "cookies_title": "4. Cookies",
+    "cookies_text": "airindex.today sætter ingen sporingscookies, ingen analysecookies og ingen reklamecookies.",
+    "thirdParties_title": "5. Tredjepartstjenester",
+    "thirdParty_openmeteo": "Leverandør af luftkvalitets- og vejrdata. Modtager kun placeringskoordinater. Ingen personoplysninger.",
+    "thirdParty_sa": "Privatlivsvenlig analyse. Baseret i EU. Indsamler ingen personoplysninger. Ingen cookies.",
+    "thirdParty_ip2": "Lokal IP-geolokaliseringsdatabase. IP behandles kun på serversiden, sendes aldrig eksternt.",
+    "thirdParty_cloudflare": "CDN og DDoS-beskyttelse. Ruter trafik gennem sit netværk. Se Cloudflares privatlivspolitik.",
+    "gdpr_title": "6. Dine rettigheder (GDPR)",
+    "gdpr_text": "Da vi ikke gemmer personoplysninger i nogen database, er de fleste GDPR-rettigheder (indsigt, berigtigelse, sletning, dataportabilitet) ikke gældende. Har du spørgsmål, kontakt os via linket nedenfor.",
+    "children_title": "7. Børn",
+    "children_text": "Dette websted er ikke rettet mod børn under 16 år. Vi behandler ikke bevidst personoplysninger fra børn.",
+    "changes_title": "8. Ændringer",
+    "changes_text": "Hvis vores datapraksis ændres væsentligt, vil denne side blive opdateret, før ændringerne træder i kraft.",
+    "contact_title": "9. Kontakt",
+    "contact_text": "Spørgsmål om denne politik?"
+  },
+  "notFound": {
+    "title": "Siden blev ikke fundet",
+    "heading": "Siden blev ikke fundet",
+    "description": "Siden du leder efter, findes ikke eller er blevet flyttet.",
+    "goHome": "Tjek luftkvalitet"
+  },
+  "cityInfo": {
+    "heading": "Om {city}",
+    "country": "Land",
+    "timezone": "Tidszone",
+    "coordinates": "Koordinater",
+    "population": "Befolkning"
+  }
+}

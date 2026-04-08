@@ -1,0 +1,186 @@
+{
+  "meta": {
+    "title": "Luftqualitätsindex heute — AQI-Vorhersage und Gesundheitshinweise",
+    "description": "Prüfen Sie den Luftqualitätsindex heute für jeden Standort. Stündliche AQI-Vorhersage, Schadstoffwerte (PM2.5, PM10, NO₂, O₃) und Gesundheitshinweise.",
+    "h1": "Luftqualitätsindex heute"
+  },
+  "location": {
+    "searchPlaceholder": "Standort suchen...",
+    "detectingLocation": "Standort wird ermittelt...",
+    "unknownLocation": "Unbekannter Standort",
+    "detectMyLocation": "Meinen Standort finden"
+  },
+  "aqi": {
+    "good": "Gut",
+    "moderate": "Mäßig",
+    "unhealthySensitive": "Ungesund für empfindliche Gruppen",
+    "unhealthy": "Ungesund",
+    "veryUnhealthy": "Sehr ungesund",
+    "hazardous": "Gefährlich",
+    "today": "Heute",
+    "tomorrow": "Morgen",
+    "peak": "Spitzenwert",
+    "at": "um",
+    "peakAt": "Spitzenwert um {time}",
+    "forecast": "Vorhersage",
+    "localTime": "Ortszeit",
+    "now": "Jetzt",
+    "todayMax": "Heute",
+    "tomorrowMax": "Morgen",
+    "trend": "5-Tage-AQI-Vorhersage",
+    "trendCity": "5-Tage-AQI-Vorhersage für {city}",
+    "trendPeakNote": "Tägliche AQI-Spitzenwerte",
+    "chartSubtitle": "Stündlicher Luftqualitätsindex für {city}",
+    "hourlyTable": "Stündliche Datentabelle anzeigen",
+    "hour": "Zeit",
+    "loadError": "Luftqualitätsdaten konnten nicht geladen werden. Bitte aktualisieren Sie die Seite.",
+    "advice_good": "Die Luftqualität ist zufriedenstellend — ein großartiger Tag, um draußen aktiv zu sein",
+    "advice_moderate": "Ungewöhnlich empfindliche Personen sollten erwägen, längere oder intensive Aktivitäten im Freien zu reduzieren",
+    "advice_unhealthySensitive": "Empfindliche Gruppen sollten längere oder intensive Aktivitäten im Freien reduzieren | Machen Sie mehr Pausen und achten Sie auf Symptome wie Husten oder Atemnot",
+    "advice_unhealthy": "Alle sollten längere oder intensive Aktivitäten im Freien reduzieren | Empfindliche Gruppen sollten Anstrengung im Freien vermeiden | Erwägen Sie, Aktivitäten nach drinnen zu verlegen",
+    "advice_veryUnhealthy": "Alle sollten längere oder intensive Anstrengung im Freien vermeiden | Empfindliche Gruppen sollten jede körperliche Aktivität im Freien vermeiden | Verlegen Sie Aktivitäten nach drinnen oder verschieben Sie sie",
+    "advice_hazardous": "Gesundheitswarnung — alle sollten jede körperliche Aktivität im Freien vermeiden | Bleiben Sie drinnen und halten Sie das Aktivitätsniveau niedrig | Befolgen Sie Tipps, um die Partikelbelastung in Innenräumen gering zu halten"
+  },
+  "pollutantAqi": {
+    "title": "Was ist in der Luft",
+    "dominantNote": "Hauptverursacher: {pollutant}"
+  },
+  "pollutants": {
+    "title": "Schadstoffwerte (WHO-Richtlinien)"
+  },
+  "seo": {
+    "aboutTitle": "Über den Luftqualitätsindex",
+    "whatIsAqi": "Was ist der Luftqualitätsindex (AQI)?",
+    "whatIsAqiAnswer": "Der Luftqualitätsindex (AQI) ist ein Instrument, das von der <epa>U.S. Environmental Protection Agency (EPA)</epa> entwickelt wurde, um zu kommunizieren, wie sauber oder verschmutzt die Luft ist und welche gesundheitlichen Auswirkungen relevant sein könnten. Der AQI reicht von 0 bis 500 und ist in sechs farbcodierte Kategorien unterteilt: Gut, Mäßig, Ungesund für empfindliche Gruppen, Ungesund, Sehr ungesund und Gefährlich.",
+    "howToRead": "Wie lese ich die AQI-Werte?",
+    "howToReadAnswer": "Niedrigere AQI-Werte bedeuten sauberere Luft. Ein AQI von 0–50 (grün) ist Gut, 51–100 (gelb) ist Mäßig, 101–150 (orange) ist Ungesund für empfindliche Gruppen, 151–200 (rot) ist Ungesund, 201–300 (lila) ist Sehr ungesund und 301–500 (dunkelrot) ist Gefährlich. Wenn der AQI 100 überschreitet, gilt die Luftqualität als ungesund — zunächst für empfindliche Gruppen, dann für alle, wenn der AQI weiter steigt.",
+    "sensitiveGroups": "Wer gehört zu den empfindlichen Gruppen?",
+    "sensitiveGroupsAnswer": "Empfindliche Gruppen umfassen Menschen mit Herz- oder Lungenerkrankungen, ältere Menschen, Kinder und Jugendliche, Schwangere und Personen, die im Freien aktiv sind. Diese Gruppen sind stärker gefährdet, wenn die Luftqualität schlecht ist. Wenn Sie einer empfindlichen Gruppe angehören, können Sie Ihre Belastung reduzieren, indem Sie bei erhöhtem AQI weniger und kürzer im Freien spazieren gehen.",
+    "pollutants": "Welche Schadstoffe werden gemessen?",
+    "pollutantsAnswer": "Der AQI umfasst fünf Hauptschadstoffe, die gemäß dem Clean Air Act reguliert werden: bodennahes Ozon (O₃), Feinstaub (PM₂.₅ und PM₁₀), Kohlenmonoxid (CO), Schwefeldioxid (SO₂) und Stickstoffdioxid (NO₂). Für jeden Schadstoff wird ein AQI-Wert berechnet, und der höchste Wert bestimmt den Gesamt-AQI.",
+    "dataSource": "Woher kommen die Luftqualitätsdaten?",
+    "dataSourceAnswer": "Die stündlichen Luftqualitätsdaten stammen vom <cams>Copernicus Atmosphere Monitoring Service (CAMS)</cams>, der globale Vorhersagen zur atmosphärischen Zusammensetzung liefert. Die Daten werden über <openmeteo>Open-Meteo</openmeteo> abgerufen, das kostenlose Open-Source-APIs für Wetter und Luftqualität anbietet. AQI-Kategorien und Gesundheitshinweise folgen dem technischen Standard von <epa>EPA AirNow</epa> (EPA-454/B-24-002).",
+    "healthEffects": "Welche gesundheitlichen Auswirkungen hat schlechte Luftqualität?",
+    "healthEffectsAnswer": "Schlechte Luftqualität kann Atemwegserkrankungen verursachen, Asthma und Allergien verschlimmern und das Risiko von Herz-Kreislauf-Erkrankungen erhöhen. Feine Partikel (PM₂.₅) können tief in die Lunge und den Blutkreislauf eindringen. Die <who>Weltgesundheitsorganisation</who> schätzt, dass Luftverschmutzung jedes Jahr weltweit Millionen vorzeitiger Todesfälle verursacht.",
+    "forecastUpdate": "Wie oft wird die Luftqualitätsvorhersage aktualisiert?",
+    "forecastUpdateAnswer": "Die <cams>CAMS</cams>-Luftqualitätsvorhersage wird regelmäßig mit atmosphärischen Modellen aktualisiert. Wetterdaten wie Temperatur und Bewölkung stammen von <openmeteo>Open-Meteo</openmeteo>. Die Vorhersage liefert bis zu 5 Tage stündlicher Luftqualitätsprognosen.",
+    "aqiLevelsTitle": "AQI-Stufen (US-EPA-Standard)",
+    "sources": "AQI-Kategorien und Gesundheitshinweise: EPA AirNow (EPA-454/B-24-002, Mai 2024). Luftqualitätsdaten: CAMS/Copernicus via Open-Meteo."
+  },
+  "disclaimer": {
+    "heading": "Haftungsausschluss",
+    "general": "Diese Website dient ausschließlich Informationszwecken und stellt keine medizinische Beratung dar. Luftqualitätsdaten und Gesundheitshinweise sind Näherungswerte und sollten professionelle medizinische Beratung nicht ersetzen.",
+    "accuracy": "AQI-Vorhersagen basieren auf atmosphärischen Modellen. Die tatsächliche Luftqualität kann aufgrund lokaler Emissionen, Windverhältnisse und anderer Umweltfaktoren abweichen.",
+    "externalApi": "Luftqualitäts- und Wetterdaten stammen von Drittanbieter-APIs (Open-Meteo/CAMS). Wir garantieren keine Richtigkeit oder Verfügbarkeit."
+  },
+  "sources": {
+    "aqiData": "Luftqualitäts- und Wetterdaten:",
+    "geodata": "Standortdaten:"
+  },
+  "language": {
+    "en": "English",
+    "sv": "Svenska",
+    "no": "Norsk",
+    "da": "Dansk",
+    "de": "Deutsch",
+    "nl": "Nederlands",
+    "it": "Italiano",
+    "es": "Español",
+    "fr": "Français",
+    "pt": "Português",
+    "pl": "Polski"
+  },
+  "city": {
+    "title": "Luftqualität in {city} — AQI-Vorhersage und Schadstoffwerte",
+    "description": "Aktueller Luftqualitätsindex in {city}, {country}. Stündliche AQI-Vorhersage, Schadstoffwerte (PM2.5, PM10, NO₂, O₃) und Gesundheitshinweise.",
+    "h1": "Luftqualität in {city}",
+    "h1Prefix": "Luftqualität in",
+    "summaryDesc": "Aktueller AQI, Stundendiagramm, Spitzenzeiten und 5-Tage-Vorhersage für {city}, {country}.",
+    "summaryNow": "Jetzt:",
+    "summaryPeak": "Spitze heute:",
+    "nearbyLabel": "Luftqualität prüfen in:"
+  },
+  "crossPromo": {
+    "uvPrefix": "UV-Belastung auch prüfen?",
+    "uvLink": "UV-Index in {city} auf UVI.today ansehen"
+  },
+  "pwa": {
+    "install": "Zum Startbildschirm hinzufügen"
+  },
+  "feedback": {
+    "title": "Ihr Feedback",
+    "description": "Helfen Sie uns, Air Index Today zu verbessern — teilen Sie Ihre Gedanken oder schlagen Sie Änderungen vor.",
+    "good": "Nützlich",
+    "bad": "Verbesserungsbedarf",
+    "placeholder": "Was könnte besser sein? (optional)",
+    "submit": "Senden",
+    "thanks": "Danke für Ihr Feedback!"
+  },
+  "footer": {
+    "about": "Über uns",
+    "privacy": "Datenschutz",
+    "contact": "Kontakt"
+  },
+  "about": {
+    "title": "Über Air Index Today",
+    "metaDescription": "Air Index Today bietet kostenlose Luftqualitätsindex-Vorhersagen mit Daten vom Copernicus Atmosphere Monitoring Service (CAMS) über Open-Meteo.",
+    "whatIs_title": "Was ist Air Index Today?",
+    "whatIs_text": "Air Index Today ist ein kostenloser Dienst zur Überwachung der Luftqualität. Er zeigt den aktuellen AQI gemäß dem US-EPA-Standard, stündliche Vorhersagen, Schadstoffaufschlüsselung (PM2.5, PM10, NO₂, O₃, SO₂, CO), einen 5-Tage-AQI-Trend und Gesundheitsempfehlungen basierend auf AirNow-Richtlinien.",
+    "dataSources_title": "Datenquellen",
+    "dataSources_cams": "Luftqualitätsdaten vom Copernicus Atmosphere Monitoring Service über",
+    "dataSources_epa": "AQI-Kategorien und Gesundheitshinweise von EPA AirNow",
+    "howItWorks_title": "So funktioniert es",
+    "howItWorks_text": "Luftqualitätsdaten stammen vom Copernicus Atmosphere Monitoring Service (CAMS), der atmosphärische Modellierung und Satellitenbeobachtungen für weltweite Luftqualitätsvorhersagen nutzt. Wetterdaten (Temperatur, Bedingungen) kommen von der Open-Meteo Vorhersage-API.",
+    "free_title": "Kostenlos und werbefinanziert",
+    "free_text": "Air Index Today ist kostenlos nutzbar. Der Dienst wird durch dezente Werbung finanziert. Wir verkaufen keine personenbezogenen Daten und verlangen keine Benutzerkonten.",
+    "contact_title": "Kontakt",
+    "contact_text": "Air Index Today ist ein Projekt von",
+    "contact_link": "Kontaktieren Sie uns →"
+  },
+  "privacy": {
+    "title": "Datenschutzerklärung",
+    "metaDescription": "Datenschutzerklärung von Air Index Today. Wir erheben keine personenbezogenen Daten, verwenden keine Cookies und verlangen keine Konten.",
+    "lastUpdated": "Zuletzt aktualisiert: Januar 2025",
+    "whoWeAre_title": "1. Wer wir sind",
+    "whoWeAre_text": "Diese Erklärung gilt für airindex.today, einen Dienst für Luftqualitätsindex-Vorhersagen, betrieben von SimpleMeteo.",
+    "whatWeCollect_title": "2. Welche Daten verarbeitet werden",
+    "ipGeo_title": "IP-basierte Geolokalisierung",
+    "ipGeo_text": "Beim ersten Besuch der Website wird Ihre IP-Adresse serverseitig mit der IP2Location LITE-Datenbank verarbeitet, um Ihren ungefähren Standort für die Luftqualitätsvorhersage zu bestimmen. Die IP-Adresse wird nicht gespeichert, protokolliert oder an Dritte weitergegeben.",
+    "analytics_title": "Analyse",
+    "analytics_text": "Wir verwenden Simple Analytics, einen datenschutzfreundlichen Analysedienst mit Sitz in den Niederlanden (EU). Er erhebt keine personenbezogenen Daten, setzt keine Cookies und verfolgt keine einzelnen Besucher.",
+    "localStorage_title": "Lokale Einstellungen",
+    "localStorage_text": "Ihre Sprach- und Temperatureinstellungen werden im localStorage Ihres Browsers gespeichert. Diese Daten verlassen niemals Ihr Gerät.",
+    "airQualityApi_title": "API-Anfragen für Luftqualität",
+    "airQualityApi_text": "Wenn Sie eine Luftqualitätsvorhersage aufrufen, werden die Koordinaten Ihres gewählten Standorts an Open-Meteo und die CAMS-API gesendet, um Luftqualitäts- und Wetterdaten abzurufen. Keine persönlichen Daten sind in diesen Anfragen enthalten.",
+    "whatWeDoNot_title": "3. Was wir NICHT erheben",
+    "whatWeDoNot_text": "Wir verwenden keine Cookies. Wir verlangen keine Benutzerkonten oder Authentifizierung. Wir erheben keine Namen, E-Mail-Adressen oder Telefonnummern. Wir verfolgen keine einzelnen Nutzer über Sitzungen hinweg. Wir verkaufen oder teilen keine Daten mit Werbetreibenden oder Dritten.",
+    "cookies_title": "4. Cookies",
+    "cookies_text": "airindex.today setzt keine Tracking-Cookies, keine Analyse-Cookies und keine Werbe-Cookies.",
+    "thirdParties_title": "5. Drittanbieterdienste",
+    "thirdParty_openmeteo": "Anbieter von Luftqualitäts- und Wetterdaten. Empfängt nur Standortkoordinaten. Keine personenbezogenen Daten.",
+    "thirdParty_sa": "Datenschutzfreundliche Analyse. In der EU ansässig. Erhebt keine personenbezogenen Daten. Keine Cookies.",
+    "thirdParty_ip2": "Lokale IP-Geolokalisierungsdatenbank. IP wird nur serverseitig verarbeitet, nie extern übertragen.",
+    "thirdParty_cloudflare": "CDN und DDoS-Schutz. Leitet Datenverkehr durch sein Netzwerk. Siehe Cloudflare-Datenschutzrichtlinie.",
+    "gdpr_title": "6. Ihre Rechte (DSGVO)",
+    "gdpr_text": "Da wir keine personenbezogenen Daten in einer Datenbank speichern, sind die meisten DSGVO-Rechte (Auskunft, Berichtigung, Löschung, Datenübertragbarkeit) nicht anwendbar. Bei Fragen kontaktieren Sie uns über den Link unten.",
+    "children_title": "7. Kinder",
+    "children_text": "Diese Website richtet sich nicht an Kinder unter 16 Jahren. Wir verarbeiten nicht wissentlich personenbezogene Daten von Kindern.",
+    "changes_title": "8. Änderungen",
+    "changes_text": "Falls sich unsere Datenpraktiken wesentlich ändern, wird diese Seite aktualisiert, bevor die Änderungen in Kraft treten.",
+    "contact_title": "9. Kontakt",
+    "contact_text": "Fragen zu dieser Erklärung?"
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "heading": "Seite nicht gefunden",
+    "description": "Die gesuchte Seite existiert nicht oder wurde verschoben.",
+    "goHome": "Luftqualität prüfen"
+  },
+  "cityInfo": {
+    "heading": "Über {city}",
+    "country": "Land",
+    "timezone": "Zeitzone",
+    "coordinates": "Koordinaten",
+    "population": "Einwohner"
+  }
+}

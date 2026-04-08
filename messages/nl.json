@@ -1,0 +1,186 @@
+{
+  "meta": {
+    "title": "Luchtkwaliteitsindex vandaag — AQI-voorspelling en gezondheidsadvies",
+    "description": "Controleer de luchtkwaliteitsindex vandaag voor elke locatie. Uurlijkse AQI-voorspelling, verontreinigingsniveaus (PM2.5, PM10, NO₂, O₃) en gezondheidsadvies.",
+    "h1": "Luchtkwaliteitsindex vandaag"
+  },
+  "location": {
+    "searchPlaceholder": "Zoek een locatie...",
+    "detectingLocation": "Locatie wordt bepaald...",
+    "unknownLocation": "Onbekende locatie",
+    "detectMyLocation": "Mijn locatie vinden"
+  },
+  "aqi": {
+    "good": "Goed",
+    "moderate": "Matig",
+    "unhealthySensitive": "Ongezond voor gevoelige groepen",
+    "unhealthy": "Ongezond",
+    "veryUnhealthy": "Zeer ongezond",
+    "hazardous": "Gevaarlijk",
+    "today": "Vandaag",
+    "tomorrow": "Morgen",
+    "peak": "Piek",
+    "at": "om",
+    "peakAt": "piek om {time}",
+    "forecast": "Voorspelling",
+    "localTime": "Lokale tijd",
+    "now": "Nu",
+    "todayMax": "Vandaag",
+    "tomorrowMax": "Morgen",
+    "trend": "5-daagse AQI-voorspelling",
+    "trendCity": "5-daagse AQI-voorspelling voor {city}",
+    "trendPeakNote": "Dagelijkse AQI-piekwaarden",
+    "chartSubtitle": "Uurlijkse luchtkwaliteitsindex voor {city}",
+    "hourlyTable": "Toon uurlijkse datatabel",
+    "hour": "Tijd",
+    "loadError": "Kan luchtkwaliteitsgegevens niet laden. Vernieuw de pagina.",
+    "advice_good": "De luchtkwaliteit is goed — het is een prima dag om buiten actief te zijn",
+    "advice_moderate": "Ongewoon gevoelige personen moeten overwegen langdurige of intense buitenactiviteiten te verminderen",
+    "advice_unhealthySensitive": "Gevoelige groepen moeten langdurige of intense buitenactiviteiten verminderen | Neem meer pauzes en let op symptomen zoals hoesten of kortademigheid",
+    "advice_unhealthy": "Iedereen moet langdurige of intense buitenactiviteiten verminderen | Gevoelige groepen moeten inspanning buiten vermijden | Overweeg activiteiten naar binnen te verplaatsen",
+    "advice_veryUnhealthy": "Iedereen moet langdurige of intense inspanning buiten vermijden | Gevoelige groepen moeten alle fysieke activiteit buiten vermijden | Verplaats activiteiten naar binnen of stel ze uit",
+    "advice_hazardous": "Gezondheidswaarschuwing — iedereen moet alle fysieke activiteit buiten vermijden | Blijf binnen en houd het activiteitsniveau laag | Volg tips om de fijnstofniveaus binnenshuis laag te houden"
+  },
+  "pollutantAqi": {
+    "title": "Wat zit er in de lucht",
+    "dominantNote": "Grootste bijdrager: {pollutant}"
+  },
+  "pollutants": {
+    "title": "Verontreinigingsniveaus (WHO-richtlijnen)"
+  },
+  "seo": {
+    "aboutTitle": "Over de luchtkwaliteitsindex",
+    "whatIsAqi": "Wat is de luchtkwaliteitsindex (AQI)?",
+    "whatIsAqiAnswer": "De luchtkwaliteitsindex (AQI) is een instrument ontwikkeld door het <epa>U.S. Environmental Protection Agency (EPA)</epa> om te communiceren hoe schoon of vervuild de lucht is en welke gezondheidseffecten relevant kunnen zijn. De AQI loopt van 0 tot 500 en is verdeeld in zes kleurgecodeerde categorieën: Goed, Matig, Ongezond voor gevoelige groepen, Ongezond, Zeer ongezond en Gevaarlijk.",
+    "howToRead": "Hoe lees ik de AQI-waarden?",
+    "howToReadAnswer": "Lagere AQI-waarden betekenen schonere lucht. Een AQI van 0–50 (groen) is Goed, 51–100 (geel) is Matig, 101–150 (oranje) is Ongezond voor gevoelige groepen, 151–200 (rood) is Ongezond, 201–300 (paars) is Zeer ongezond en 301–500 (donkerrood) is Gevaarlijk. Wanneer de AQI boven 100 komt, wordt de luchtkwaliteit als ongezond beschouwd — eerst voor gevoelige groepen, daarna voor iedereen naarmate de AQI stijgt.",
+    "sensitiveGroups": "Wie zijn de gevoelige groepen?",
+    "sensitiveGroupsAnswer": "Gevoelige groepen omvatten mensen met hart- of longaandoeningen, ouderen, kinderen en tieners, zwangere vrouwen en mensen die buiten actief zijn. Deze groepen lopen meer risico wanneer de luchtkwaliteit slecht is. Als u tot een gevoelige groep behoort, kunt u uw blootstelling verminderen door minder en korter buiten te wandelen wanneer de AQI verhoogd is.",
+    "pollutants": "Welke verontreinigingen worden gemeten?",
+    "pollutantsAnswer": "De AQI omvat vijf belangrijke verontreinigingen die worden gereguleerd onder de Clean Air Act: ozon op grondniveau (O₃), fijnstof (PM₂.₅ en PM₁₀), koolmonoxide (CO), zwaveldioxide (SO₂) en stikstofdioxide (NO₂). Voor elke verontreiniging wordt een AQI-waarde berekend en de hoogste waarde bepaalt de algehele AQI.",
+    "dataSource": "Waar komen de luchtkwaliteitsgegevens vandaan?",
+    "dataSourceAnswer": "De uurlijkse luchtkwaliteitsgegevens komen van de <cams>Copernicus Atmosphere Monitoring Service (CAMS)</cams>, die wereldwijde voorspellingen van de atmosferische samenstelling levert. De gegevens worden opgevraagd via <openmeteo>Open-Meteo</openmeteo>, dat gratis open-source API's voor weer en luchtkwaliteit biedt. AQI-categorieën en gezondheidsrichtlijnen volgen de technische standaard van <epa>EPA AirNow</epa> (EPA-454/B-24-002).",
+    "healthEffects": "Wat zijn de gezondheidseffecten van slechte luchtkwaliteit?",
+    "healthEffectsAnswer": "Slechte luchtkwaliteit kan luchtwegproblemen veroorzaken, astma en allergieën verergeren en het risico op hart- en vaatziekten verhogen. Fijnstofdeeltjes (PM₂.₅) kunnen diep in de longen en de bloedbaan doordringen. De <who>Wereldgezondheidsorganisatie</who> schat dat luchtvervuiling wereldwijd jaarlijks miljoenen vroegtijdige sterfgevallen veroorzaakt.",
+    "forecastUpdate": "Hoe vaak wordt de luchtkwaliteitsvoorspelling bijgewerkt?",
+    "forecastUpdateAnswer": "De <cams>CAMS</cams>-luchtkwaliteitsvoorspelling wordt regelmatig bijgewerkt met atmosferische modellen. Weergegevens zoals temperatuur en bewolking komen van <openmeteo>Open-Meteo</openmeteo>. De voorspelling biedt tot 5 dagen uurlijkse luchtkwaliteitsprognoses.",
+    "aqiLevelsTitle": "AQI-niveaus (US EPA-standaard)",
+    "sources": "AQI-categorieën en gezondheidsrichtlijnen: EPA AirNow (EPA-454/B-24-002, mei 2024). Luchtkwaliteitsgegevens: CAMS/Copernicus via Open-Meteo."
+  },
+  "disclaimer": {
+    "heading": "Disclaimer",
+    "general": "Deze website is uitsluitend bedoeld voor informatieve doeleinden en vormt geen medisch advies. Luchtkwaliteitsgegevens en gezondheidsrichtlijnen zijn benaderingen en mogen professioneel medisch advies niet vervangen.",
+    "accuracy": "AQI-voorspellingen zijn gebaseerd op atmosferische modellen. De werkelijke luchtkwaliteit kan variëren door lokale emissies, windpatronen en andere omgevingsfactoren.",
+    "externalApi": "Luchtkwaliteits- en weergegevens worden verkregen via externe API's (Open-Meteo/CAMS). Wij garanderen geen nauwkeurigheid of beschikbaarheid."
+  },
+  "sources": {
+    "aqiData": "Luchtkwaliteits- en weergegevens:",
+    "geodata": "Locatiegegevens:"
+  },
+  "language": {
+    "en": "English",
+    "sv": "Svenska",
+    "no": "Norsk",
+    "da": "Dansk",
+    "de": "Deutsch",
+    "nl": "Nederlands",
+    "it": "Italiano",
+    "es": "Español",
+    "fr": "Français",
+    "pt": "Português",
+    "pl": "Polski"
+  },
+  "city": {
+    "title": "Luchtkwaliteit in {city} — AQI-voorspelling en verontreinigingsniveaus",
+    "description": "Actuele luchtkwaliteitsindex in {city}, {country}. Uurlijkse AQI-voorspelling, verontreinigingsniveaus (PM2.5, PM10, NO₂, O₃) en gezondheidsadvies.",
+    "h1": "Luchtkwaliteit in {city}",
+    "h1Prefix": "Luchtkwaliteit in",
+    "summaryDesc": "Actuele AQI, uurdiagram, piektijden en 5-daagse voorspelling voor {city}, {country}.",
+    "summaryNow": "Nu:",
+    "summaryPeak": "Piek vandaag:",
+    "nearbyLabel": "Bekijk luchtkwaliteit in:"
+  },
+  "crossPromo": {
+    "uvPrefix": "UV-blootstelling ook controleren?",
+    "uvLink": "Bekijk UV-index in {city} op UVI.today"
+  },
+  "pwa": {
+    "install": "Toevoegen aan startscherm"
+  },
+  "feedback": {
+    "title": "Uw feedback",
+    "description": "Help ons Air Index Today te verbeteren — deel uw gedachten of stel wijzigingen voor.",
+    "good": "Nuttig",
+    "bad": "Kan beter",
+    "placeholder": "Wat kan beter? (optioneel)",
+    "submit": "Versturen",
+    "thanks": "Bedankt voor uw feedback!"
+  },
+  "footer": {
+    "about": "Over ons",
+    "privacy": "Privacy",
+    "contact": "Contact"
+  },
+  "about": {
+    "title": "Over Air Index Today",
+    "metaDescription": "Air Index Today biedt gratis luchtkwaliteitsindex-voorspellingen met gegevens van de Copernicus Atmosphere Monitoring Service (CAMS) via Open-Meteo.",
+    "whatIs_title": "Wat is Air Index Today?",
+    "whatIs_text": "Air Index Today is een gratis dienst voor het monitoren van luchtkwaliteit. Het toont de actuele AQI volgens de Amerikaanse EPA-standaard, uurlijkse voorspellingen, verontreinigingsoverzicht (PM2.5, PM10, NO₂, O₃, SO₂, CO), een 5-daagse AQI-trend en gezondheidsaanbevelingen op basis van AirNow-richtlijnen.",
+    "dataSources_title": "Gegevensbronnen",
+    "dataSources_cams": "Luchtkwaliteitsgegevens van de Copernicus Atmosphere Monitoring Service via",
+    "dataSources_epa": "AQI-categorieën en gezondheidsrichtlijnen van EPA AirNow",
+    "howItWorks_title": "Hoe het werkt",
+    "howItWorks_text": "Luchtkwaliteitsgegevens komen van de Copernicus Atmosphere Monitoring Service (CAMS), die atmosferische modellering en satellietobservaties gebruikt voor wereldwijde luchtkwaliteitsvoorspellingen. Weergegevens (temperatuur, omstandigheden) komen van de Open-Meteo voorspellings-API.",
+    "free_title": "Gratis en met advertenties",
+    "free_text": "Air Index Today is gratis te gebruiken. De dienst wordt ondersteund door onopvallende advertenties. Wij verkopen geen persoonsgegevens en vereisen geen gebruikersaccounts.",
+    "contact_title": "Contact",
+    "contact_text": "Air Index Today is een project van",
+    "contact_link": "Neem contact op →"
+  },
+  "privacy": {
+    "title": "Privacybeleid",
+    "metaDescription": "Privacybeleid van Air Index Today. Wij verzamelen geen persoonsgegevens, gebruiken geen cookies en vereisen geen accounts.",
+    "lastUpdated": "Laatst bijgewerkt: januari 2025",
+    "whoWeAre_title": "1. Wie wij zijn",
+    "whoWeAre_text": "Dit beleid geldt voor airindex.today, een dienst voor luchtkwaliteitsindex-voorspellingen beheerd door SimpleMeteo.",
+    "whatWeCollect_title": "2. Welke gegevens worden verwerkt",
+    "ipGeo_title": "IP-gebaseerde geolocatie",
+    "ipGeo_text": "Wanneer u de website voor het eerst bezoekt, wordt uw IP-adres serversijdig verwerkt met de IP2Location LITE-database om uw geschatte locatie voor de luchtkwaliteitsvoorspelling te bepalen. Het IP-adres wordt niet opgeslagen, gelogd of doorgestuurd naar derden.",
+    "analytics_title": "Analyse",
+    "analytics_text": "Wij gebruiken Simple Analytics, een privacyvriendelijke analysedienst gevestigd in Nederland (EU). Deze verzamelt geen persoonsgegevens, plaatst geen cookies en volgt geen individuele bezoekers.",
+    "localStorage_title": "Lokale voorkeuren",
+    "localStorage_text": "Uw taal- en temperatuurvoorkeuren worden opgeslagen in de localStorage van uw browser. Deze gegevens verlaten nooit uw apparaat.",
+    "airQualityApi_title": "API-verzoeken voor luchtkwaliteit",
+    "airQualityApi_text": "Wanneer u een luchtkwaliteitsvoorspelling bekijkt, worden de coördinaten van uw geselecteerde locatie naar Open-Meteo en de CAMS API gestuurd om luchtkwaliteits- en weergegevens op te halen. Er worden geen persoonsgegevens meegestuurd.",
+    "whatWeDoNot_title": "3. Wat wij NIET verzamelen",
+    "whatWeDoNot_text": "Wij gebruiken geen cookies. Wij vereisen geen gebruikersaccounts of authenticatie. Wij verzamelen geen namen, e-mailadressen of telefoonnummers. Wij volgen geen individuele gebruikers over sessies heen. Wij verkopen of delen geen gegevens met adverteerders of derden.",
+    "cookies_title": "4. Cookies",
+    "cookies_text": "airindex.today plaatst geen trackingcookies, geen analysecookies en geen advertentiecookies.",
+    "thirdParties_title": "5. Diensten van derden",
+    "thirdParty_openmeteo": "Leverancier van luchtkwaliteits- en weergegevens. Ontvangt alleen locatiecoördinaten. Geen persoonsgegevens.",
+    "thirdParty_sa": "Privacyvriendelijke analyse. Gevestigd in de EU. Verzamelt geen persoonsgegevens. Geen cookies.",
+    "thirdParty_ip2": "Lokale IP-geolocatiedatabase. IP wordt alleen serversijdig verwerkt, nooit extern verzonden.",
+    "thirdParty_cloudflare": "CDN en DDoS-bescherming. Routeert verkeer door zijn netwerk. Zie het privacybeleid van Cloudflare.",
+    "gdpr_title": "6. Uw rechten (AVG)",
+    "gdpr_text": "Aangezien wij geen persoonsgegevens in een database opslaan, zijn de meeste AVG-rechten (inzage, rectificatie, wissing, dataportabiliteit) niet van toepassing. Bij vragen kunt u contact opnemen via de link hieronder.",
+    "children_title": "7. Kinderen",
+    "children_text": "Deze website is niet gericht op kinderen onder 16 jaar. Wij verwerken niet bewust persoonsgegevens van kinderen.",
+    "changes_title": "8. Wijzigingen",
+    "changes_text": "Indien onze gegevenspraktijken wezenlijk veranderen, wordt deze pagina bijgewerkt voordat de wijzigingen van kracht worden.",
+    "contact_title": "9. Contact",
+    "contact_text": "Vragen over dit beleid?"
+  },
+  "notFound": {
+    "title": "Pagina niet gevonden",
+    "heading": "Pagina niet gevonden",
+    "description": "De pagina die u zoekt bestaat niet of is verplaatst.",
+    "goHome": "Luchtkwaliteit bekijken"
+  },
+  "cityInfo": {
+    "heading": "Over {city}",
+    "country": "Land",
+    "timezone": "Tijdzone",
+    "coordinates": "Coördinaten",
+    "population": "Bevolking"
+  }
+}

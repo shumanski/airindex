@@ -1,0 +1,24 @@
+services:
+  airindex-site:
+    container_name: airindex-site
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - caddy_net
+    expose:
+      - "3000"
+    volumes:
+      - ./data:/app/data
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  caddy_net:
+    external: true

@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+:root {
+  --color-bg: #d4e2f4;
+  --color-surface: #ffffff;
+  --color-surface-active: #e0eaf6;
+  --color-border: #a4b8d4;
+  --color-text: #0c1826;
+  --color-text-secondary: #243548;
+  --color-text-muted: #4a6580;
+  --color-primary: #1565c0;
+  --color-primary-hover: #104d92;
+  --color-city-name: #1259a8;
+  --color-accent: #1976d2;
+  --color-accent-hover: #1565c0;
+  --color-cloud: white;
+  --aqi-text-good: #008f00;
+  --aqi-text-moderate: #b38600;
+  --aqi-text-usg: #cc6500;
+  --aqi-text-unhealthy: #cc0000;
+  --aqi-text-veryUnhealthy: #6b2d73;
+  --aqi-text-hazardous: #5c0019;
+}
+
+[data-theme="dark"] {
+  --color-bg: #08101e;
+  --color-surface: #0e1a30;
+  --color-surface-active: #142440;
+  --color-border: #1a3055;
+  --color-text: #e2ebf5;
+  --color-text-secondary: #a8c0dc;
+  --color-text-muted: #6088b0;
+  --color-primary: #42a5f5;
+  --color-primary-hover: #64b5f6;
+  --color-city-name: #64b5f6;
+  --color-accent: #42a5f5;
+  --color-accent-hover: #64b5f6;
+  --color-cloud: rgba(15, 30, 60, 0.5);
+  --aqi-text-good: #9eff91;
+  --aqi-text-moderate: #ffc905;
+  --aqi-text-usg: #ff8205;
+  --aqi-text-unhealthy: #ff6b6b;
+  --aqi-text-veryUnhealthy: #c084fc;
+  --aqi-text-hazardous: #fb7185;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes cloud-drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-cloud-slow {
+  animation: cloud-drift 220s linear infinite;
+  will-change: transform;
+}
+.animate-cloud-mid {
+  animation: cloud-drift 160s linear infinite;
+  will-change: transform;
+}
+.animate-cloud-fast {
+  animation: cloud-drift 110s linear infinite;
+  will-change: transform;
+}
+
+@media (max-width: 640px) {
+  .animate-cloud-slow { animation-duration: 300s; }
+  .animate-cloud-mid  { animation-duration: 220s; }
+  .animate-cloud-fast { animation-duration: 160s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-cloud-slow,
+  .animate-cloud-mid,
+  .animate-cloud-fast {
+    animation: none;
+  }
+}
+
+.prose-blog h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-top: 1.25rem;
+  margin-bottom: 0.35rem;
+}
+.prose-blog p {
+  margin-bottom: 0.5rem;
+}
+.prose-blog ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.prose-blog li {
+  margin-bottom: 0.25rem;
+}
+.prose-blog a {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+.prose-blog a:hover {
+  color: var(--color-accent-hover);
+}

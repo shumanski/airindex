@@ -1,0 +1,186 @@
+{
+  "meta": {
+    "title": "Luftkvalitetsindex idag — AQI-prognos och hälsoråd",
+    "description": "Kontrollera luftkvalitetsindex idag för valfri plats. Timvis AQI-prognos, föroreningsnivåer (PM2.5, PM10, NO₂, O₃) och hälsoråd.",
+    "h1": "Luftkvalitetsindex idag"
+  },
+  "location": {
+    "searchPlaceholder": "Sök efter en plats...",
+    "detectingLocation": "Identifierar din plats...",
+    "unknownLocation": "Okänd plats",
+    "detectMyLocation": "Hitta min plats"
+  },
+  "aqi": {
+    "good": "Bra",
+    "moderate": "Måttlig",
+    "unhealthySensitive": "Ohälsosam för känsliga grupper",
+    "unhealthy": "Ohälsosam",
+    "veryUnhealthy": "Mycket ohälsosam",
+    "hazardous": "Farlig",
+    "today": "Idag",
+    "tomorrow": "Imorgon",
+    "peak": "Topp",
+    "at": "kl.",
+    "peakAt": "topp kl. {time}",
+    "forecast": "Prognos",
+    "localTime": "Lokal tid",
+    "now": "Nu",
+    "todayMax": "Idag",
+    "tomorrowMax": "Imorgon",
+    "trend": "5-dagarsprognos för AQI",
+    "trendCity": "5-dagarsprognos för AQI i {city}",
+    "trendPeakNote": "Dagliga toppvärden för AQI",
+    "chartSubtitle": "Timvis luftkvalitetsindex för {city}",
+    "hourlyTable": "Visa timdata",
+    "hour": "Tid",
+    "loadError": "Kunde inte ladda luftkvalitetsdata. Vänligen uppdatera sidan.",
+    "advice_good": "Luftkvaliteten är tillfredsställande — det är en utmärkt dag att vara aktiv utomhus",
+    "advice_moderate": "Ovanligt känsliga personer bör överväga att minska långvarig eller intensiv utomhusaktivitet",
+    "advice_unhealthySensitive": "Känsliga grupper bör minska långvarig eller intensiv utomhusaktivitet | Ta fler pauser och var uppmärksam på symptom som hosta eller andnöd",
+    "advice_unhealthy": "Alla bör minska långvarig eller intensiv utomhusaktivitet | Känsliga grupper bör undvika ansträngning utomhus | Överväg att flytta aktiviteter inomhus",
+    "advice_veryUnhealthy": "Alla bör undvika långvarig eller intensiv ansträngning utomhus | Känsliga grupper bör undvika all fysisk aktivitet utomhus | Flytta aktiviteter inomhus eller boka om",
+    "advice_hazardous": "Hälsovarning — alla bör undvika all fysisk aktivitet utomhus | Stanna inomhus och håll aktivitetsnivån låg | Följ tips för att hålla partikelnivåerna låga inomhus"
+  },
+  "pollutantAqi": {
+    "title": "Vad finns i luften",
+    "dominantNote": "Största bidragsgivare: {pollutant}"
+  },
+  "pollutants": {
+    "title": "Föroreningsnivåer (WHO-riktlinjer)"
+  },
+  "seo": {
+    "aboutTitle": "Om luftkvalitetsindexet",
+    "whatIsAqi": "Vad är luftkvalitetsindex (AQI)?",
+    "whatIsAqiAnswer": "Luftkvalitetsindex (AQI) är ett verktyg utvecklat av <epa>U.S. Environmental Protection Agency (EPA)</epa> för att kommunicera hur ren eller förorenad luften är och vilka hälsoeffekter som kan vara aktuella. AQI sträcker sig från 0 till 500 och är indelat i sex färgkodade kategorier: Bra, Måttlig, Ohälsosam för känsliga grupper, Ohälsosam, Mycket ohälsosam och Farlig.",
+    "howToRead": "Hur läser jag AQI-värdena?",
+    "howToReadAnswer": "Lägre AQI-värden innebär renare luft. Ett AQI på 0–50 (grönt) är Bra, 51–100 (gult) är Måttlig, 101–150 (orange) är Ohälsosam för känsliga grupper, 151–200 (rött) är Ohälsosam, 201–300 (lila) är Mycket ohälsosam och 301–500 (mörkrött) är Farlig. När AQI överstiger 100 anses luftkvaliteten vara ohälsosam — först för känsliga grupper, sedan för alla när AQI stiger.",
+    "sensitiveGroups": "Vilka är de känsliga grupperna?",
+    "sensitiveGroupsAnswer": "Känsliga grupper inkluderar personer med hjärt- eller lungsjukdomar, äldre, barn och tonåringar, gravida samt personer som är fysiskt aktiva utomhus. Dessa grupper löper större risk att påverkas när luftkvaliteten är dålig. Om du tillhör en känslig grupp kan du minska din exponering genom att ta färre och kortare promenader utomhus när AQI är förhöjt.",
+    "pollutants": "Vilka föroreningar mäts?",
+    "pollutantsAnswer": "AQI täcker fem huvudsakliga föroreningar som regleras enligt Clean Air Act: marknära ozon (O₃), partiklar (PM₂.₅ och PM₁₀), kolmonoxid (CO), svaveldioxid (SO₂) och kvävedioxid (NO₂). Ett AQI-värde beräknas för varje förorening och det högsta värdet bestämmer det övergripande AQI.",
+    "dataSource": "Varifrån kommer luftkvalitetsdata?",
+    "dataSourceAnswer": "Timvis luftkvalitetsdata kommer från <cams>Copernicus Atmosphere Monitoring Service (CAMS)</cams>, som tillhandahåller globala prognoser för atmosfärens sammansättning. Data nås via <openmeteo>Open-Meteo</openmeteo>, som erbjuder kostnadsfria API:er med öppen källkod för väder och luftkvalitet. AQI-kategorier och hälsoråd följer den tekniska standarden från <epa>EPA AirNow</epa> (EPA-454/B-24-002).",
+    "healthEffects": "Vilka hälsoeffekter har dålig luftkvalitet?",
+    "healthEffectsAnswer": "Dålig luftkvalitet kan orsaka luftvägsproblem, förvärra astma och allergier samt öka risken för hjärt-kärlsjukdomar. Fina partiklar (PM₂.₅) kan tränga djupt in i lungorna och blodomloppet. <who>Världshälsoorganisationen</who> uppskattar att luftföroreningar orsakar miljontals förtida dödsfall världen över varje år.",
+    "forecastUpdate": "Hur ofta uppdateras prognosen för luftkvalitet?",
+    "forecastUpdateAnswer": "<cams>CAMS</cams>-prognosen för luftkvalitet uppdateras regelbundet med atmosfäriska modeller. Väderdata som temperatur och molnighet kommer från <openmeteo>Open-Meteo</openmeteo>. Prognosen ger upp till 5 dagars timvisa luftkvalitetsprediktioner.",
+    "aqiLevelsTitle": "AQI-nivåer (US EPA-standard)",
+    "sources": "AQI-kategorier och hälsoråd: EPA AirNow (EPA-454/B-24-002, maj 2024). Luftkvalitetsdata: CAMS/Copernicus via Open-Meteo."
+  },
+  "disclaimer": {
+    "heading": "Ansvarsfriskrivning",
+    "general": "Denna webbplats är enbart i informationssyfte och utgör inte medicinsk rådgivning. Luftkvalitetsdata och hälsorekommendationer är ungefärliga och bör inte ersätta professionell medicinsk rådgivning.",
+    "accuracy": "AQI-prognoser baseras på atmosfäriska modeller. Faktisk luftkvalitet kan variera beroende på lokala utsläpp, vindmönster och andra miljöfaktorer.",
+    "externalApi": "Luftkvalitets- och väderdata hämtas från tredjepartstjänster (Open-Meteo/CAMS). Vi garanterar inte riktighet eller tillgänglighet."
+  },
+  "sources": {
+    "aqiData": "Luftkvalitets- och väderdata:",
+    "geodata": "Platsdata:"
+  },
+  "language": {
+    "en": "English",
+    "sv": "Svenska",
+    "no": "Norsk",
+    "da": "Dansk",
+    "de": "Deutsch",
+    "nl": "Nederlands",
+    "it": "Italiano",
+    "es": "Español",
+    "fr": "Français",
+    "pt": "Português",
+    "pl": "Polski"
+  },
+  "city": {
+    "title": "Luftkvalitet i {city} — AQI-prognos och föroreningsnivåer",
+    "description": "Aktuellt luftkvalitetsindex i {city}, {country}. Timvis AQI-prognos, föroreningsnivåer (PM2.5, PM10, NO₂, O₃) och hälsoråd.",
+    "h1": "Luftkvalitet i {city}",
+    "h1Prefix": "Luftkvalitet i",
+    "summaryDesc": "Aktuellt AQI, timdiagram, topptider och 5-dagarsprognos för {city}, {country}.",
+    "summaryNow": "Nu:",
+    "summaryPeak": "Topp idag:",
+    "nearbyLabel": "Se luftkvalitet i:"
+  },
+  "crossPromo": {
+    "uvPrefix": "Kolla UV-exponering också?",
+    "uvLink": "Se UV-index i {city} på UVI.today"
+  },
+  "pwa": {
+    "install": "Lägg till på hemskärmen"
+  },
+  "feedback": {
+    "title": "Din feedback",
+    "description": "Hjälp oss förbättra Air Index Today — dela dina tankar eller föreslå ändringar.",
+    "good": "Användbar",
+    "bad": "Behöver förbättras",
+    "placeholder": "Vad kan bli bättre? (valfritt)",
+    "submit": "Skicka",
+    "thanks": "Tack för din feedback!"
+  },
+  "footer": {
+    "about": "Om oss",
+    "privacy": "Integritet",
+    "contact": "Kontakt"
+  },
+  "about": {
+    "title": "Om Air Index Today",
+    "metaDescription": "Air Index Today erbjuder kostnadsfria prognoser för luftkvalitetsindex med data från Copernicus Atmosphere Monitoring Service (CAMS) via Open-Meteo.",
+    "whatIs_title": "Vad är Air Index Today?",
+    "whatIs_text": "Air Index Today är en kostnadsfri tjänst för övervakning av luftkvalitet. Den visar aktuellt AQI enligt den amerikanska EPA-standarden, timvisa prognoser, uppdelning av föroreningar (PM2.5, PM10, NO₂, O₃, SO₂, CO), en 5-dagars AQI-trend och hälsorekommendationer baserade på AirNow-riktlinjer.",
+    "dataSources_title": "Datakällor",
+    "dataSources_cams": "Luftkvalitetsdata från Copernicus Atmosphere Monitoring Service via",
+    "dataSources_epa": "AQI-kategorier och hälsoråd från EPA AirNow",
+    "howItWorks_title": "Hur det fungerar",
+    "howItWorks_text": "Luftkvalitetsdata kommer från Copernicus Atmosphere Monitoring Service (CAMS), som använder atmosfärisk modellering och satellitobservationer för luftkvalitetsprognoser världen över. Väderdata (temperatur, förhållanden) kommer från Open-Meteos prognos-API.",
+    "free_title": "Gratis och reklamfinansierad",
+    "free_text": "Air Index Today är gratis att använda. Tjänsten finansieras av diskret reklam. Vi säljer inga personuppgifter och kräver inga användarkonton.",
+    "contact_title": "Kontakt",
+    "contact_text": "Air Index Today är ett projekt av",
+    "contact_link": "Kontakta oss →"
+  },
+  "privacy": {
+    "title": "Integritetspolicy",
+    "metaDescription": "Air Index Todays integritetspolicy. Vi samlar inte in personuppgifter, använder inga kakor och kräver inga konton.",
+    "lastUpdated": "Senast uppdaterad: januari 2025",
+    "whoWeAre_title": "1. Vilka vi är",
+    "whoWeAre_text": "Denna policy gäller airindex.today, en tjänst för prognoser av luftkvalitetsindex som drivs av SimpleMeteo.",
+    "whatWeCollect_title": "2. Vilka uppgifter behandlas",
+    "ipGeo_title": "IP-baserad geolokalisering",
+    "ipGeo_text": "När du först besöker webbplatsen behandlas din IP-adress på serversidan med IP2Location LITE-databasen för att bestämma din ungefärliga plats för luftkvalitetsprognosen. IP-adressen lagras inte, loggas inte och skickas inte vidare till någon tredje part.",
+    "analytics_title": "Analys",
+    "analytics_text": "Vi använder Simple Analytics, en integritetsvänlig analystjänst baserad i Nederländerna (EU). Den samlar inte in personuppgifter, sätter inga kakor och spårar inte enskilda besökare.",
+    "localStorage_title": "Lokala inställningar",
+    "localStorage_text": "Dina språk- och temperaturinställningar lagras i webbläsarens localStorage. Dessa uppgifter lämnar aldrig din enhet.",
+    "airQualityApi_title": "API-förfrågningar för luftkvalitet",
+    "airQualityApi_text": "När du visar en luftkvalitetsprognos skickas koordinaterna för din valda plats till Open-Meteo och CAMS API för att hämta luftkvalitets- och väderdata. Ingen personlig information ingår i dessa förfrågningar.",
+    "whatWeDoNot_title": "3. Vad vi INTE samlar in",
+    "whatWeDoNot_text": "Vi använder inga kakor. Vi kräver inga användarkonton eller autentisering. Vi samlar inte in namn, e-postadresser eller telefonnummer. Vi spårar inte enskilda användare mellan sessioner. Vi säljer eller delar inga uppgifter med annonsörer eller tredje parter.",
+    "cookies_title": "4. Kakor",
+    "cookies_text": "airindex.today sätter inga spårningskakor, inga analyskakor och inga reklamkakor.",
+    "thirdParties_title": "5. Tredjepartstjänster",
+    "thirdParty_openmeteo": "Leverantör av luftkvalitets- och väderdata. Tar endast emot platskoordinater. Inga personuppgifter.",
+    "thirdParty_sa": "Integritetsvänlig analys. Baserad i EU. Samlar inte in personuppgifter. Inga kakor.",
+    "thirdParty_ip2": "Lokal IP-geolokaliseringsdatabas. IP behandlas enbart på serversidan, skickas aldrig externt.",
+    "thirdParty_cloudflare": "CDN och DDoS-skydd. Dirigerar trafik genom sitt nätverk. Se Cloudflares integritetspolicy.",
+    "gdpr_title": "6. Dina rättigheter (GDPR)",
+    "gdpr_text": "Eftersom vi inte lagrar personuppgifter i någon databas är de flesta GDPR-rättigheter (tillgång, rättelse, radering, dataportabilitet) inte tillämpliga. Har du frågor, kontakta oss via länken nedan.",
+    "children_title": "7. Barn",
+    "children_text": "Denna webbplats riktar sig inte till barn under 16 år. Vi behandlar inte medvetet personuppgifter från barn.",
+    "changes_title": "8. Ändringar",
+    "changes_text": "Om våra datarutiner ändras väsentligt uppdateras denna sida innan ändringarna träder i kraft.",
+    "contact_title": "9. Kontakt",
+    "contact_text": "Frågor om denna policy?"
+  },
+  "notFound": {
+    "title": "Sidan hittades inte",
+    "heading": "Sidan hittades inte",
+    "description": "Sidan du letar efter finns inte eller har flyttats.",
+    "goHome": "Kontrollera luftkvalitet"
+  },
+  "cityInfo": {
+    "heading": "Om {city}",
+    "country": "Land",
+    "timezone": "Tidszon",
+    "coordinates": "Koordinater",
+    "population": "Befolkning"
+  }
+}
