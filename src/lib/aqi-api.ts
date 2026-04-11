@@ -9,6 +9,12 @@ export interface HourlyAqi {
   o3: number;
   so2: number;
   co: number;
+  usAqiPm25: number;
+  usAqiPm10: number;
+  usAqiNo2: number;
+  usAqiO3: number;
+  usAqiSo2: number;
+  usAqiCo: number;
   temperature: number;
   weatherCode: number;
 }
@@ -31,6 +37,12 @@ export interface AqiData {
   currentO3: number;
   currentSo2: number;
   currentCo: number;
+  currentAqiPm25: number;
+  currentAqiPm10: number;
+  currentAqiNo2: number;
+  currentAqiO3: number;
+  currentAqiSo2: number;
+  currentAqiCo: number;
   currentTemp: number;
   currentWeatherCode: number;
   currentHour: number;
@@ -63,6 +75,7 @@ async function fetchAqiDataFromApi(lat: number, lon: number): Promise<AqiData> {
   aqiUrl.searchParams.set('hourly', [
     'us_aqi',
     'pm10', 'pm2_5', 'nitrogen_dioxide', 'ozone', 'sulphur_dioxide', 'carbon_monoxide',
+    'us_aqi_pm2_5', 'us_aqi_pm10', 'us_aqi_nitrogen_dioxide', 'us_aqi_ozone', 'us_aqi_sulphur_dioxide', 'us_aqi_carbon_monoxide',
   ].join(','));
   aqiUrl.searchParams.set('forecast_days', '5');
   aqiUrl.searchParams.set('timezone', 'auto');
@@ -98,6 +111,13 @@ async function fetchAqiDataFromApi(lat: number, lon: number): Promise<AqiData> {
   const so2Values: number[] = aqiData.hourly.sulphur_dioxide ?? [];
   const coValues: number[] = aqiData.hourly.carbon_monoxide ?? [];
 
+  const usAqiPm25Values: number[] = aqiData.hourly.us_aqi_pm2_5 ?? [];
+  const usAqiPm10Values: number[] = aqiData.hourly.us_aqi_pm10 ?? [];
+  const usAqiNo2Values: number[] = aqiData.hourly.us_aqi_nitrogen_dioxide ?? [];
+  const usAqiO3Values: number[] = aqiData.hourly.us_aqi_ozone ?? [];
+  const usAqiSo2Values: number[] = aqiData.hourly.us_aqi_sulphur_dioxide ?? [];
+  const usAqiCoValues: number[] = aqiData.hourly.us_aqi_carbon_monoxide ?? [];
+
   const wTimes: string[] = weatherData?.hourly?.time ?? [];
   const temperatures: number[] = weatherData?.hourly?.temperature_2m ?? [];
   const weatherCodes: number[] = weatherData?.hourly?.weather_code ?? [];
@@ -131,6 +151,12 @@ async function fetchAqiDataFromApi(lat: number, lon: number): Promise<AqiData> {
       o3: o3Values[i] ?? 0,
       so2: so2Values[i] ?? 0,
       co: coValues[i] ?? 0,
+      usAqiPm25: usAqiPm25Values[i] ?? 0,
+      usAqiPm10: usAqiPm10Values[i] ?? 0,
+      usAqiNo2: usAqiNo2Values[i] ?? 0,
+      usAqiO3: usAqiO3Values[i] ?? 0,
+      usAqiSo2: usAqiSo2Values[i] ?? 0,
+      usAqiCo: usAqiCoValues[i] ?? 0,
       temperature: tempByTime.get(times[i]) ?? 0,
       weatherCode: wcByTime.get(times[i]) ?? 0,
     };
@@ -168,6 +194,12 @@ async function fetchAqiDataFromApi(lat: number, lon: number): Promise<AqiData> {
     currentO3: cur?.o3 ?? 0,
     currentSo2: cur?.so2 ?? 0,
     currentCo: cur?.co ?? 0,
+    currentAqiPm25: cur?.usAqiPm25 ?? 0,
+    currentAqiPm10: cur?.usAqiPm10 ?? 0,
+    currentAqiNo2: cur?.usAqiNo2 ?? 0,
+    currentAqiO3: cur?.usAqiO3 ?? 0,
+    currentAqiSo2: cur?.usAqiSo2 ?? 0,
+    currentAqiCo: cur?.usAqiCo ?? 0,
     currentTemp: cur?.temperature ?? 0,
     currentWeatherCode: cur?.weatherCode ?? 0,
     currentHour,

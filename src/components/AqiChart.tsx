@@ -42,45 +42,29 @@ export default function AqiChart({ hourly, currentHour = -1, peakAqi, peakHour, 
   const padTop = 10;
   const padBottom = 84;
   const padLeft = 36;
-  const padRight = 24;
+  const padRight = 8;
   const chartW = W - padLeft - padRight;
   const chartH = H - padTop - padBottom;
 
-  const points = hourly.map((h, i) => ({
-    x: padLeft + (i / (hourly.length - 1)) * chartW,
-    y: padTop + chartH - (h.usAqi / yMax) * chartH,
-    hour: parseInt(h.time.slice(11, 13), 10),
-    usAqi: h.usAqi,
-    temperature: h.temperature,
-    weatherCode: h.weatherCode,
-  }));
+  const barW = chartW / hourly.length;
+  const barGap = Math.max(barW * 0.1, 0.5);
 
-  function smoothPath(pts: { x: number; y: number }[]): string {
-    if (pts.length < 2) return '';
-    let d = `M ${pts[0].x},${pts[0].y}`;
-    for (let i = 0; i < pts.length - 1; i++) {
-      const p0 = pts[Math.max(0, i - 1)];
-      const p1 = pts[i];
-      const p2 = pts[i + 1];
-      const p3 = pts[Math.min(pts.length - 1, i + 2)];
-      const cp1x = p1.x + (p2.x - p0.x) / 6;
-      const cp1y = p1.y + (p2.y - p0.y) / 6;
-      const cp2x = p2.x - (p3.x - p1.x) / 6;
-      const cp2y = p2.y - (p3.y - p1.y) / 6;
-      d += ` C ${cp1x},${cp1y} ${cp2x},${cp2y} ${p2.x},${p2.y}`;
-    }
-    return d;
-  }
-
-  const linePts = points.map((p) => ({ x: p.x, y: p.y }));
-  const linePath = smoothPath(linePts);
-  const filledPath = `${linePath} L ${points[points.length - 1].x},${padTop + chartH} L ${points[0].x},${padTop + chartH} Z`;
-
-  const currentPt = currentHour >= 0 ? points.find((p) => p.hour === currentHour) : undefined;
-
-  const labelIndices = hourly
-    .map((h, i) => ({ hour: parseInt(h.time.slice(11, 13), 10), i }))
-    .filter(({ hour }) => hour % 3 === 0);
+  const bars = hourly.map((h, i) => {
+    const hour = parseInt(h.time.slice(11, 13), 10);
+    const barHeight = Math.max((h.usAqi / yMax) * chartH, 1);
+    return {
+      x: padLeft + i * barW,
+      y: padTop + chartH - barHeight,
+      w: barW - barGap,
+      h: barHeight,
+      hour,
+      usAqi: h.usAqi,
+      temperature: h.temperature,
+      weatherCode: h.weatherCode,
+      color: getAqiColor(h.usAqi),
+      isCurrent: hour === currentHour,
+    };
+  });
 
   const yTicks: number[] = [];
   const yStep = yMax <= 50 ? 10 : yMax <= 100 ? 20 : yMax <= 200 ? 50 : 100;
@@ -88,7 +72,9 @@ export default function AqiChart({ hourly, currentHour = -1, peakAqi, peakHour, 
     yTicks.push(v);
   }
 
-  const gradId = `aqiGrad${chartId}`;
+  const labelIndices = bars
+    .map((b, i) => ({ hour: b.hour, i }))
+    .filter(({ hour }) => hour % 3 === 0);
 
   const dateStr = hourly[0]?.time.slice(0, 10) ?? '';
   const formattedDate = dateStr
@@ -118,13 +104,7 @@ export default function AqiChart({ hourly, currentHour = -1, peakAqi, peakHour, 
         )}
       </div>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto" preserveAspectRatio="xMidYMid meet" role="img" aria-label={`${dayLabel || t('today')} AQI chart${cityName ? ` for ${cityName}` : ''}`}>
-        <defs>
-          <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor={isDark ? '#1e3a5f' : '#93c5fd'} stopOpacity={isDark ? 0.5 : 0.35} />
-            <stop offset="100%" stopColor={isDark ? '#0c1929' : '#dbeafe'} stopOpacity={isDark ? 0.15 : 0.08} />
-          </linearGradient>
-        </defs>
-
+        {/* Y-axis grid */}
         {yTicks.map((v) => {
           const y = padTop + chartH - (v / yMax) * chartH;
           return (
@@ -137,39 +117,46 @@ export default function AqiChart({ hourly, currentHour = -1, peakAqi, peakHour, 
           );
         })}
 
-        <path d={filledPath} fill={`url(#${gradId})`} />
+        {/* Bars */}
+        {bars.map((bar, i) => (
+          <rect
+            key={i}
+            x={bar.x + barGap / 2}
+            y={bar.y}
+            width={bar.w}
+            height={bar.h}
+            rx={Math.min(bar.w / 3, 2)}
+            fill={bar.color}
+            opacity={bar.isCurrent ? 1 : 0.8}
+            stroke={bar.isCurrent ? (isDark ? '#e2ebf5' : '#0c1826') : 'none'}
+            strokeWidth={bar.isCurrent ? 1.5 : 0}
+          />
+        ))}
 
-        {/* AQI line */}
-        <path d={linePath} fill="none" stroke={isDark ? '#94a3b8' : '#64748b'} strokeWidth="2" strokeLinecap="round" />
-
-        {currentPt && (
-          <>
-            <line x1={currentPt.x} y1={padTop} x2={currentPt.x} y2={padTop + chartH} stroke="var(--color-text-muted)" strokeWidth="1" strokeDasharray="3 3" opacity="0.5" />
-            <circle cx={currentPt.x} cy={currentPt.y} r="4" fill={isDark ? '#cbd5e1' : '#475569'} stroke="var(--color-surface)" strokeWidth="2" />
-          </>
-        )}
-
+        {/* Baseline */}
         <line x1={padLeft} y1={padTop + chartH} x2={padLeft + chartW} y2={padTop + chartH} stroke="var(--color-border)" strokeWidth="1" />
 
+        {/* X-axis labels, weather icons, temps */}
         {labelIndices.map(({ i }) => {
-          const pt = points[i];
-          if (!pt) return null;
+          const bar = bars[i];
+          if (!bar) return null;
+          const cx = bar.x + bar.w / 2;
           return (
-            <g key={pt.hour}>
-              <text x={pt.x} y={padTop + chartH + 14} textAnchor="middle" className="fill-[var(--color-text-muted)] text-[12px]">
-                {pt.hour}:00
+            <g key={bar.hour}>
+              <text x={cx} y={padTop + chartH + 14} textAnchor="middle" className="fill-[var(--color-text-muted)] text-[12px]">
+                {bar.hour}:00
               </text>
               <image
-                href={getWeatherIcon(pt.weatherCode).src}
-                x={pt.x - 14}
+                href={getWeatherIcon(bar.weatherCode).src}
+                x={cx - 14}
                 y={padTop + chartH + 20}
                 width="28"
                 height="28"
                 role="img"
-                aria-label={getWeatherIcon(pt.weatherCode).alt}
+                aria-label={getWeatherIcon(bar.weatherCode).alt}
               />
-              <text x={pt.x} y={padTop + chartH + 63} textAnchor="middle" className="fill-[var(--color-text-muted)] text-[13px]">
-                {displayTemp(pt.temperature, tempUnit)}°
+              <text x={cx} y={padTop + chartH + 63} textAnchor="middle" className="fill-[var(--color-text-muted)] text-[13px]">
+                {displayTemp(bar.temperature, tempUnit)}°
               </text>
             </g>
           );

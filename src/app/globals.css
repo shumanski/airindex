@@ -14,12 +14,12 @@
   --color-accent: #1976d2;
   --color-accent-hover: #1565c0;
   --color-cloud: white;
-  --aqi-text-good: #008f00;
-  --aqi-text-moderate: #b38600;
+  --aqi-text-good: #00802b;
+  --aqi-text-moderate: #998a00;
   --aqi-text-usg: #cc6500;
   --aqi-text-unhealthy: #cc0000;
-  --aqi-text-veryUnhealthy: #6b2d73;
-  --aqi-text-hazardous: #5c0019;
+  --aqi-text-veryUnhealthy: #8f3f97;
+  --aqi-text-hazardous: #7e0023;
 }
 
 [data-theme="dark"] {
@@ -36,12 +36,12 @@
   --color-accent: #42a5f5;
   --color-accent-hover: #64b5f6;
   --color-cloud: rgba(15, 30, 60, 0.5);
-  --aqi-text-good: #9eff91;
-  --aqi-text-moderate: #ffc905;
-  --aqi-text-usg: #ff8205;
-  --aqi-text-unhealthy: #ff6b6b;
-  --aqi-text-veryUnhealthy: #c084fc;
-  --aqi-text-hazardous: #fb7185;
+  --aqi-text-good: #00e400;
+  --aqi-text-moderate: #e6d800;
+  --aqi-text-usg: #ff7e00;
+  --aqi-text-unhealthy: #ff4444;
+  --aqi-text-veryUnhealthy: #b366bd;
+  --aqi-text-hazardous: #cc3355;
 }
 
 body {

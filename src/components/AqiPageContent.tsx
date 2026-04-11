@@ -171,6 +171,12 @@ export default function AqiPageContent({
               {/* Pollutant Breakdown */}
               <div className="order-2 lg:order-none">
                 <PollutantAqi
+                  aqiPm25={aqiData.currentAqiPm25}
+                  aqiPm10={aqiData.currentAqiPm10}
+                  aqiNo2={aqiData.currentAqiNo2}
+                  aqiO3={aqiData.currentAqiO3}
+                  aqiSo2={aqiData.currentAqiSo2}
+                  aqiCo={aqiData.currentAqiCo}
                   pm25={aqiData.currentPm25}
                   pm10={aqiData.currentPm10}
                   no2={aqiData.currentNo2}
@@ -181,7 +187,7 @@ export default function AqiPageContent({
               </div>
 
               {/* WHO Guidelines */}
-              <div className="order-4 lg:order-none">
+              <div className="order-5 lg:order-none">
                 <PollutantBreakdown
                   pm25={aqiData.currentPm25}
                   pm10={aqiData.currentPm10}
@@ -194,15 +200,15 @@ export default function AqiPageContent({
 
               {/* 5-Day Trend */}
               {aqiData.dailyPeaks.length >= 3 && (
-                <div className="order-5 lg:order-none">
+                <div className="order-6 lg:order-none">
                   <AqiTrend dailyPeaks={aqiData.dailyPeaks} tempUnit={tempUnit} cityName={cityName} />
                 </div>
               )}
             </div>
 
             <div className="contents lg:flex lg:flex-col lg:gap-4">
-              {/* Charts */}
-              <section className="order-3 lg:order-none bg-[var(--color-surface)] rounded-2xl p-4 shadow-sm border border-[var(--color-border)] space-y-3">
+              {/* Today Chart - order-3 on mobile, right after pollutant contributions */}
+              <section className="order-3 lg:order-none bg-[var(--color-surface)] rounded-2xl p-4 shadow-sm border border-[var(--color-border)]">
                 <AqiChart
                   hourly={aqiData.todayHourly}
                   currentHour={aqiData.currentHour}
@@ -212,23 +218,25 @@ export default function AqiPageContent({
                   tempUnit={tempUnit}
                   cityName={cityName}
                 />
-                <div className="border-t border-[var(--color-border)] pt-3">
-                  <AqiChart
-                    hourly={aqiData.tomorrowHourly}
-                    peakAqi={aqiData.tomorrowPeak.aqi}
-                    peakHour={aqiData.tomorrowPeak.hour}
-                    timezone={aqiData.timezone}
-                    tempUnit={tempUnit}
-                    dayLabel={t('aqi.tomorrow')}
-                    chartId="-tomorrow"
-                    cityName={cityName}
-                  />
-                </div>
+              </section>
+
+              {/* Tomorrow Chart */}
+              <section className="order-4 lg:order-none bg-[var(--color-surface)] rounded-2xl p-4 shadow-sm border border-[var(--color-border)]">
+                <AqiChart
+                  hourly={aqiData.tomorrowHourly}
+                  peakAqi={aqiData.tomorrowPeak.aqi}
+                  peakHour={aqiData.tomorrowPeak.hour}
+                  timezone={aqiData.timezone}
+                  tempUnit={tempUnit}
+                  dayLabel={t('aqi.tomorrow')}
+                  chartId="-tomorrow"
+                  cityName={cityName}
+                />
               </section>
 
               {/* City info */}
               {cityData && cityName && (
-                <section className="order-6 lg:order-none bg-[var(--color-surface)] rounded-2xl p-4 shadow-sm border border-[var(--color-border)]">
+                <section className="order-7 lg:order-none bg-[var(--color-surface)] rounded-2xl p-4 shadow-sm border border-[var(--color-border)]">
                   <h2 className="text-base font-semibold text-[var(--color-text-secondary)] mb-3">{t('cityInfo.heading', { city: cityName })}</h2>
                   <div className="space-y-2 text-sm text-[var(--color-text-secondary)]">
                     <div className="flex justify-between">

@@ -15,14 +15,14 @@ interface Props {
   isPeak?: boolean;
 }
 
-// US AQI categories per EPA (EPA-454/B-24-002, Table 1)
+// Standard AirNow AQI colors (https://www.airnow.gov/aqi/aqi-basics/)
 const AQI_LEVELS = [
-  { label: 'Good', max: 50, color: '#9eff91' },
-  { label: 'Moderate', max: 100, color: '#ffc905' },
-  { label: 'USG', max: 150, color: '#ff8205' },
-  { label: 'Unhealthy', max: 200, color: '#f02200' },
-  { label: 'V. Unhealthy', max: 300, color: '#890997' },
-  { label: 'Hazardous', max: 500, color: '#640015' },
+  { label: 'Good', max: 50, color: '#00e400' },
+  { label: 'Moderate', max: 100, color: '#ffff00' },
+  { label: 'USG', max: 150, color: '#ff7e00' },
+  { label: 'Unhealthy', max: 200, color: '#ff0000' },
+  { label: 'V. Unhealthy', max: 300, color: '#8f3f97' },
+  { label: 'Hazardous', max: 500, color: '#7e0023' },
 ];
 
 function AqiScale({ value, levels, categoryText, textColor }: {

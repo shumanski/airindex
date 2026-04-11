@@ -11,23 +11,26 @@ interface Props {
   co: number;
 }
 
-// WHO 2021 Air Quality Guidelines (24h means unless noted)
+// WHO 2021 Air Quality Guidelines
+// https://www.who.int/publications/i/item/9789240034228
+const WHO_LINK = 'https://www.who.int/publications/i/item/9789240034228';
+
 const POLLUTANT_CONFIG: Record<string, { unit: string; guideline: number; guidelineLabel: string; max: number }> = {
-  pm25: { unit: 'µg/m³', guideline: 15,  guidelineLabel: 'WHO 24h', max: 75 },
-  pm10: { unit: 'µg/m³', guideline: 45,  guidelineLabel: 'WHO 24h', max: 150 },
-  no2:  { unit: 'µg/m³', guideline: 25,  guidelineLabel: 'WHO 24h', max: 200 },
-  o3:   { unit: 'µg/m³', guideline: 100, guidelineLabel: 'WHO 8h',  max: 240 },
-  so2:  { unit: 'µg/m³', guideline: 40,  guidelineLabel: 'WHO 24h', max: 500 },
-  co:   { unit: 'mg/m³', guideline: 4,   guidelineLabel: 'WHO 24h', max: 15 },
+  pm25: { unit: 'µg/m³', guideline: 15,  guidelineLabel: '24h', max: 75 },
+  pm10: { unit: 'µg/m³', guideline: 45,  guidelineLabel: '24h', max: 150 },
+  no2:  { unit: 'µg/m³', guideline: 25,  guidelineLabel: '24h', max: 200 },
+  o3:   { unit: 'µg/m³', guideline: 100, guidelineLabel: '8h peak', max: 240 },
+  so2:  { unit: 'µg/m³', guideline: 40,  guidelineLabel: '24h', max: 500 },
+  co:   { unit: 'mg/m³', guideline: 4,   guidelineLabel: '24h', max: 15 },
 };
 
 function getBarColor(value: number, guideline: number): string {
   const ratio = value / guideline;
-  if (ratio <= 0.5) return '#4ade80';
-  if (ratio <= 1.0) return '#facc15';
-  if (ratio <= 1.5) return '#f97316';
-  if (ratio <= 2.0) return '#ef4444';
-  return '#a855f7';
+  if (ratio <= 0.5) return '#00e400';
+  if (ratio <= 1.0) return '#ffff00';
+  if (ratio <= 1.5) return '#ff7e00';
+  if (ratio <= 2.0) return '#ff0000';
+  return '#8f3f97';
 }
 
 function getStatusLabel(value: number, guideline: number): string {
@@ -53,7 +56,10 @@ export default function PollutantBreakdown({ pm25, pm10, no2, o3, so2, co }: Pro
 
   return (
     <section className="bg-[var(--color-surface)] rounded-2xl p-4 shadow-sm border border-[var(--color-border)]">
-      <h2 className="text-base font-semibold text-[var(--color-text-secondary)] mb-3">{t('title')}</h2>
+      <h2 className="text-base font-semibold text-[var(--color-text-secondary)] mb-1">{t('title')}</h2>
+      <p className="text-xs text-[var(--color-text-muted)] mb-3">
+        Values shown are current (instantaneous). <a href={WHO_LINK} target="_blank" rel="noopener noreferrer" className="underline hover:text-[var(--color-text-secondary)]">WHO guidelines</a> are for 24-hour averages (8h for O₃).
+      </p>
       <div className="space-y-3">
         {pollutants.map((p) => {
           const cfg = POLLUTANT_CONFIG[p.key];
@@ -88,7 +94,7 @@ export default function PollutantBreakdown({ pm25, pm10, no2, o3, so2, co }: Pro
               </div>
               <div className="flex justify-between text-[10px] mt-0.5 text-[var(--color-text-muted)]">
                 <span>0</span>
-                <span>{cfg.guidelineLabel}: {cfg.guideline} {cfg.unit}</span>
+                <span>WHO {cfg.guidelineLabel}: {cfg.guideline} {cfg.unit}</span>
                 <span>{cfg.max}</span>
               </div>
             </div>
