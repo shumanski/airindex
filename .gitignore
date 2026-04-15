@@ -6,3 +6,6 @@ data/
 tmp/
 *.tsbuildinfo
 next-env.d.ts
+
+# local dev overrides (ports exposed for testing)
+docker-compose.override.yml

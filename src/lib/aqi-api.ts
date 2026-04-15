@@ -1,5 +1,20 @@
 import { getCached, setCache, getCacheKey } from './cache';
 
+// All config comes from .env (single source of truth)
+// OPENMETEO_HOST → self-hosted: all requests go to this host
+// OPENMETEO_API_KEY → paid API: uses customer-*.open-meteo.com
+// neither → free public API (rate-limited)
+const omHost = process.env.OPENMETEO_HOST;
+const apiKey = !omHost ? process.env.OPENMETEO_API_KEY : undefined;
+const AQI_BASE = omHost ? `${omHost}/v1/air-quality`
+  : apiKey ? 'https://customer-air-quality-api.open-meteo.com/v1/air-quality'
+  : 'https://air-quality-api.open-meteo.com/v1/air-quality';
+const WEATHER_BASE = omHost ? `${omHost}/v1/forecast`
+  : apiKey ? 'https://customer-api.open-meteo.com/v1/forecast'
+  : 'https://api.open-meteo.com/v1/forecast';
+const mode = omHost ? 'self-hosted' : apiKey ? 'paid key' : 'free';
+console.log(`[aqi-api] mode=${mode} AQI=${AQI_BASE} Weather=${WEATHER_BASE}`);
+
 export interface HourlyAqi {
   time: string;
   usAqi: number;
@@ -65,11 +80,7 @@ export async function fetchAqiData(lat: number, lon: number): Promise<AqiData> {
 }
 
 async function fetchAqiDataFromApi(lat: number, lon: number): Promise<AqiData> {
-  const apiKey = process.env.OPENMETEO_API_KEY;
-  const aqiHost = apiKey ? 'customer-air-quality-api.open-meteo.com' : 'air-quality-api.open-meteo.com';
-  const weatherHost = apiKey ? 'customer-api.open-meteo.com' : 'api.open-meteo.com';
-
-  const aqiUrl = new URL(`https://${aqiHost}/v1/air-quality`);
+  const aqiUrl = new URL(AQI_BASE);
   aqiUrl.searchParams.set('latitude', lat.toString());
   aqiUrl.searchParams.set('longitude', lon.toString());
   aqiUrl.searchParams.set('hourly', [
@@ -81,7 +92,7 @@ async function fetchAqiDataFromApi(lat: number, lon: number): Promise<AqiData> {
   aqiUrl.searchParams.set('timezone', 'auto');
   if (apiKey) aqiUrl.searchParams.set('apikey', apiKey);
 
-  const weatherUrl = new URL(`https://${weatherHost}/v1/forecast`);
+  const weatherUrl = new URL(WEATHER_BASE);
   weatherUrl.searchParams.set('latitude', lat.toString());
   weatherUrl.searchParams.set('longitude', lon.toString());
   weatherUrl.searchParams.set('hourly', 'temperature_2m,weather_code');
