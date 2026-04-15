@@ -74,7 +74,7 @@ export default function SettingsMenu({
               onClick={() => theme !== 'light' && onThemeChange()}
               className={`flex items-center justify-center w-8 h-8 rounded-lg transition-colors ${
                 theme === 'light'
-                  ? 'bg-[var(--color-primary)] text-white'
+                  ? 'ring-2 ring-[var(--color-primary)] text-[var(--color-primary)]'
                   : 'text-[var(--color-text-muted)] hover:bg-[var(--color-border)]'
               }`}
               aria-label="Light mode"
@@ -88,7 +88,7 @@ export default function SettingsMenu({
               onClick={() => theme !== 'dark' && onThemeChange()}
               className={`flex items-center justify-center w-8 h-8 rounded-lg transition-colors ${
                 theme === 'dark'
-                  ? 'bg-[var(--color-accent)] text-white'
+                  ? 'ring-2 ring-[var(--color-accent)] text-[var(--color-accent)]'
                   : 'text-[var(--color-text-muted)] hover:bg-[var(--color-border)]'
               }`}
               aria-label="Dark mode"

@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import LocationSearch from '@/components/LocationSearch';
 import SettingsMenu from '@/components/SettingsMenu';
+import Link from 'next/link';
 import Logo from '@/components/Logo';
 import AqiPageContent from '@/components/AqiPageContent';
 import { type StoredLocation } from '@/lib/storage';
@@ -30,7 +31,7 @@ export default function HomePageClient({ initialAqiData }: Props) {
     <main className="max-w-xl lg:max-w-5xl mx-auto px-4 pb-8 pt-4 space-y-4 relative z-10">
       <header className="flex items-center justify-between">
         <h1 className="text-lg font-bold text-[var(--color-text)] flex items-center gap-2">
-          <span className="relative z-[-1]"><Logo size={34} /></span>
+          <Link href="/" aria-label="Air Index Today home" className="flex items-center"><span className="relative z-[-1]"><Logo size={34} /></span></Link>
           <span>{t('meta.h1')}</span>
         </h1>
         <div className="flex items-center gap-1">

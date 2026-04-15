@@ -53,7 +53,7 @@ export default async function NotFound() {
         {cityLink && (
           <Link
             href={cityLink.href}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--color-accent)] text-white font-medium hover:opacity-90 transition-opacity"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--color-accent)] text-[var(--color-bg)] font-medium hover:opacity-90 transition-opacity"
           >
             🌬️ {cityLink.label}
           </Link>
@@ -62,7 +62,7 @@ export default async function NotFound() {
           href={`/${locale}`}
           className={cityLink
             ? "text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)] underline"
-            : "inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--color-accent)] text-white font-medium hover:opacity-90 transition-opacity"
+            : "inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--color-accent)] text-[var(--color-bg)] font-medium hover:opacity-90 transition-opacity"
           }
         >
           {t('goHome')}

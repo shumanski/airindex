@@ -73,7 +73,7 @@ export default function FeedbackWidget() {
             className="relative overflow-hidden bg-[var(--color-surface)] border border-[var(--color-border)] rounded-t-2xl sm:rounded-2xl w-full sm:max-w-sm shadow-xl m-0 sm:m-4"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative h-20 bg-gradient-to-br from-[#1565C0] via-[#1976D2] to-[#2196F3] overflow-hidden">
+            <div className="relative h-20 bg-gradient-to-br from-[#0e57a0] via-[#1565C0] to-[#1976D2] overflow-hidden">
               <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 400 80" preserveAspectRatio="xMidYMid slice">
                 <circle cx="60" cy="38" r="20" fill="none" stroke="#FFF" strokeWidth="1" />
                 <circle cx="60" cy="38" r="30" fill="none" stroke="#FFF" strokeWidth="0.5" />
@@ -138,7 +138,7 @@ export default function FeedbackWidget() {
               <button
                 onClick={handleSubmit}
                 disabled={sending || (!rating && !message.trim())}
-                className="mt-3 w-full py-2.5 rounded-xl bg-[var(--color-accent)] text-white text-sm font-medium disabled:opacity-40 hover:opacity-90 transition-opacity"
+                className="mt-3 w-full py-2.5 rounded-xl bg-[var(--color-accent)] text-[var(--color-bg)] text-sm font-medium disabled:opacity-40 hover:opacity-90 transition-opacity"
               >
                 {t('submit')}
               </button>

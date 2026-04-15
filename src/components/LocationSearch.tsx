@@ -101,8 +101,8 @@ export default function LocationSearch({ location, onSelect, onDetectLocation, t
           className="flex items-center gap-2 w-full px-3 py-2.5 rounded-xl bg-[var(--color-surface)] border-2 border-[var(--color-border)] hover:border-[var(--color-accent)] transition-colors text-left cursor-pointer"
         >
           <SearchIcon size={20} className="text-[var(--color-text-muted)] shrink-0" />
-          <span className="flex-1 text-base font-medium text-[var(--color-text)] truncate">
-            {location?.name || t('unknownLocation')}
+          <span className={`flex-1 text-base truncate ${location?.name ? 'font-medium text-[var(--color-text)]' : 'text-[var(--color-text-muted)]'}`}>
+            {location?.name || t('searchPlaceholder')}
           </span>
           {weather && (
             <span className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)] shrink-0">
