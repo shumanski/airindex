@@ -7,10 +7,12 @@ export interface GeoResult {
   id: number;
   name: string;
   country: string;
+  country_code?: string;
   admin1?: string;
   latitude: number;
   longitude: number;
   population?: number;
+  elevation?: number;
 }
 
 export function pickClosest<T extends { latitude: number; longitude: number }>(
@@ -117,10 +119,49 @@ export async function getLocalizedNames(
   return results;
 }
 
+const batchNamesCache = new LRUCache<string, Record<number, { name: string }>>({
+  max: 50,
+  ttl: 86400_000,
+});
+
+export async function batchLocalizedNames(
+  geoIds: number[],
+  locale: string,
+): Promise<Record<number, string>> {
+  const cacheKey = `${locale}:${geoIds.length}:${geoIds.slice(0, 3).join(',')}`;
+  const cached = batchNamesCache.get(cacheKey);
+  if (cached) {
+    const out: Record<number, string> = {};
+    for (const [id, v] of Object.entries(cached)) out[Number(id)] = v.name;
+    return out;
+  }
+
+  try {
+    const res = await fetch(
+      `${GEO_SERVICE_URL}/batch-lookup?ids=${geoIds.join(',')}&lang=${encodeURIComponent(locale)}`,
+      { signal: AbortSignal.timeout(5000) },
+    );
+    if (!res.ok) return {};
+    const data = await res.json();
+    const results: Record<number, string> = {};
+    const cacheData: Record<number, { name: string }> = {};
+    for (const [id, info] of Object.entries(data.results || {})) {
+      results[Number(id)] = (info as any).name;
+      cacheData[Number(id)] = { name: (info as any).name };
+    }
+    batchNamesCache.set(cacheKey, cacheData);
+    return results;
+  } catch {
+    return {};
+  }
+}
+
 export interface NearbyCityResult {
   id: number;
   name: string;
   slug: string;
+  lat: number;
+  lon: number;
 }
 
 export async function fetchNearbyCities(
@@ -128,7 +169,7 @@ export async function fetchNearbyCities(
 ): Promise<NearbyCityResult[]> {
   try {
     const res = await fetch(
-      `${GEO_SERVICE_URL}/nearby?lat=${lat}&lon=${lon}&lang=${encodeURIComponent(locale)}&exclude=${geoId}&count=3`,
+      `${GEO_SERVICE_URL}/nearby?lat=${lat}&lon=${lon}&lang=${encodeURIComponent(locale)}&exclude=${geoId}&count=5`,
       { signal: AbortSignal.timeout(3000) },
     );
     if (!res.ok) return [];
@@ -137,6 +178,8 @@ export async function fetchNearbyCities(
       id: r.id,
       name: r.name,
       slug: buildCityPath(r.name, r.id),
+      lat: r.latitude,
+      lon: r.longitude,
     }));
   } catch {
     return [];

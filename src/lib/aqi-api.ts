@@ -69,6 +69,60 @@ export interface AqiData {
   dailyPeaks: DailyAqiPeak[];
 }
 
+/**
+ * Fetch current AQI for multiple locations in a single batched request.
+ * Returns Map of "lat,lon" → current US AQI value.
+ */
+export async function fetchBatchCurrentAqi(
+  locations: Array<{ lat: number; lon: number }>,
+): Promise<Map<string, number>> {
+  const result = new Map<string, number>();
+  if (locations.length === 0) return result;
+
+  const cacheKey = 'batch-aqi-' + locations.map(l => `${l.lat},${l.lon}`).join(';');
+  const cached = getCached<{ entries: [string, number][] }>(cacheKey);
+  if (cached) return new Map(cached.entries);
+
+  const CHUNK = 20;
+  try {
+    const chunks: Array<{ lat: number; lon: number }>[] = [];
+    for (let i = 0; i < locations.length; i += CHUNK) {
+      chunks.push(locations.slice(i, i + CHUNK));
+    }
+
+    await Promise.all(chunks.map(async (chunk) => {
+      const lats = chunk.map(l => l.lat.toString()).join(',');
+      const lons = chunk.map(l => l.lon.toString()).join(',');
+      const url = new URL(AQI_BASE);
+      url.searchParams.set('latitude', lats);
+      url.searchParams.set('longitude', lons);
+      url.searchParams.set('current', 'us_aqi');
+      if (apiKey) url.searchParams.set('apikey', apiKey);
+
+      const res = await fetch(url.toString(), { signal: AbortSignal.timeout(10000) });
+      if (!res.ok) return;
+      const data = await res.json();
+
+      const items = Array.isArray(data) ? data : [data];
+      items.forEach((item: any, i: number) => {
+        const aqi = item?.current?.us_aqi;
+        if (typeof aqi === 'number' && chunk[i]) {
+          const key = `${chunk[i].lat},${chunk[i].lon}`;
+          result.set(key, Math.round(aqi));
+        }
+      });
+    }));
+
+    if (result.size > 0) {
+      setCache(cacheKey, { entries: [...result.entries()] } as unknown as Record<string, unknown>);
+    }
+  } catch (e) {
+    console.error('[aqi-api] batch AQI fetch failed:', e);
+  }
+
+  return result;
+}
+
 export async function fetchAqiData(lat: number, lon: number): Promise<AqiData> {
   const cacheKey = getCacheKey(lat, lon);
   const cached = getCached<AqiData>(cacheKey);
