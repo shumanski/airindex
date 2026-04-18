@@ -3,6 +3,7 @@ import { routing } from '@/i18n/routing';
 import { getAllCities } from '@/lib/cities';
 import { getLocalizedNames } from '@/lib/geocode-api';
 import { buildCityPath } from '@/lib/city-url';
+import { CONTINENT_SLUGS, COUNTRY_SLUGS } from '@/lib/popular-cities';
 
 export const dynamic = 'force-dynamic';
 
@@ -54,5 +55,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
   );
 
-  return [...homePages, ...cityPages, ...staticPages];
+  const continentPages = routing.locales.flatMap((locale) =>
+    Object.keys(CONTINENT_SLUGS).map((slug) => ({
+      url: `${BASE_URL}/${locale}/continent/${slug}`,
+      lastModified: today,
+      changeFrequency: 'daily' as const,
+      priority: 0.8,
+    }))
+  );
+
+  const countryPages = routing.locales.flatMap((locale) =>
+    Object.keys(COUNTRY_SLUGS).map((slug) => ({
+      url: `${BASE_URL}/${locale}/country/${slug}`,
+      lastModified: today,
+      changeFrequency: 'daily' as const,
+      priority: 0.7,
+    }))
+  );
+
+  return [...homePages, ...continentPages, ...countryPages, ...cityPages, ...staticPages];
 }
