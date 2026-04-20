@@ -39,7 +39,8 @@
     "advice_unhealthySensitive": "Empfindliche Gruppen sollten längere oder intensive Aktivitäten im Freien reduzieren | Machen Sie mehr Pausen und achten Sie auf Symptome wie Husten oder Atemnot",
     "advice_unhealthy": "Alle sollten längere oder intensive Aktivitäten im Freien reduzieren | Empfindliche Gruppen sollten Anstrengung im Freien vermeiden | Erwägen Sie, Aktivitäten nach drinnen zu verlegen",
     "advice_veryUnhealthy": "Alle sollten längere oder intensive Anstrengung im Freien vermeiden | Empfindliche Gruppen sollten jede körperliche Aktivität im Freien vermeiden | Verlegen Sie Aktivitäten nach drinnen oder verschieben Sie sie",
-    "advice_hazardous": "Gesundheitswarnung — alle sollten jede körperliche Aktivität im Freien vermeiden | Bleiben Sie drinnen und halten Sie das Aktivitätsniveau niedrig | Befolgen Sie Tipps, um die Partikelbelastung in Innenräumen gering zu halten"
+    "advice_hazardous": "Gesundheitswarnung — alle sollten jede körperliche Aktivität im Freien vermeiden | Bleiben Sie drinnen und halten Sie das Aktivitätsniveau niedrig | Befolgen Sie Tipps, um die Partikelbelastung in Innenräumen gering zu halten",
+    "modelNote": "Prognosemodelldaten (CAMS) — keine Stationsmessungen"
   },
   "pollutantAqi": {
     "title": "Was ist in der Luft",

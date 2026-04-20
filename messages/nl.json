@@ -39,7 +39,8 @@
     "advice_unhealthySensitive": "Gevoelige groepen moeten langdurige of intense buitenactiviteiten verminderen | Neem meer pauzes en let op symptomen zoals hoesten of kortademigheid",
     "advice_unhealthy": "Iedereen moet langdurige of intense buitenactiviteiten verminderen | Gevoelige groepen moeten inspanning buiten vermijden | Overweeg activiteiten naar binnen te verplaatsen",
     "advice_veryUnhealthy": "Iedereen moet langdurige of intense inspanning buiten vermijden | Gevoelige groepen moeten alle fysieke activiteit buiten vermijden | Verplaats activiteiten naar binnen of stel ze uit",
-    "advice_hazardous": "Gezondheidswaarschuwing — iedereen moet alle fysieke activiteit buiten vermijden | Blijf binnen en houd het activiteitsniveau laag | Volg tips om de fijnstofniveaus binnenshuis laag te houden"
+    "advice_hazardous": "Gezondheidswaarschuwing — iedereen moet alle fysieke activiteit buiten vermijden | Blijf binnen en houd het activiteitsniveau laag | Volg tips om de fijnstofniveaus binnenshuis laag te houden",
+    "modelNote": "Voorspelmodelgegevens (CAMS) — geen stationsmetingen"
   },
   "pollutantAqi": {
     "title": "Wat zit er in de lucht",

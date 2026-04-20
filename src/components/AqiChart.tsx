@@ -67,7 +67,7 @@ export default function AqiChart({ hourly, currentHour = -1, peakAqi, peakHour, 
   });
 
   const yTicks: number[] = [];
-  const yStep = yMax <= 50 ? 10 : yMax <= 100 ? 20 : yMax <= 200 ? 50 : 100;
+  const yStep = yMax <= 50 ? 10 : yMax <= 100 ? 20 : yMax <= 200 ? 50 : yMax <= 500 ? 100 : yMax <= 1000 ? 200 : yMax <= 2000 ? 500 : 1000;
   for (let v = 0; v <= yMax; v += yStep) {
     yTicks.push(v);
   }

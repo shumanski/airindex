@@ -39,7 +39,8 @@
     "advice_unhealthySensitive": "Wrażliwe grupy powinny ograniczyć długotrwałą lub intensywną aktywność na zewnątrz | Rób więcej przerw i obserwuj objawy takie jak kaszel lub duszność",
     "advice_unhealthy": "Wszyscy powinni ograniczyć długotrwałą lub intensywną aktywność na zewnątrz | Wrażliwe grupy powinny unikać wysiłku na dworze | Rozważ przeniesienie aktywności do pomieszczeń",
     "advice_veryUnhealthy": "Wszyscy powinni unikać długotrwałego lub intensywnego wysiłku na zewnątrz | Wrażliwe grupy powinny unikać wszelkiej aktywności fizycznej na zewnątrz | Przenieś aktywności do pomieszczeń lub przełóż je",
-    "advice_hazardous": "Ostrzeżenie zdrowotne — wszyscy powinni unikać wszelkiej aktywności fizycznej na zewnątrz | Pozostań w pomieszczeniu i utrzymuj niski poziom aktywności | Stosuj się do wskazówek dotyczących utrzymania niskiego poziomu cząstek w pomieszczeniach"
+    "advice_hazardous": "Ostrzeżenie zdrowotne — wszyscy powinni unikać wszelkiej aktywności fizycznej na zewnątrz | Pozostań w pomieszczeniu i utrzymuj niski poziom aktywności | Stosuj się do wskazówek dotyczących utrzymania niskiego poziomu cząstek w pomieszczeniach",
+    "modelNote": "Dane modelu prognostycznego (CAMS) — nie pomiary stacjonarne"
   },
   "pollutantAqi": {
     "title": "Co jest w powietrzu",

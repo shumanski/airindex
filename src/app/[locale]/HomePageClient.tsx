@@ -23,6 +23,7 @@ const MapPlaceholder = () => (
   </div>
 );
 const HomeMap = dynamic(() => import('@/components/HomeMap'), { ssr: false, loading: MapPlaceholder });
+const SeoContent = dynamic(() => import('@/components/SeoContent'));
 
 interface Props {
   detectedCity: DetectedCity | null;
@@ -350,6 +351,8 @@ export default function HomePageClient({ detectedCity, cityAqiLevels, cityAqiMax
           {t('home.siteDescText')}
         </p>
       </section>
+
+      <SeoContent />
 
       {/* Footer */}
       <footer className="text-sm text-[var(--color-text-muted)] space-y-3 pt-4 border-t border-[var(--color-border)]">

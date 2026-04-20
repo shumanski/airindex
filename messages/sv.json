@@ -39,7 +39,8 @@
     "advice_unhealthySensitive": "Känsliga grupper bör minska långvarig eller intensiv utomhusaktivitet | Ta fler pauser och var uppmärksam på symptom som hosta eller andnöd",
     "advice_unhealthy": "Alla bör minska långvarig eller intensiv utomhusaktivitet | Känsliga grupper bör undvika ansträngning utomhus | Överväg att flytta aktiviteter inomhus",
     "advice_veryUnhealthy": "Alla bör undvika långvarig eller intensiv ansträngning utomhus | Känsliga grupper bör undvika all fysisk aktivitet utomhus | Flytta aktiviteter inomhus eller boka om",
-    "advice_hazardous": "Hälsovarning — alla bör undvika all fysisk aktivitet utomhus | Stanna inomhus och håll aktivitetsnivån låg | Följ tips för att hålla partikelnivåerna låga inomhus"
+    "advice_hazardous": "Hälsovarning — alla bör undvika all fysisk aktivitet utomhus | Stanna inomhus och håll aktivitetsnivån låg | Följ tips för att hålla partikelnivåerna låga inomhus",
+    "modelNote": "Prognosmodelldata (CAMS) — inte stationsmätningar"
   },
   "pollutantAqi": {
     "title": "Vad finns i luften",

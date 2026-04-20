@@ -39,7 +39,8 @@
     "advice_unhealthySensitive": "I gruppi sensibili dovrebbero ridurre le attività prolungate o intense all'aperto | Fai più pause e presta attenzione a sintomi come tosse o fiato corto",
     "advice_unhealthy": "Tutti dovrebbero ridurre le attività prolungate o intense all'aperto | I gruppi sensibili dovrebbero evitare lo sforzo all'aperto | Considera di spostare le attività al chiuso",
     "advice_veryUnhealthy": "Tutti dovrebbero evitare sforzi prolungati o intensi all'aperto | I gruppi sensibili dovrebbero evitare qualsiasi attività fisica all'aperto | Sposta le attività al chiuso o riprogrammale",
-    "advice_hazardous": "Allerta sanitaria — tutti dovrebbero evitare qualsiasi attività fisica all'aperto | Resta in casa e mantieni un livello di attività leggero | Segui i consigli per mantenere bassi i livelli di particolato in ambienti chiusi"
+    "advice_hazardous": "Allerta sanitaria — tutti dovrebbero evitare qualsiasi attività fisica all'aperto | Resta in casa e mantieni un livello di attività leggero | Segui i consigli per mantenere bassi i livelli di particolato in ambienti chiusi",
+    "modelNote": "Dati del modello previsionale (CAMS) — non misurazioni da stazioni"
   },
   "pollutantAqi": {
     "title": "Cosa c'è nell'aria",

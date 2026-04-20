@@ -39,7 +39,8 @@
     "advice_unhealthySensitive": "Grupos sensíveis devem reduzir atividades prolongadas ou intensas ao ar livre | Faça mais pausas e esteja atento a sintomas como tosse ou falta de ar",
     "advice_unhealthy": "Todos devem reduzir atividades prolongadas ou intensas ao ar livre | Grupos sensíveis devem evitar esforço ao ar livre | Considere mover atividades para ambientes fechados",
     "advice_veryUnhealthy": "Todos devem evitar esforço prolongado ou intenso ao ar livre | Grupos sensíveis devem evitar toda atividade física ao ar livre | Mova atividades para ambientes fechados ou reagende",
-    "advice_hazardous": "Alerta de saúde — todos devem evitar toda atividade física ao ar livre | Permaneça em ambientes fechados e mantenha o nível de atividade leve | Siga as dicas para manter os níveis de partículas baixos em ambientes fechados"
+    "advice_hazardous": "Alerta de saúde — todos devem evitar toda atividade física ao ar livre | Permaneça em ambientes fechados e mantenha o nível de atividade leve | Siga as dicas para manter os níveis de partículas baixos em ambientes fechados",
+    "modelNote": "Dados do modelo de previsão (CAMS) — não medições de estações"
   },
   "pollutantAqi": {
     "title": "O que está no ar",

@@ -39,7 +39,8 @@
     "advice_unhealthySensitive": "Følsomme grupper bør reducere langvarig eller intens udendørsaktivitet | Tag flere pauser og vær opmærksom på symptomer som hoste eller åndenød",
     "advice_unhealthy": "Alle bør reducere langvarig eller intens udendørsaktivitet | Følsomme grupper bør undgå anstrengelse udendørs | Overvej at flytte aktiviteter indendørs",
     "advice_veryUnhealthy": "Alle bør undgå langvarig eller intens anstrengelse udendørs | Følsomme grupper bør undgå al fysisk aktivitet udendørs | Flyt aktiviteter indendørs eller udskyd dem",
-    "advice_hazardous": "Sundhedsadvarsel — alle bør undgå al fysisk aktivitet udendørs | Bliv indendørs og hold aktivitetsniveauet lavt | Følg tips til at holde partikelniveauerne lave indendørs"
+    "advice_hazardous": "Sundhedsadvarsel — alle bør undgå al fysisk aktivitet udendørs | Bliv indendørs og hold aktivitetsniveauet lavt | Følg tips til at holde partikelniveauerne lave indendørs",
+    "modelNote": "Prognosemodel-data (CAMS) — ikke stationsmålinger"
   },
   "pollutantAqi": {
     "title": "Hvad er i luften",

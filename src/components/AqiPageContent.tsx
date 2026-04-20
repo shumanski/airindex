@@ -157,6 +157,7 @@ export default function AqiPageContent({
                   peakTime={tabPeakTime}
                   isPeak={activeTab !== 'now'}
                 />
+                <p className="text-xs text-[var(--color-text-muted)] text-center -mt-1 mb-1">{t('aqi.modelNote')}</p>
                 {/* Pollutant sub-AQI inline */}
                 <PollutantAqi
                   aqiPm25={aqiData.currentAqiPm25}

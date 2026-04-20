@@ -39,7 +39,8 @@
     "advice_unhealthySensitive": "Sensitive groups should reduce prolonged or intense outdoor activity | Take more breaks and watch for symptoms such as coughing or shortness of breath",
     "advice_unhealthy": "Everyone should reduce prolonged or intense outdoor activity | Sensitive groups should avoid outdoor exertion | Consider moving activities indoors",
     "advice_veryUnhealthy": "Everyone should avoid prolonged or intense outdoor exertion | Sensitive groups should avoid all outdoor physical activity | Move activities indoors or reschedule",
-    "advice_hazardous": "Health warning — everyone should avoid all outdoor physical activity | Stay indoors and keep activity levels light | Follow tips for keeping particle levels low indoors"
+    "advice_hazardous": "Health warning — everyone should avoid all outdoor physical activity | Stay indoors and keep activity levels light | Follow tips for keeping particle levels low indoors",
+    "modelNote": "Forecast model data (CAMS) — not station measurements"
   },
   "pollutantAqi": {
     "title": "What's in the Air",

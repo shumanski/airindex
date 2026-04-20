@@ -39,7 +39,8 @@
     "advice_unhealthySensitive": "Les groupes sensibles devraient réduire les activités prolongées ou intenses en extérieur | Faites plus de pauses et surveillez les symptômes comme la toux ou l'essoufflement",
     "advice_unhealthy": "Tout le monde devrait réduire les activités prolongées ou intenses en extérieur | Les groupes sensibles devraient éviter l'effort en extérieur | Envisagez de déplacer les activités à l'intérieur",
     "advice_veryUnhealthy": "Tout le monde devrait éviter les efforts prolongés ou intenses en extérieur | Les groupes sensibles devraient éviter toute activité physique en extérieur | Déplacez les activités à l'intérieur ou reportez-les",
-    "advice_hazardous": "Alerte sanitaire — tout le monde devrait éviter toute activité physique en extérieur | Restez à l'intérieur et maintenez un niveau d'activité léger | Suivez les conseils pour maintenir les niveaux de particules bas à l'intérieur"
+    "advice_hazardous": "Alerte sanitaire — tout le monde devrait éviter toute activité physique en extérieur | Restez à l'intérieur et maintenez un niveau d'activité léger | Suivez les conseils pour maintenir les niveaux de particules bas à l'intérieur",
+    "modelNote": "Données du modèle de prévision (CAMS) — pas de mesures de stations"
   },
   "pollutantAqi": {
     "title": "Que contient l'air",
