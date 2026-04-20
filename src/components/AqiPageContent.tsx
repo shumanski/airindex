@@ -18,6 +18,7 @@ import Link from 'next/link';
 const AqiTrend = dynamic(() => import('./AqiTrend'));
 const SeoContent = dynamic(() => import('./SeoContent'));
 const FeedbackWidget = dynamic(() => import('./FeedbackWidget'), { ssr: false });
+const CityMap = dynamic(() => import('./CityMap'), { ssr: false });
 
 export interface CityData {
   latitude: number;
@@ -34,6 +35,8 @@ interface Props {
   cityName?: string;
   geoId?: number;
   nearbyCities?: NearbyCityResult[];
+  nearbyAqiCurrent?: Record<string, number>;
+  nearbyAqiMax?: Record<string, number>;
   cityData?: CityData;
   showFeedback?: boolean;
 }
@@ -69,6 +72,8 @@ export default function AqiPageContent({
   cityName,
   geoId,
   nearbyCities,
+  nearbyAqiCurrent,
+  nearbyAqiMax,
   cityData,
   showFeedback,
 }: Props) {
@@ -263,6 +268,19 @@ export default function AqiPageContent({
             </div>
           </div>
         </>
+      )}
+
+      {nearbyCities && nearbyCities.length > 0 && cityData && (
+        <CityMap
+          lat={cityData.latitude}
+          lon={cityData.longitude}
+          cityName={cityName || ''}
+          currentAqi={aqiData ? Math.round(aqiData.currentAqi) : undefined}
+          todayPeakAqi={aqiData ? Math.round(aqiData.todayPeak.aqi) : undefined}
+          nearbyCities={nearbyCities}
+          nearbyAqiCurrent={nearbyAqiCurrent}
+          nearbyAqiMax={nearbyAqiMax}
+        />
       )}
 
       {nearbyCities && nearbyCities.length > 0 && (

@@ -3,7 +3,7 @@ import { headers } from 'next/headers';
 import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { buildCityPath } from '@/lib/city-url';
-import { fetchAqiData, fetchBatchCurrentAqi } from '@/lib/aqi-api';
+import { fetchAqiData, fetchBatchCurrentAqi, fetchBatchMaxAqi } from '@/lib/aqi-api';
 import { batchLocalizedNames } from '@/lib/geocode-api';
 import { POPULAR_CITIES } from '@/lib/popular-cities';
 import HomePageClient from './HomePageClient';
@@ -109,12 +109,15 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
   const allCities = Object.values(POPULAR_CITIES).flat();
-  const [detectedCity, aqiMap, localizedNames] = await Promise.all([
+  const [detectedCity, aqiMap, aqiMaxMap, localizedNames] = await Promise.all([
     detectCity(locale),
     fetchBatchCurrentAqi(allCities),
+    fetchBatchMaxAqi(allCities),
     batchLocalizedNames(allCities.map(c => c.geoId), locale),
   ]);
   const cityAqiLevels: Record<string, number> = {};
   for (const [key, val] of aqiMap) cityAqiLevels[key] = val;
-  return <HomePageClient detectedCity={detectedCity} cityAqiLevels={cityAqiLevels} localizedNames={localizedNames} />;
+  const cityAqiMax: Record<string, number> = {};
+  for (const [key, val] of aqiMaxMap) cityAqiMax[key] = val;
+  return <HomePageClient detectedCity={detectedCity} cityAqiLevels={cityAqiLevels} cityAqiMax={cityAqiMax} localizedNames={localizedNames} />;
 }

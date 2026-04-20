@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { routing } from '@/i18n/routing';
-import { fetchBatchCurrentAqi } from '@/lib/aqi-api';
+import { fetchBatchCurrentAqi, fetchBatchMaxAqi } from '@/lib/aqi-api';
 import { batchLocalizedNames } from '@/lib/geocode-api';
 import {
   POPULAR_CITIES,
@@ -10,6 +10,7 @@ import {
   CONTINENT_VIEW,
   COUNTRY_NAMES,
   groupByCountry,
+  getAllCitiesForContinent,
 } from '@/lib/popular-cities';
 import ContinentPageClient from './ContinentPageClient';
 
@@ -58,16 +59,19 @@ export default async function ContinentPage({
   const continentKey = CONTINENT_SLUGS[slug];
   if (!continentKey) notFound();
 
-  const cities = POPULAR_CITIES[continentKey];
-  if (!cities) notFound();
+  const cities = getAllCitiesForContinent(continentKey);
+  if (!cities || cities.length === 0) notFound();
 
   const view = CONTINENT_VIEW[continentKey];
-  const [aqiMap, localizedNames] = await Promise.all([
+  const [aqiMap, aqiMaxMap, localizedNames] = await Promise.all([
     fetchBatchCurrentAqi(cities),
+    fetchBatchMaxAqi(cities),
     batchLocalizedNames(cities.map(c => c.geoId), locale),
   ]);
   const cityAqiLevels: Record<string, number> = {};
   for (const [key, val] of aqiMap) cityAqiLevels[key] = val;
+  const cityAqiMax: Record<string, number> = {};
+  for (const [key, val] of aqiMaxMap) cityAqiMax[key] = val;
 
   const byCountry = groupByCountry(cities);
 
@@ -77,6 +81,7 @@ export default async function ContinentPage({
       slug={slug}
       cities={cities}
       cityAqiLevels={cityAqiLevels}
+      cityAqiMax={cityAqiMax}
       localizedNames={localizedNames}
       byCountry={byCountry}
       countryNames={COUNTRY_NAMES}

@@ -25,7 +25,7 @@
     "forecast": "Forecast",
     "localTime": "Local time",
     "now": "Now",
-    "todayMax": "Today",
+    "todayMax": "Max today",
     "tomorrowMax": "Tomorrow",
     "trend": "5-Day AQI Forecast",
     "trendCity": "5-Day AQI Forecast for {city}",
@@ -339,6 +339,22 @@
     "RW": "Rwanda",
     "LY": "Libya",
     "AU": "Australia",
-    "NZ": "New Zealand"
+    "NZ": "New Zealand",
+    "ME": "Montenegro",
+    "PR": "Puerto Rico",
+    "JM": "Jamaica",
+    "BS": "Bahamas",
+    "BZ": "Belize",
+    "CR": "Costa Rica",
+    "PA": "Panama",
+    "AW": "Aruba",
+    "BB": "Barbados",
+    "MV": "Maldives",
+    "OM": "Oman",
+    "AZ": "Azerbaijan",
+    "KZ": "Kazakhstan",
+    "MU": "Mauritius",
+    "SC": "Seychelles",
+    "FJ": "Fiji"
   }
 }

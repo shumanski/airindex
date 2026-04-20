@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { routing } from '@/i18n/routing';
-import { fetchBatchCurrentAqi } from '@/lib/aqi-api';
+import { fetchBatchCurrentAqi, fetchBatchMaxAqi } from '@/lib/aqi-api';
 import { batchLocalizedNames } from '@/lib/geocode-api';
 import {
   COUNTRY_SLUGS,
@@ -11,6 +11,7 @@ import {
   CONTINENT_KEY_TO_SLUG,
   getCitiesByCountry,
   getContinentForCountry,
+  getCountriesInContinent,
 } from '@/lib/popular-cities';
 import CountryPageClient from './CountryPageClient';
 
@@ -62,26 +63,24 @@ export default async function CountryPage({
   const cities = getCitiesByCountry(countryCode);
   if (cities.length === 0) notFound();
 
-  const [aqiMap, localizedNames] = await Promise.all([
+  const [aqiMap, aqiMaxMap, localizedNames] = await Promise.all([
     fetchBatchCurrentAqi(cities),
+    fetchBatchMaxAqi(cities),
     batchLocalizedNames(cities.map(c => c.geoId), locale),
   ]);
   const cityAqiLevels: Record<string, number> = {};
   for (const [key, val] of aqiMap) cityAqiLevels[key] = val;
+  const cityAqiMax: Record<string, number> = {};
+  for (const [key, val] of aqiMaxMap) cityAqiMax[key] = val;
 
   const continentKey = getContinentForCountry(countryCode);
   const continentSlug = continentKey ? CONTINENT_KEY_TO_SLUG[continentKey] : null;
 
   // Get other countries in the same continent for navigation
-  const continentCountryCodes = new Set<string>();
-  if (continentKey) {
-    const { POPULAR_CITIES } = await import('@/lib/popular-cities');
-    const continentCities = POPULAR_CITIES[continentKey] || [];
-    for (const c of continentCities) {
-      if (c.country && c.country !== countryCode) continentCountryCodes.add(c.country);
-    }
-  }
-  const otherCountries = [...continentCountryCodes].map(cc => ({
+  const otherCountryCodes = continentKey
+    ? getCountriesInContinent(continentKey).filter(cc => cc !== countryCode)
+    : [];
+  const otherCountries = otherCountryCodes.map(cc => ({
     code: cc,
     name: COUNTRY_NAMES[cc] || cc,
     slug: COUNTRY_CODE_TO_SLUG[cc],
@@ -94,6 +93,7 @@ export default async function CountryPage({
       slug={slug}
       cities={cities}
       cityAqiLevels={cityAqiLevels}
+      cityAqiMax={cityAqiMax}
       localizedNames={localizedNames}
       continentKey={continentKey}
       continentSlug={continentSlug}

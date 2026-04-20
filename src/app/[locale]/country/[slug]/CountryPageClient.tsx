@@ -35,6 +35,7 @@ interface Props {
   slug: string;
   cities: PopularCity[];
   cityAqiLevels: Record<string, number>;
+  cityAqiMax?: Record<string, number>;
   localizedNames: Record<number, string>;
   continentKey: string | null;
   continentSlug: string | null;
@@ -47,6 +48,7 @@ export default function CountryPageClient({
   slug,
   cities,
   cityAqiLevels,
+  cityAqiMax,
   localizedNames,
   continentKey,
   continentSlug,
@@ -55,6 +57,8 @@ export default function CountryPageClient({
   const t = useTranslations();
   const locale = useLocale();
   const router = useRouter();
+  const [aqiMode, setAqiMode] = useState<'now' | 'max'>('now');
+  const activeAqi = aqiMode === 'max' && cityAqiMax ? cityAqiMax : cityAqiLevels;
 
   const [tempUnit, setTempUnit] = useState<TempUnit>('C');
   const [theme, setTheme] = useState<Theme>('light');
@@ -157,7 +161,32 @@ export default function CountryPageClient({
         );
       })()}
 
-      <HomeMap cities={cities.map(c => ({ ...c, name: cityName(c.geoId, c.name) }))} aqiLevels={cityAqiLevels} fitCities />
+      {cityAqiMax && Object.keys(cityAqiMax).length > 0 && (
+        <div className="flex gap-1">
+          <button
+            onClick={() => setAqiMode('now')}
+            className={`text-xs px-2 py-0.5 rounded-full border transition-colors ${
+              aqiMode === 'now'
+                ? 'bg-[var(--color-accent)] text-white border-[var(--color-accent)]'
+                : 'border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-border)]'
+            }`}
+          >
+            {t('aqi.now')}
+          </button>
+          <button
+            onClick={() => setAqiMode('max')}
+            className={`text-xs px-2 py-0.5 rounded-full border transition-colors ${
+              aqiMode === 'max'
+                ? 'bg-[var(--color-accent)] text-white border-[var(--color-accent)]'
+                : 'border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-border)]'
+            }`}
+          >
+            {t('aqi.todayMax')}
+          </button>
+        </div>
+      )}
+
+      <HomeMap cities={cities.map(c => ({ ...c, name: cityName(c.geoId, c.name) }))} aqiLevels={activeAqi} fitCities />
 
       <section className="space-y-2">
         <h2 className="text-sm font-semibold text-[var(--color-text)]">
@@ -166,7 +195,7 @@ export default function CountryPageClient({
         <div className="flex flex-wrap gap-x-1 gap-y-0.5">
           {[...cities].sort((a, b) => cityName(a.geoId, a.name).localeCompare(cityName(b.geoId, b.name))).map((city, i) => {
             const aqiKey = `${city.lat},${city.lon}`;
-            const aqi = cityAqiLevels[aqiKey];
+            const aqi = activeAqi[aqiKey];
             return (
               <span key={city.geoId}>
                 <Link

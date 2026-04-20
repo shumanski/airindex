@@ -27,6 +27,7 @@ const HomeMap = dynamic(() => import('@/components/HomeMap'), { ssr: false, load
 interface Props {
   detectedCity: DetectedCity | null;
   cityAqiLevels?: Record<string, number>;
+  cityAqiMax?: Record<string, number>;
   localizedNames?: Record<number, string>;
 }
 
@@ -88,13 +89,15 @@ const FEATURE_CARDS = [
   { Icon: FlaskIcon, titleKey: 'dataTitle', descKey: 'dataDesc' },
 ] as const;
 
-export default function HomePageClient({ detectedCity, cityAqiLevels, localizedNames }: Props) {
+export default function HomePageClient({ detectedCity, cityAqiLevels, cityAqiMax, localizedNames }: Props) {
   const t = useTranslations();
   const locale = useLocale();
   const router = useRouter();
 
   const [tempUnit, setTempUnit] = useState<TempUnit>('C');
   const [theme, setTheme] = useState<Theme>('light');
+  const [aqiMode, setAqiMode] = useState<'now' | 'max'>('now');
+  const activeAqi = aqiMode === 'max' ? cityAqiMax : cityAqiLevels;
 
   useEffect(() => {
     const prefs = loadPreferences();
@@ -284,7 +287,19 @@ export default function HomePageClient({ detectedCity, cityAqiLevels, localizedN
         <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">
           {t('home.citiesIntro')}
         </p>
-        <HomeMap cities={Object.values(POPULAR_CITIES).flat().map(c => ({ ...c, name: cityName(c.geoId, c.name) }))} aqiLevels={cityAqiLevels} />
+        <div className="flex items-center gap-2">
+          <div className="inline-flex rounded-lg border border-[var(--color-border)] overflow-hidden text-xs font-medium">
+            <button
+              onClick={() => setAqiMode('now')}
+              className={`px-2.5 py-1 transition-colors ${aqiMode === 'now' ? 'bg-[var(--color-accent)] text-white' : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-border)]'}`}
+            >{t('aqi.now')}</button>
+            <button
+              onClick={() => setAqiMode('max')}
+              className={`px-2.5 py-1 transition-colors ${aqiMode === 'max' ? 'bg-[var(--color-accent)] text-white' : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-border)]'}`}
+            >{t('aqi.todayMax')}</button>
+          </div>
+        </div>
+        <HomeMap cities={Object.values(POPULAR_CITIES).flat().map(c => ({ ...c, name: cityName(c.geoId, c.name) }))} aqiLevels={activeAqi} />
         {(Object.keys(POPULAR_CITIES) as Array<keyof typeof POPULAR_CITIES>).map((region) => (
           <div key={region}>
             <h3 className="text-sm font-semibold mb-1.5">
@@ -299,7 +314,7 @@ export default function HomePageClient({ detectedCity, cityAqiLevels, localizedN
             <div className="flex flex-wrap gap-x-1 gap-y-0.5">
               {[...POPULAR_CITIES[region]].sort((a, b) => cityName(a.geoId, a.name).localeCompare(cityName(b.geoId, b.name))).map((city, i) => {
                 const aqiKey = `${city.lat},${city.lon}`;
-                const aqi = cityAqiLevels?.[aqiKey];
+                const aqi = activeAqi?.[aqiKey];
                 return (
                 <span key={city.geoId}>
                   <Link

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { getAqiColor } from '@/lib/aqi-utils';
 import AqiLegend from './AqiLegend';
 import type { NearbyCityResult } from '@/lib/geocode-api';
@@ -11,7 +11,10 @@ interface Props {
   lon: number;
   cityName: string;
   currentAqi?: number;
+  todayPeakAqi?: number;
   nearbyCities?: NearbyCityResult[];
+  nearbyAqiCurrent?: Record<string, number>;
+  nearbyAqiMax?: Record<string, number>;
 }
 
 const LOCALE_MAP: Record<string, string> = {
@@ -19,12 +22,18 @@ const LOCALE_MAP: Record<string, string> = {
   nl: 'nl', it: 'it', es: 'es', fr: 'fr', pt: 'pt', pl: 'pl',
 };
 
-export default function CityMap({ lat, lon, cityName, currentAqi, nearbyCities }: Props) {
+export default function CityMap({ lat, lon, cityName, currentAqi, todayPeakAqi, nearbyCities, nearbyAqiCurrent, nearbyAqiMax }: Props) {
   const locale = useLocale();
+  const t = useTranslations('aqi');
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<any>(null);
   const observerRef = useRef<MutationObserver | null>(null);
+  const mainMarkerRef = useRef<any>(null);
+  const leafletRef = useRef<any>(null);
   const [inView, setInView] = useState(false);
+  const [mapReady, setMapReady] = useState(false);
+  const [aqiMode, setAqiMode] = useState<'now' | 'max'>('now');
+  const activeAqi = aqiMode === 'max' ? todayPeakAqi : currentAqi;
 
   useEffect(() => {
     const el = containerRef.current;
@@ -49,6 +58,8 @@ export default function CityMap({ lat, lon, cityName, currentAqi, nearbyCities }
 
       if (cancelled || !containerRef.current) return;
 
+      leafletRef.current = L;
+
       const tileUrl = process.env.NEXT_PUBLIC_TILES_URL || '/tiles/basemap.pmtiles';
       const lang = LOCALE_MAP[locale] || 'en';
 
@@ -63,6 +74,8 @@ export default function CityMap({ lat, lon, cityName, currentAqi, nearbyCities }
         scrollWheelZoom: false,
         attributionControl: false,
       });
+
+      L.control.zoom({ position: 'topright' }).addTo(map);
 
       L.control.attribution({ position: 'bottomright' }).addTo(map);
 
@@ -85,39 +98,16 @@ export default function CityMap({ lat, lon, cityName, currentAqi, nearbyCities }
         attributeFilter: ['data-theme'],
       });
 
-      const mainColor = currentAqi != null ? (Math.round(currentAqi) === 0 ? '#9ca3af' : getAqiColor(Math.round(currentAqi))) : '#3b82f6';
-      L.circleMarker([lat, lon], {
-        radius: 7,
-        fillColor: mainColor,
-        fillOpacity: 1,
-        color: '#fff',
-        weight: 2.5,
-      }).bindTooltip(currentAqi != null ? `${cityName} AQI ${Math.round(currentAqi)}` : cityName, {
-        permanent: true,
-        direction: 'top',
-        offset: [0, -10],
-        className: 'map-label map-label-main',
-      }).addTo(map);
+      // Create marker layer group for main + nearby (rebuilt on toggle)
+      mainMarkerRef.current = L.layerGroup().addTo(map);
 
+      // Fit to show all points with padding
       const points: [number, number][] = [[lat, lon]];
       nearbyCities?.forEach((c) => {
-        if (typeof (c as any).lat !== 'number' || typeof (c as any).lon !== 'number') return;
-        points.push([(c as any).lat, (c as any).lon]);
-        L.circleMarker([(c as any).lat, (c as any).lon], {
-          radius: 4.5,
-          fillColor: '#6b7280',
-          fillOpacity: 0.8,
-          color: '#fff',
-          weight: 1.5,
-        }).bindTooltip(c.name, {
-          direction: 'top',
-          offset: [0, -6],
-          className: 'map-label',
-        }).on('click', () => {
-          window.location.href = `/${locale}/${c.slug}`;
-        }).addTo(map);
+        if (typeof c.lat === 'number' && typeof c.lon === 'number') {
+          points.push([c.lat, c.lon]);
+        }
       });
-
       if (points.length > 1) {
         map.fitBounds(points as L.LatLngBoundsExpression, {
           padding: [35, 35],
@@ -127,6 +117,7 @@ export default function CityMap({ lat, lon, cityName, currentAqi, nearbyCities }
 
       mapRef.current = map;
       observerRef.current = themeObserver;
+      setMapReady(true);
     }
 
     init();
@@ -136,11 +127,77 @@ export default function CityMap({ lat, lon, cityName, currentAqi, nearbyCities }
       observerRef.current?.disconnect();
       mapRef.current?.remove();
       mapRef.current = null;
+      mainMarkerRef.current = null;
+      leafletRef.current = null;
+      setMapReady(false);
     };
-  }, [inView, lat, lon, cityName, locale, nearbyCities]);
+  }, [inView, lat, lon, locale, nearbyCities]);
+
+  // Derive the active nearby AQI lookup based on mode
+  const nearbyAqi = aqiMode === 'max' ? nearbyAqiMax : nearbyAqiCurrent;
+
+  // Update all markers (main + nearby) when activeAqi changes
+  useEffect(() => {
+    const L = leafletRef.current;
+    const markerGroup = mainMarkerRef.current;
+    if (!L || !markerGroup) return;
+
+    markerGroup.clearLayers();
+
+    const aqi = activeAqi;
+    const mainColor = aqi != null ? (Math.round(aqi) === 0 ? '#9ca3af' : getAqiColor(Math.round(aqi))) : '#3b82f6';
+
+    // Main city marker (larger, permanent label)
+    L.circleMarker([lat, lon], {
+      radius: 7,
+      fillColor: mainColor,
+      fillOpacity: 1,
+      color: '#fff',
+      weight: 2.5,
+    }).bindTooltip(aqi != null ? `${cityName} AQI ${Math.round(aqi)}` : cityName, {
+      permanent: true,
+      direction: 'top',
+      offset: [0, -10],
+      className: 'map-label map-label-main',
+    }).addTo(markerGroup);
+
+    // Nearby city markers (smaller, clickable) — each uses its OWN AQI
+    nearbyCities?.forEach((c) => {
+      if (typeof c.lat !== 'number' || typeof c.lon !== 'number') return;
+      const cKey = `${c.lat},${c.lon}`;
+      const cAqi = nearbyAqi?.[cKey];
+      const cColor = cAqi != null ? (cAqi === 0 ? '#9ca3af' : getAqiColor(cAqi)) : '#6b7280';
+      const cLabel = cAqi != null ? `${c.name} AQI ${cAqi}` : c.name;
+      L.circleMarker([c.lat, c.lon], {
+        radius: 4.5,
+        fillColor: cColor,
+        fillOpacity: 0.8,
+        color: '#fff',
+        weight: 1.5,
+      }).bindTooltip(cLabel, {
+        direction: 'top',
+        offset: [0, -6],
+        className: 'map-label',
+      }).on('click', () => {
+        window.location.href = `/${locale}/${c.slug}`;
+      }).addTo(markerGroup);
+    });
+  }, [activeAqi, nearbyAqi, lat, lon, cityName, nearbyCities, locale, mapReady]);
 
   return (
     <section>
+      <div className="flex items-center gap-2 mb-2">
+        <div className="inline-flex rounded-lg border border-[var(--color-border)] overflow-hidden text-xs font-medium">
+          <button
+            onClick={() => setAqiMode('now')}
+            className={`px-2.5 py-1 transition-colors ${aqiMode === 'now' ? 'bg-[var(--color-accent)] text-white' : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-border)]'}`}
+          >{t('now')}</button>
+          <button
+            onClick={() => setAqiMode('max')}
+            className={`px-2.5 py-1 transition-colors ${aqiMode === 'max' ? 'bg-[var(--color-accent)] text-white' : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-border)]'}`}
+          >{t('todayMax')}</button>
+        </div>
+      </div>
       <div
         ref={containerRef}
         className="relative z-0 h-[220px] lg:h-[380px] rounded-xl overflow-hidden border border-[var(--color-border)] bg-[var(--color-bg)]"
@@ -175,6 +232,28 @@ export default function CityMap({ lat, lon, cityName, currentAqi, nearbyCities }
         }
         [data-theme="dark"] .leaflet-control-attribution a {
           color: #999 !important;
+        }
+        .leaflet-control-zoom {
+          border: none !important;
+          box-shadow: 0 1px 4px rgba(0,0,0,.15) !important;
+          border-radius: 8px !important;
+          overflow: hidden;
+        }
+        .leaflet-control-zoom a {
+          width: 28px !important;
+          height: 28px !important;
+          line-height: 28px !important;
+          font-size: 14px !important;
+          background: var(--color-surface) !important;
+          color: var(--color-text-secondary) !important;
+          border-bottom: 1px solid var(--color-border) !important;
+        }
+        .leaflet-control-zoom a:last-child {
+          border-bottom: none !important;
+        }
+        .leaflet-control-zoom a:hover {
+          background: var(--color-border) !important;
+          color: var(--color-text) !important;
         }
       `}</style>
     </section>

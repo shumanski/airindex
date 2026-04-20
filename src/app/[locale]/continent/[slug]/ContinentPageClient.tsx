@@ -29,6 +29,7 @@ interface Props {
   slug: string;
   cities: PopularCity[];
   cityAqiLevels: Record<string, number>;
+  cityAqiMax?: Record<string, number>;
   localizedNames: Record<number, string>;
   byCountry: Record<string, PopularCity[]>;
   countryNames: Record<string, string>;
@@ -40,6 +41,7 @@ export default function ContinentPageClient({
   slug,
   cities,
   cityAqiLevels,
+  cityAqiMax,
   localizedNames,
   byCountry,
   countryNames,
@@ -49,6 +51,8 @@ export default function ContinentPageClient({
   const locale = useLocale();
   const router = useRouter();
   const continentName = t(`home.${continentKey}` as any);
+  const [aqiMode, setAqiMode] = useState<'now' | 'max'>('now');
+  const activeAqi = aqiMode === 'max' && cityAqiMax ? cityAqiMax : cityAqiLevels;
 
   const [tempUnit, setTempUnit] = useState<TempUnit>('C');
   const [theme, setTheme] = useState<Theme>('light');
@@ -131,7 +135,32 @@ export default function ContinentPageClient({
         {t(`home.continentIntro_${continentKey}` as any)}
       </p>
 
-      <HomeMap cities={cities.map(c => ({ ...c, name: cityName(c.geoId, c.name) }))} aqiLevels={cityAqiLevels} center={view.center} zoom={view.zoom} fitCities />
+      {cityAqiMax && Object.keys(cityAqiMax).length > 0 && (
+        <div className="flex gap-1">
+          <button
+            onClick={() => setAqiMode('now')}
+            className={`text-xs px-2 py-0.5 rounded-full border transition-colors ${
+              aqiMode === 'now'
+                ? 'bg-[var(--color-accent)] text-white border-[var(--color-accent)]'
+                : 'border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-border)]'
+            }`}
+          >
+            {t('aqi.now')}
+          </button>
+          <button
+            onClick={() => setAqiMode('max')}
+            className={`text-xs px-2 py-0.5 rounded-full border transition-colors ${
+              aqiMode === 'max'
+                ? 'bg-[var(--color-accent)] text-white border-[var(--color-accent)]'
+                : 'border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-border)]'
+            }`}
+          >
+            {t('aqi.todayMax')}
+          </button>
+        </div>
+      )}
+
+      <HomeMap cities={cities.map(c => ({ ...c, name: cityName(c.geoId, c.name) }))} aqiLevels={activeAqi} center={view.center} zoom={view.zoom} fitCities />
 
       <section className="space-y-4">
         {Object.entries(byCountry)
@@ -154,7 +183,7 @@ export default function ContinentPageClient({
             <div className="flex flex-wrap gap-x-1 gap-y-0.5">
               {[...countryCities].sort((a, b) => cityName(a.geoId, a.name).localeCompare(cityName(b.geoId, b.name))).map((city, i) => {
                 const aqiKey = `${city.lat},${city.lon}`;
-                const aqi = cityAqiLevels[aqiKey];
+                const aqi = activeAqi[aqiKey];
                 return (
                   <span key={city.geoId}>
                     <Link

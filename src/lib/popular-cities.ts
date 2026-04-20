@@ -293,6 +293,11 @@ export const COUNTRY_NAMES: Record<string, string> = {
   TN: 'Tunisia', CM: 'Cameroon', MZ: 'Mozambique', MG: 'Madagascar',
   RW: 'Rwanda', LY: 'Libya',
   AU: 'Australia', NZ: 'New Zealand',
+  // Additional countries from sitemap cities
+  ME: 'Montenegro', PR: 'Puerto Rico', CR: 'Costa Rica', PA: 'Panama',
+  JM: 'Jamaica', BS: 'Bahamas', BZ: 'Belize', AW: 'Aruba', BB: 'Barbados',
+  MV: 'Maldives', OM: 'Oman', AZ: 'Azerbaijan', KZ: 'Kazakhstan',
+  MU: 'Mauritius', SC: 'Seychelles', FJ: 'Fiji',
 };
 
 // Reverse: English name → country code
@@ -361,8 +366,92 @@ export function getCitiesByCountry(countryCode: string): PopularCity[] {
 
 /** Find which continent key a country belongs to */
 export function getContinentForCountry(countryCode: string): string | null {
+  return COUNTRY_TO_CONTINENT[countryCode] || null;
+}
+
+// Country → continent key mapping (built from POPULAR_CITIES + manual additions)
+export const COUNTRY_TO_CONTINENT: Record<string, string> = (() => {
+  const map: Record<string, string> = {};
   for (const [key, cities] of Object.entries(POPULAR_CITIES)) {
-    if (cities.some(c => c.country === countryCode)) return key;
+    for (const c of cities) {
+      if (c.country && !map[c.country]) map[c.country] = key;
+    }
   }
-  return null;
+  // Countries from sitemap cities not present in POPULAR_CITIES
+  Object.assign(map, {
+    ME: 'europe',
+    PR: 'northAmerica', CR: 'northAmerica', PA: 'northAmerica',
+    JM: 'northAmerica', BS: 'northAmerica', BZ: 'northAmerica',
+    AW: 'northAmerica', BB: 'northAmerica',
+    MV: 'asia', OM: 'asia', AZ: 'asia', KZ: 'asia',
+    MU: 'africa', SC: 'africa',
+    FJ: 'oceania',
+  });
+  return map;
+})();
+
+/** Get ALL cities for a continent (popular + sitemap cities merged, no duplicates) */
+export function getAllCitiesForContinent(continentKey: string): PopularCity[] {
+  const { getAllCities } = require('./cities') as { getAllCities: () => Array<{ id: number; slug: string; lat: number; lon: number; country: string }> };
+  const seen = new Set<number>();
+  const result: PopularCity[] = [];
+
+  for (const c of POPULAR_CITIES[continentKey] || []) {
+    seen.add(c.geoId);
+    result.push(c);
+  }
+
+  for (const c of getAllCities()) {
+    if (seen.has(c.id)) continue;
+    if (COUNTRY_TO_CONTINENT[c.country] !== continentKey) continue;
+    seen.add(c.id);
+    result.push({
+      name: c.slug.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+      geoId: c.id,
+      lat: c.lat,
+      lon: c.lon,
+      country: c.country,
+    });
+  }
+
+  return result;
+}
+
+/** Get ALL cities for a country (popular + sitemap cities merged, no duplicates) */
+export function getAllCitiesForCountry(countryCode: string): PopularCity[] {
+  const { getAllCities } = require('./cities') as { getAllCities: () => Array<{ id: number; slug: string; lat: number; lon: number; country: string }> };
+  const seen = new Set<number>();
+  const result: PopularCity[] = [];
+
+  for (const cities of Object.values(POPULAR_CITIES)) {
+    for (const c of cities) {
+      if (c.country === countryCode && !seen.has(c.geoId)) {
+        seen.add(c.geoId);
+        result.push(c);
+      }
+    }
+  }
+
+  for (const c of getAllCities()) {
+    if (c.country !== countryCode || seen.has(c.id)) continue;
+    seen.add(c.id);
+    result.push({
+      name: c.slug.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+      geoId: c.id,
+      lat: c.lat,
+      lon: c.lon,
+      country: c.country,
+    });
+  }
+
+  return result;
+}
+
+/** Get all country codes that belong to a continent */
+export function getCountriesInContinent(continentKey: string): string[] {
+  const codes = new Set<string>();
+  for (const [cc, key] of Object.entries(COUNTRY_TO_CONTINENT)) {
+    if (key === continentKey) codes.add(cc);
+  }
+  return [...codes];
 }

@@ -31,10 +31,12 @@ interface Props {
   initialAqiData?: AqiData | null;
   localizedPaths?: Record<string, string>;
   nearbyCities?: NearbyCityResult[];
+  nearbyAqiCurrent?: Record<string, number>;
+  nearbyAqiMax?: Record<string, number>;
   cityData?: CityData;
 }
 
-export default function CityPageClient({ initialLocation, fallbackName, initialAqiData, localizedPaths, nearbyCities, cityData }: Props) {
+export default function CityPageClient({ initialLocation, fallbackName, initialAqiData, localizedPaths, nearbyCities, nearbyAqiCurrent, nearbyAqiMax, cityData }: Props) {
   const t = useTranslations();
   const router = useRouter();
   const locale = useLocale();
@@ -139,6 +141,8 @@ export default function CityPageClient({ initialLocation, fallbackName, initialA
         cityName={cityDisplayName}
         geoId={location?.geoId}
         nearbyCities={nearbyCities}
+        nearbyAqiCurrent={nearbyAqiCurrent}
+        nearbyAqiMax={nearbyAqiMax}
         cityData={cityData}
         showFeedback
       />
