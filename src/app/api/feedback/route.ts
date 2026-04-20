@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { appendFile, mkdir } from 'fs/promises';
+import { appendFile, mkdir, stat } from 'fs/promises';
 import { join, dirname } from 'path';
 
 const FEEDBACK_FILE = process.env.FEEDBACK_FILE || join(process.cwd(), 'data', 'feedback.jsonl');
+const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50 MB hard cap
 
 export async function POST(req: NextRequest) {
   try {
@@ -26,6 +27,15 @@ export async function POST(req: NextRequest) {
     };
 
     await mkdir(dirname(FEEDBACK_FILE), { recursive: true });
+
+    // Guard against disk exhaustion
+    try {
+      const info = await stat(FEEDBACK_FILE);
+      if (info.size > MAX_FILE_SIZE) {
+        return NextResponse.json({ error: 'Feedback unavailable' }, { status: 503 });
+      }
+    } catch { /* file doesn't exist yet — ok */ }
+
     await appendFile(FEEDBACK_FILE, JSON.stringify(entry) + '\n', 'utf-8');
 
     return NextResponse.json({ ok: true });

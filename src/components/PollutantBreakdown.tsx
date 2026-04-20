@@ -27,7 +27,7 @@ const POLLUTANT_CONFIG: Record<string, { unit: string; guideline: number; guidel
 function getBarColor(value: number, guideline: number): string {
   const ratio = value / guideline;
   if (ratio <= 0.5) return '#00e400';
-  if (ratio <= 1.0) return '#ffff00';
+  if (ratio <= 1.0) return '#e6b800';
   if (ratio <= 1.5) return '#ff7e00';
   if (ratio <= 2.0) return '#ff0000';
   return '#8f3f97';
@@ -73,9 +73,9 @@ export default function PollutantBreakdown({ pm25, pm10, no2, o3, so2, co }: Pro
               <div className="flex items-center justify-between text-sm mb-1">
                 <span className="font-medium text-[var(--color-text)]">{p.label}</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-xs px-1.5 py-0.5 rounded font-bold" style={{
-                    backgroundColor: color + '22',
-                    color: color,
+                  <span className="text-xs px-1.5 py-0.5 rounded font-medium" style={{
+                    backgroundColor: color + '30',
+                    color: 'var(--color-text-secondary)',
                   }}>{status}</span>
                   <span className="text-[var(--color-text-secondary)]">
                     {p.key === 'co' ? (p.value / 1000).toFixed(1) : Math.round(p.value)} {cfg.unit}

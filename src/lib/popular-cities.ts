@@ -391,7 +391,10 @@ export const COUNTRY_TO_CONTINENT: Record<string, string> = (() => {
 })();
 
 /** Get ALL cities for a continent (popular + sitemap cities merged, no duplicates) */
+const _continentCitiesCache = new Map<string, PopularCity[]>();
 export function getAllCitiesForContinent(continentKey: string): PopularCity[] {
+  const cached = _continentCitiesCache.get(continentKey);
+  if (cached) return cached;
   const { getAllCities } = require('./cities') as { getAllCities: () => Array<{ id: number; slug: string; lat: number; lon: number; country: string }> };
   const seen = new Set<number>();
   const result: PopularCity[] = [];
@@ -414,11 +417,15 @@ export function getAllCitiesForContinent(continentKey: string): PopularCity[] {
     });
   }
 
+  _continentCitiesCache.set(continentKey, result);
   return result;
 }
 
 /** Get ALL cities for a country (popular + sitemap cities merged, no duplicates) */
+const _countryCitiesCache = new Map<string, PopularCity[]>();
 export function getAllCitiesForCountry(countryCode: string): PopularCity[] {
+  const cached = _countryCitiesCache.get(countryCode);
+  if (cached) return cached;
   const { getAllCities } = require('./cities') as { getAllCities: () => Array<{ id: number; slug: string; lat: number; lon: number; country: string }> };
   const seen = new Set<number>();
   const result: PopularCity[] = [];
@@ -444,10 +451,9 @@ export function getAllCitiesForCountry(countryCode: string): PopularCity[] {
     });
   }
 
+  _countryCitiesCache.set(countryCode, result);
   return result;
 }
-
-/** Get all country codes that belong to a continent */
 export function getCountriesInContinent(continentKey: string): string[] {
   const codes = new Set<string>();
   for (const [cc, key] of Object.entries(COUNTRY_TO_CONTINENT)) {

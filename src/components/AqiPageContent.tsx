@@ -8,7 +8,7 @@ import AqiChart from './AqiChart';
 import PollutantBreakdown from './PollutantBreakdown';
 import PollutantAqi from './PollutantAqi';
 import { AlertTriangleIcon } from './Icons';
-import { getAqiCategory, getAqiTextColor } from '@/lib/aqi-utils';
+import { getAqiCategory } from '@/lib/aqi-utils';
 import { slugify } from '@/lib/city-url';
 import type { TempUnit } from '@/lib/storage';
 import type { AqiData } from '@/lib/aqi-api';
@@ -18,7 +18,10 @@ import Link from 'next/link';
 const AqiTrend = dynamic(() => import('./AqiTrend'));
 const SeoContent = dynamic(() => import('./SeoContent'));
 const FeedbackWidget = dynamic(() => import('./FeedbackWidget'), { ssr: false });
-const CityMap = dynamic(() => import('./CityMap'), { ssr: false });
+const CityMap = dynamic(() => import('./CityMap'), {
+  ssr: false,
+  loading: () => <div className="h-[220px] lg:h-[380px] rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)]" />,
+});
 
 export interface CityData {
   latitude: number;
@@ -154,27 +157,7 @@ export default function AqiPageContent({
                   peakTime={tabPeakTime}
                   isPeak={activeTab !== 'now'}
                 />
-                {/* Health advice */}
-                {(() => {
-                  const category = getAqiCategory(Math.round(tabAqi));
-                  const textColor = getAqiTextColor(Math.round(tabAqi));
-                  const adviceText = t(`aqi.advice_${category}`);
-                  const items = adviceText.split('|').map(s => s.trim());
-                  return (
-                    <div className="flex flex-col items-center gap-1.5 py-2">
-                      {items.map((item, i) => (
-                        <div key={i} className="flex items-start gap-2 text-sm">
-                          <span className="w-2 h-2 mt-1.5 rounded-full flex-shrink-0" style={{ color: textColor, backgroundColor: textColor }} />
-                          <span className="text-center" style={{ color: textColor }}>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  );
-                })()}
-              </section>
-
-              {/* Pollutant Breakdown */}
-              <div className="order-2 lg:order-none">
+                {/* Pollutant sub-AQI inline */}
                 <PollutantAqi
                   aqiPm25={aqiData.currentAqiPm25}
                   aqiPm10={aqiData.currentAqiPm10}
@@ -182,17 +165,27 @@ export default function AqiPageContent({
                   aqiO3={aqiData.currentAqiO3}
                   aqiSo2={aqiData.currentAqiSo2}
                   aqiCo={aqiData.currentAqiCo}
-                  pm25={aqiData.currentPm25}
-                  pm10={aqiData.currentPm10}
-                  no2={aqiData.currentNo2}
-                  o3={aqiData.currentO3}
-                  so2={aqiData.currentSo2}
-                  co={aqiData.currentCo}
                 />
-              </div>
+                {/* Health advice */}
+                {(() => {
+                  const category = getAqiCategory(Math.round(tabAqi));
+                  const adviceText = t(`aqi.advice_${category}`);
+                  const items = adviceText.split('|').map(s => s.trim());
+                  return (
+                    <div className="flex flex-col items-start gap-1 pt-2 border-t border-[var(--color-border)] mt-2">
+                      {items.map((item, i) => (
+                        <div key={i} className="flex items-start gap-2 text-sm">
+                          <span className="w-1.5 h-1.5 mt-1.5 rounded-full flex-shrink-0 bg-[var(--color-text-muted)]" />
+                          <span className="text-[var(--color-text-secondary)]">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })()}
+              </section>
 
               {/* WHO Guidelines */}
-              <div className="order-5 lg:order-none">
+              <div className="order-2 lg:order-none">
                 <PollutantBreakdown
                   pm25={aqiData.currentPm25}
                   pm10={aqiData.currentPm10}

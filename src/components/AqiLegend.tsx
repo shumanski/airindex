@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 
 const LEVELS = [
   { key: 'good', color: '#00e400' },
-  { key: 'moderate', color: '#ffff00' },
+  { key: 'moderate', color: '#e6b800' },
   { key: 'unhealthySensitive', color: '#ff7e00' },
   { key: 'unhealthy', color: '#ff0000' },
   { key: 'veryUnhealthy', color: '#8f3f97' },

@@ -10,10 +10,10 @@ export function getAqiCategory(aqi: number): AqiCategory {
   return 'hazardous';
 }
 
-// Standard AirNow AQI colors (https://www.airnow.gov/aqi/aqi-basics/)
+// Standard AirNow AQI colors — moderate uses amber (#e6b800) instead of pure yellow for contrast
 export function getAqiColor(aqi: number): string {
   if (aqi <= 50) return '#00e400';   // Green
-  if (aqi <= 100) return '#ffff00';  // Yellow
+  if (aqi <= 100) return '#e6b800';  // Amber (was #ffff00 — unreadable on white)
   if (aqi <= 150) return '#ff7e00';  // Orange
   if (aqi <= 200) return '#ff0000';  // Red
   if (aqi <= 300) return '#8f3f97';  // Purple

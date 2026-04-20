@@ -246,7 +246,7 @@ export default function HomePageClient({ detectedCity, cityAqiLevels, cityAqiMax
               className="flex items-start gap-3 p-3 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]"
             >
               <span
-                className="shrink-0 w-10 h-10 rounded-lg flex items-center justify-center font-bold text-xs"
+                className="shrink-0 min-w-[4.5rem] px-2 py-1.5 rounded-lg flex items-center justify-center font-bold text-xs whitespace-nowrap"
                 style={{ backgroundColor: getAqiColor(aqi), color: getAqiFgColor(aqi) }}
               >
                 {t(`home.${key}Range`)}

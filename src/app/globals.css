@@ -15,7 +15,7 @@
   --color-accent-hover: #0e5298;
   --color-cloud: white;
   --aqi-text-good: #00802b;
-  --aqi-text-moderate: #998a00;
+  --aqi-text-moderate: #8a7000;
   --aqi-text-usg: #cc6500;
   --aqi-text-unhealthy: #cc0000;
   --aqi-text-veryUnhealthy: #8f3f97;
@@ -37,7 +37,7 @@
   --color-accent-hover: #64b5f6;
   --color-cloud: rgba(15, 30, 60, 0.5);
   --aqi-text-good: #00e400;
-  --aqi-text-moderate: #e6d800;
+  --aqi-text-moderate: #d4a800;
   --aqi-text-usg: #ff7e00;
   --aqi-text-unhealthy: #ff4444;
   --aqi-text-veryUnhealthy: #b366bd;

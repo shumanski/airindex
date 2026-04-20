@@ -1,6 +1,6 @@
 'use client';
 
-import { getAqiCategory, getAqiColor, getAqiTextColor } from '@/lib/aqi-utils';
+import { getAqiCategory, getAqiColor } from '@/lib/aqi-utils';
 import { useTranslations } from 'next-intl';
 import type { TempUnit } from '@/lib/storage';
 
@@ -18,18 +18,17 @@ interface Props {
 // Standard AirNow AQI colors (https://www.airnow.gov/aqi/aqi-basics/)
 const AQI_LEVELS = [
   { label: 'Good', max: 50, color: '#00e400' },
-  { label: 'Moderate', max: 100, color: '#ffff00' },
+  { label: 'Moderate', max: 100, color: '#e6b800' },
   { label: 'USG', max: 150, color: '#ff7e00' },
   { label: 'Unhealthy', max: 200, color: '#ff0000' },
   { label: 'V. Unhealthy', max: 300, color: '#8f3f97' },
   { label: 'Hazardous', max: 500, color: '#7e0023' },
 ];
 
-function AqiScale({ value, levels, categoryText, textColor }: {
+function AqiScale({ value, levels, categoryText }: {
   value: number;
   levels: typeof AQI_LEVELS;
   categoryText: string;
-  textColor: string;
 }) {
   const activeIdx = levels.findIndex(l => value <= l.max);
   const idx = activeIdx >= 0 ? activeIdx : levels.length - 1;
@@ -44,7 +43,7 @@ function AqiScale({ value, levels, categoryText, textColor }: {
     <div>
       <div className="flex items-baseline gap-2 mb-1">
         <span className="text-2xl font-bold" style={{ color: activeLevel.color }}>{Math.round(value)}</span>
-        <span className="text-sm font-semibold" style={{ color: textColor }}>{categoryText}</span>
+        <span className="text-sm font-semibold text-[var(--color-text-secondary)]">{categoryText}</span>
       </div>
       <div className="relative">
         <div className="flex h-3 rounded-full overflow-hidden gap-[2px]">
@@ -54,7 +53,6 @@ function AqiScale({ value, levels, categoryText, textColor }: {
               className="flex-1 rounded-sm"
               style={{
                 backgroundColor: level.color,
-                opacity: i <= idx ? 1 : 0.2,
               }}
             />
           ))}
@@ -80,7 +78,6 @@ export default function AqiDisplay({ aqi, label, peakTime, isPeak = true }: Prop
   const t = useTranslations('aqi');
 
   const rounded = Math.round(aqi);
-  const textColor = getAqiTextColor(rounded);
   const category = getAqiCategory(rounded);
 
   return (
@@ -99,7 +96,6 @@ export default function AqiDisplay({ aqi, label, peakTime, isPeak = true }: Prop
         value={rounded}
         levels={AQI_LEVELS}
         categoryText={t(category)}
-        textColor={textColor}
       />
     </div>
   );

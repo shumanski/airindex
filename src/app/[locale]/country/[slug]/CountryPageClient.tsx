@@ -156,13 +156,12 @@ export default function CountryPageClient({
                 { '@type': 'ListItem', position: 2, name: continentName, item: `${base}/${locale}/continent/${continentSlug}` },
                 { '@type': 'ListItem', position: 3, name: translatedCountryName },
               ],
-            }) }} />
+            }).replace(/</g, '\\u003c').replace(/>/g, '\\u003e') }} />
           </>
         );
       })()}
 
-      {cityAqiMax && Object.keys(cityAqiMax).length > 0 && (
-        <div className="flex gap-1">
+      <div className="flex gap-1">
           <button
             onClick={() => setAqiMode('now')}
             className={`text-xs px-2 py-0.5 rounded-full border transition-colors ${
@@ -184,7 +183,6 @@ export default function CountryPageClient({
             {t('aqi.todayMax')}
           </button>
         </div>
-      )}
 
       <HomeMap cities={cities.map(c => ({ ...c, name: cityName(c.geoId, c.name) }))} aqiLevels={activeAqi} fitCities />
 

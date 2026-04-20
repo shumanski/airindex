@@ -148,7 +148,7 @@ export async function fetchBatchMaxAqi(
       const url = new URL(AQI_BASE);
       url.searchParams.set('latitude', lats);
       url.searchParams.set('longitude', lons);
-      url.searchParams.set('daily', 'us_aqi_max');
+      url.searchParams.set('hourly', 'us_aqi');
       url.searchParams.set('timezone', 'auto');
       url.searchParams.set('forecast_days', '1');
       if (apiKey) url.searchParams.set('apikey', apiKey);
@@ -159,10 +159,13 @@ export async function fetchBatchMaxAqi(
 
       const items = Array.isArray(data) ? data : [data];
       items.forEach((item: any, i: number) => {
-        const aqi = item?.daily?.us_aqi_max?.[0];
-        if (typeof aqi === 'number' && chunk[i]) {
-          const key = `${chunk[i].lat},${chunk[i].lon}`;
-          result.set(key, Math.round(aqi));
+        const hourlyAqi: number[] = item?.hourly?.us_aqi ?? [];
+        if (hourlyAqi.length > 0 && chunk[i]) {
+          const maxAqi = Math.max(...hourlyAqi.filter((v: number) => typeof v === 'number' && v >= 0));
+          if (isFinite(maxAqi)) {
+            const key = `${chunk[i].lat},${chunk[i].lon}`;
+            result.set(key, Math.round(maxAqi));
+          }
         }
       });
     }));
