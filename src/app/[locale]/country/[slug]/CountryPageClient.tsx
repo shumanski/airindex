@@ -22,7 +22,6 @@ const MapPlaceholder = () => (
   </div>
 );
 const HomeMap = dynamic(() => import('@/components/HomeMap'), { ssr: false, loading: MapPlaceholder });
-const SeoContent = dynamic(() => import('@/components/SeoContent'));
 
 interface OtherCountry {
   code: string;
@@ -241,8 +240,6 @@ export default function CountryPageClient({
           </div>
         </nav>
       )}
-
-      <SeoContent />
 
       <footer className="text-sm text-[var(--color-text-muted)] space-y-3 pt-4 border-t border-[var(--color-border)]">
         <div className="text-center text-sm space-y-1">

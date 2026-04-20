@@ -128,6 +128,14 @@ export default function CityPageClient({ initialLocation, fallbackName, initialA
               </span>
               {' '}{t('aqi.at')} {aqiData.tomorrowPeak.hour}
             </p>
+            {cityData && (
+              <p className="text-[var(--color-text-muted)]">
+                {t('cityInfo.coordinates')}: {Math.abs(cityData.latitude).toFixed(2)}° {cityData.latitude >= 0 ? 'N' : 'S'}, {Math.abs(cityData.longitude).toFixed(2)}° {cityData.longitude >= 0 ? 'E' : 'W'}
+                {' · '}
+                {t('cityInfo.timezone')}: {aqiData.timezone.replace(/_/g, ' ')}
+                {cityData.population && cityData.population > 0 ? ` · ${t('cityInfo.population')}: ${new Intl.NumberFormat(locale, { notation: cityData.population >= 10000 ? 'compact' : 'standard', maximumSignificantDigits: 3 }).format(cityData.population)}` : ''}
+              </p>
+            )}
           </div>
         );
       })()}

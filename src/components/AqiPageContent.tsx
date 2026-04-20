@@ -203,6 +203,33 @@ export default function AqiPageContent({
                   <AqiTrend dailyPeaks={aqiData.dailyPeaks} tempUnit={tempUnit} cityName={cityName} />
                 </div>
               )}
+
+              {/* City info */}
+              {cityData && cityName && (
+                <section className="order-5 lg:order-none bg-[var(--color-surface)] rounded-2xl p-4 shadow-sm border border-[var(--color-border)]">
+                  <h2 className="text-base font-semibold text-[var(--color-text-secondary)] mb-3">{t('cityInfo.heading', { city: cityName })}</h2>
+                  <div className="space-y-2 text-sm text-[var(--color-text-secondary)]">
+                    <div className="flex justify-between">
+                      <span>{t('cityInfo.country')}</span>
+                      <span className="font-medium">{cityData.country}{cityData.admin1 ? `, ${cityData.admin1}` : ''}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>{t('cityInfo.timezone')}</span>
+                      <span className="font-medium">{aqiData.timezone.replace(/_/g, ' ')} ({formatUtcOffset(aqiData.timezone)})</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>{t('cityInfo.coordinates')}</span>
+                      <span className="font-medium">{Math.abs(cityData.latitude).toFixed(2)}° {cityData.latitude >= 0 ? 'N' : 'S'}, {Math.abs(cityData.longitude).toFixed(2)}° {cityData.longitude >= 0 ? 'E' : 'W'}</span>
+                    </div>
+                    {cityData.population && cityData.population > 0 && (
+                      <div className="flex justify-between">
+                        <span>{t('cityInfo.population')}</span>
+                        <span className="font-medium">{formatPopulation(cityData.population, locale)}</span>
+                      </div>
+                    )}
+                  </div>
+                </section>
+              )}
             </div>
 
             <div className="contents lg:flex lg:flex-col lg:gap-4">
@@ -232,33 +259,6 @@ export default function AqiPageContent({
                   cityName={cityName}
                 />
               </section>
-
-              {/* City info */}
-              {cityData && cityName && (
-                <section className="order-7 lg:order-none bg-[var(--color-surface)] rounded-2xl p-4 shadow-sm border border-[var(--color-border)]">
-                  <h2 className="text-base font-semibold text-[var(--color-text-secondary)] mb-3">{t('cityInfo.heading', { city: cityName })}</h2>
-                  <div className="space-y-2 text-sm text-[var(--color-text-secondary)]">
-                    <div className="flex justify-between">
-                      <span>{t('cityInfo.country')}</span>
-                      <span className="font-medium">{cityData.country}{cityData.admin1 ? `, ${cityData.admin1}` : ''}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>{t('cityInfo.timezone')}</span>
-                      <span className="font-medium">{aqiData.timezone.replace(/_/g, ' ')} ({formatUtcOffset(aqiData.timezone)})</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>{t('cityInfo.coordinates')}</span>
-                      <span className="font-medium">{Math.abs(cityData.latitude).toFixed(2)}° {cityData.latitude >= 0 ? 'N' : 'S'}, {Math.abs(cityData.longitude).toFixed(2)}° {cityData.longitude >= 0 ? 'E' : 'W'}</span>
-                    </div>
-                    {cityData.population && cityData.population > 0 && (
-                      <div className="flex justify-between">
-                        <span>{t('cityInfo.population')}</span>
-                        <span className="font-medium">{formatPopulation(cityData.population, locale)}</span>
-                      </div>
-                    )}
-                  </div>
-                </section>
-              )}
             </div>
           </div>
         </>
@@ -303,7 +303,29 @@ export default function AqiPageContent({
         </p>
       )}
 
-      <SeoContent />
+      <SeoContent city={aqiData && cityName && cityData ? (() => {
+        const pollutants: [string, number][] = [
+          ['PM2.5', aqiData.currentAqiPm25],
+          ['PM10', aqiData.currentAqiPm10],
+          ['O₃', aqiData.currentAqiO3],
+          ['NO₂', aqiData.currentAqiNo2],
+          ['SO₂', aqiData.currentAqiSo2],
+          ['CO', aqiData.currentAqiCo],
+        ];
+        const dominant = pollutants.reduce((a, b) => (b[1] > a[1] ? b : a), pollutants[0]);
+        return {
+          cityName,
+          country: cityData.country,
+          admin1: cityData.admin1,
+          latitude: cityData.latitude,
+          currentAqi: aqiData.currentAqi,
+          todayPeakAqi: aqiData.todayPeak.aqi,
+          todayPeakHour: aqiData.todayPeak.hour,
+          tomorrowPeakAqi: aqiData.tomorrowPeak.aqi,
+          dominantPollutant: dominant[1] > 0 ? dominant[0] : undefined,
+          timezone: aqiData.timezone,
+        };
+      })() : undefined} />
 
       <footer className="text-sm text-[var(--color-text-muted)] space-y-3 pt-4 border-t border-[var(--color-border)]">
         <div className="text-center text-sm space-y-1">
