@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -137,6 +137,16 @@ export default function HomePageClient({ detectedCity, cityAqiLevels, cityAqiMax
 
   const cityLink = (name: string, geoId: number) =>
     `/${locale}/${buildCityPath(cityName(geoId, name), geoId)}`;
+
+  const homeMapCities = useMemo(() => {
+    const out: Array<{ name: string; geoId: number; lat: number; lon: number; country?: string }> = [];
+    for (const region of Object.keys(POPULAR_CITIES) as Array<keyof typeof POPULAR_CITIES>) {
+      for (const c of POPULAR_CITIES[region]) {
+        out.push({ ...c, name: cityName(c.geoId, c.name) });
+      }
+    }
+    return out;
+  }, [localizedNames]);
 
   const homePaths: Record<string, string> = {};
   for (const loc of routing.locales) {
@@ -299,7 +309,7 @@ export default function HomePageClient({ detectedCity, cityAqiLevels, cityAqiMax
             >{t('aqi.todayMax')}</button>
           </div>
         </div>
-        <HomeMap cities={Object.values(POPULAR_CITIES).flat().map(c => ({ ...c, name: cityName(c.geoId, c.name) }))} aqiLevels={activeAqi} />
+        <HomeMap cities={homeMapCities} aqiLevels={activeAqi} />
         {(Object.keys(POPULAR_CITIES) as Array<keyof typeof POPULAR_CITIES>).map((region) => (
           <div key={region}>
             <h3 className="text-sm font-semibold mb-1.5">

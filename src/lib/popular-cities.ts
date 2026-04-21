@@ -301,9 +301,11 @@ export const COUNTRY_NAMES: Record<string, string> = {
 };
 
 // Reverse: English name → country code
-export const COUNTRY_NAME_TO_CODE: Record<string, string> = Object.fromEntries(
-  Object.entries(COUNTRY_NAMES).map(([code, name]) => [name, code]),
-);
+const COUNTRY_NAME_TO_CODE_MAP: Record<string, string> = {};
+for (const code in COUNTRY_NAMES) {
+  COUNTRY_NAME_TO_CODE_MAP[COUNTRY_NAMES[code]] = code;
+}
+export const COUNTRY_NAME_TO_CODE: Record<string, string> = COUNTRY_NAME_TO_CODE_MAP;
 
 // Continent slug ↔ key mapping
 export const CONTINENT_SLUGS: Record<string, string> = {
@@ -316,9 +318,12 @@ export const CONTINENT_SLUGS: Record<string, string> = {
 };
 
 // Reverse: key → slug
-export const CONTINENT_KEY_TO_SLUG: Record<string, string> = Object.fromEntries(
-  Object.entries(CONTINENT_SLUGS).map(([slug, key]) => [key, slug]),
-);
+const CONTINENT_KEY_TO_SLUG_MAP: Record<string, string> = {};
+for (const slug in CONTINENT_SLUGS) {
+  const key = CONTINENT_SLUGS[slug];
+  CONTINENT_KEY_TO_SLUG_MAP[key] = slug;
+}
+export const CONTINENT_KEY_TO_SLUG: Record<string, string> = CONTINENT_KEY_TO_SLUG_MAP;
 
 // Map center & zoom per continent
 export const CONTINENT_VIEW: Record<string, { center: [number, number]; zoom: number }> = {
@@ -341,17 +346,19 @@ export function groupByCountry(cities: PopularCity[]): Record<string, PopularCit
 }
 
 // Country slug → ISO code (lowercase country name → code)
-export const COUNTRY_SLUGS: Record<string, string> = Object.fromEntries(
-  Object.entries(COUNTRY_NAMES).map(([code, name]) => [
-    name.toLowerCase().replace(/\s+/g, '-'),
-    code,
-  ]),
-);
+const COUNTRY_SLUGS_MAP: Record<string, string> = {};
+for (const code in COUNTRY_NAMES) {
+  const slug = COUNTRY_NAMES[code].toLowerCase().replace(/\s+/g, '-');
+  COUNTRY_SLUGS_MAP[slug] = code;
+}
+export const COUNTRY_SLUGS: Record<string, string> = COUNTRY_SLUGS_MAP;
 
 // Reverse: ISO code → country slug
-export const COUNTRY_CODE_TO_SLUG: Record<string, string> = Object.fromEntries(
-  Object.entries(COUNTRY_SLUGS).map(([slug, code]) => [code, slug]),
-);
+const COUNTRY_CODE_TO_SLUG_MAP: Record<string, string> = {};
+for (const slug in COUNTRY_SLUGS) {
+  COUNTRY_CODE_TO_SLUG_MAP[COUNTRY_SLUGS[slug]] = slug;
+}
+export const COUNTRY_CODE_TO_SLUG: Record<string, string> = COUNTRY_CODE_TO_SLUG_MAP;
 
 /** Get all cities for a given country code across all continents */
 export function getCitiesByCountry(countryCode: string): PopularCity[] {

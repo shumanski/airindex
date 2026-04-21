@@ -40,7 +40,7 @@ export default function CityMap({ lat, lon, cityName, currentAqi, todayPeakAqi, 
     if (!el) return;
     const obs = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) { setInView(true); obs.disconnect(); } },
-      { rootMargin: '300px' },
+      { rootMargin: '200px' },
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -50,6 +50,8 @@ export default function CityMap({ lat, lon, cityName, currentAqi, todayPeakAqi, 
     if (!inView || !containerRef.current) return;
 
     let cancelled = false;
+    let idleId: number | null = null;
+    let timeoutId: number | null = null;
 
     async function init() {
       const L = (await import('leaflet')).default;
@@ -120,10 +122,46 @@ export default function CityMap({ lat, lon, cityName, currentAqi, todayPeakAqi, 
       setMapReady(true);
     }
 
-    init();
+    const startInit = () => {
+      window.requestAnimationFrame(() => {
+        if (!cancelled) init();
+      });
+    };
+
+    const ric = (window as Window & {
+      requestIdleCallback?: (cb: IdleRequestCallback, opts?: IdleRequestOptions) => number;
+    }).requestIdleCallback;
+
+    const isNearViewport = () => {
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (!rect) return false;
+      return rect.top < window.innerHeight * 1.5;
+    };
+
+    if (isNearViewport() && ric) {
+      // Near viewport: wait for idle time (max 1s) before importing Leaflet
+      idleId = ric(() => startInit(), { timeout: 1000 });
+    } else if (isNearViewport()) {
+      // Near viewport but no requestIdleCallback: defer with frames only
+      window.requestAnimationFrame(() => {
+        if (!cancelled) window.requestAnimationFrame(() => startInit());
+      });
+    } else if (ric) {
+      // Far from viewport: wait for idle time (no timeout)
+      idleId = ric(() => startInit());
+    }
 
     return () => {
       cancelled = true;
+      if (idleId !== null) {
+        const cic = (window as Window & {
+          cancelIdleCallback?: (id: number) => void;
+        }).cancelIdleCallback;
+        cic?.(idleId);
+      }
+      if (timeoutId !== null) {
+        window.clearTimeout(timeoutId);
+      }
       observerRef.current?.disconnect();
       mapRef.current?.remove();
       mapRef.current = null;

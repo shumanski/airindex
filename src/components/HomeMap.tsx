@@ -36,8 +36,8 @@ export default function HomeMap({ cities, aqiLevels, center, zoom, fitCities }: 
   const [inView, setInView] = useState(false);
   const [mapReady, setMapReady] = useState(false);
 
-  // Stabilise cities reference — only change when the content actually changes
-  const citiesKey = useMemo(() => cities.map(c => c.geoId).join(','), [cities]);
+  // Stabilise cities reference — include name so locale/localized-name updates propagate
+  const citiesKey = useMemo(() => cities.map(c => `${c.geoId}:${c.name}`).join('|'), [cities]);
   const stableCities = useMemo(() => cities, [citiesKey]);
 
   useEffect(() => {
@@ -45,7 +45,7 @@ export default function HomeMap({ cities, aqiLevels, center, zoom, fitCities }: 
     if (!el) return;
     const obs = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) { setInView(true); obs.disconnect(); } },
-      { rootMargin: '300px' },
+      { rootMargin: '200px' },
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -56,6 +56,8 @@ export default function HomeMap({ cities, aqiLevels, center, zoom, fitCities }: 
     if (!inView || !containerRef.current) return;
 
     let cancelled = false;
+    let idleId: number | null = null;
+    let timeoutId: number | null = null;
 
     async function init() {
       const L = (await import('leaflet')).default;
@@ -121,10 +123,46 @@ export default function HomeMap({ cities, aqiLevels, center, zoom, fitCities }: 
       setMapReady(true);
     }
 
-    init();
+    const startInit = () => {
+      window.requestAnimationFrame(() => {
+        if (!cancelled) init();
+      });
+    };
+
+    const ric = (window as Window & {
+      requestIdleCallback?: (cb: IdleRequestCallback, opts?: IdleRequestOptions) => number;
+    }).requestIdleCallback;
+
+    const isNearViewport = () => {
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (!rect) return false;
+      return rect.top < window.innerHeight * 1.5;
+    };
+
+    if (isNearViewport() && ric) {
+      // Near viewport: wait for idle time (max 1s) before importing Leaflet
+      idleId = ric(() => startInit(), { timeout: 1000 });
+    } else if (isNearViewport()) {
+      // Near viewport but no requestIdleCallback: defer with small RAF delay
+      window.requestAnimationFrame(() => {
+        if (!cancelled) window.requestAnimationFrame(() => startInit());
+      });
+    } else if (ric) {
+      // Far from viewport: wait for idle time (no timeout)
+      idleId = ric(() => startInit());
+    }
 
     return () => {
       cancelled = true;
+      if (idleId !== null) {
+        const cic = (window as Window & {
+          cancelIdleCallback?: (id: number) => void;
+        }).cancelIdleCallback;
+        cic?.(idleId);
+      }
+      if (timeoutId !== null) {
+        window.clearTimeout(timeoutId);
+      }
       observerRef.current?.disconnect();
       mapRef.current?.remove();
       mapRef.current = null;
