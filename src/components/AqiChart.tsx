@@ -188,7 +188,14 @@ export default function AqiChart({ hourly, currentHour = -1, peakAqi, peakHour, 
                 return (
                   <tr key={i} className={`border-b border-[var(--color-border)] last:border-0 ${isCurrent ? 'bg-[var(--color-surface-active)]' : i % 2 === 0 ? 'bg-[var(--color-surface)]' : ''}`}>
                     <td className="px-2 py-1 font-medium">{hour}</td>
-                    <td className="px-2 py-1 text-right font-semibold" style={{ color: getAqiColor(h.usAqi) }}>{Math.round(h.usAqi)}</td>
+                    <td className="px-2 py-1 text-right">
+                      <span
+                        className="inline-flex items-center justify-center min-w-9 px-1.5 py-0.5 rounded-md font-semibold text-[var(--color-text-secondary)]"
+                        style={{ backgroundColor: `${getAqiColor(h.usAqi)}22` }}
+                      >
+                        {Math.round(h.usAqi)}
+                      </span>
+                    </td>
                     <td className="px-2 py-1 text-right">{h.pm25.toFixed(1)}</td>
                     <td className="px-2 py-1 text-right">{h.pm10.toFixed(1)}</td>
                     <td className="px-2 py-1 text-right">{h.o3.toFixed(1)}</td>

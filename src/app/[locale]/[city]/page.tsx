@@ -67,6 +67,7 @@ export default async function CityPage({
         country: cityInfo.country,
         admin1: cityInfo.admin1,
         population: cityInfo.population,
+        elevation: cityInfo.elevation,
       }}
     />
   );

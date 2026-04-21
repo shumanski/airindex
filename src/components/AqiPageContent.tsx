@@ -29,6 +29,7 @@ export interface CityData {
   country: string;
   admin1?: string;
   population?: number;
+  elevation?: number;
 }
 
 interface Props {
@@ -221,6 +222,12 @@ export default function AqiPageContent({
                       <span>{t('cityInfo.coordinates')}</span>
                       <span className="font-medium">{Math.abs(cityData.latitude).toFixed(2)}° {cityData.latitude >= 0 ? 'N' : 'S'}, {Math.abs(cityData.longitude).toFixed(2)}° {cityData.longitude >= 0 ? 'E' : 'W'}</span>
                     </div>
+                    {typeof cityData.elevation === 'number' && (
+                      <div className="flex justify-between">
+                        <span>{t('cityInfo.elevation')}</span>
+                        <span className="font-medium">{Math.round(cityData.elevation)} m</span>
+                      </div>
+                    )}
                     {cityData.population && cityData.population > 0 && (
                       <div className="flex justify-between">
                         <span>{t('cityInfo.population')}</span>
