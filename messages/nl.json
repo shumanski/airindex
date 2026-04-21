@@ -25,8 +25,8 @@
     "forecast": "Voorspelling",
     "localTime": "Lokale tijd",
     "now": "Nu",
-    "todayMax": "Max vandaag",
-    "tomorrowMax": "Max morgen",
+    "todayMax": "Maximum vandaag",
+    "tomorrowMax": "Maximum morgen",
     "trend": "5-daagse AQI-voorspelling",
     "trendCity": "5-daagse AQI-voorspelling voor {city}",
     "trendPeakNote": "Dagelijkse AQI-piekwaarden",
@@ -69,7 +69,7 @@
     "sources": "AQI-categorieën en gezondheidsrichtlijnen: EPA AirNow (EPA-454/B-24-002, mei 2024). Luchtkwaliteitsgegevens: CAMS/Copernicus via Open-Meteo."
   },
   "disclaimer": {
-    "heading": "Disclaimer",
+    "heading": "Vrijwaring",
     "general": "Deze website is uitsluitend bedoeld voor informatieve doeleinden en vormt geen medisch advies. Luchtkwaliteitsgegevens en gezondheidsrichtlijnen zijn benaderingen en mogen professioneel medisch advies niet vervangen.",
     "accuracy": "AQI-voorspellingen zijn gebaseerd op atmosferische modellen. De werkelijke luchtkwaliteit kan variëren door lokale emissies, windpatronen en andere omgevingsfactoren.",
     "externalApi": "Luchtkwaliteits- en weergegevens worden verkregen via externe API's (Open-Meteo/CAMS). Wij garanderen geen nauwkeurigheid of beschikbaarheid."
@@ -155,7 +155,7 @@
     "airQualityApi_text": "Wanneer u een luchtkwaliteitsvoorspelling bekijkt, worden de coördinaten van uw geselecteerde locatie naar Open-Meteo en de CAMS API gestuurd om luchtkwaliteits- en weergegevens op te halen. Er worden geen persoonsgegevens meegestuurd.",
     "whatWeDoNot_title": "3. Wat wij NIET verzamelen",
     "whatWeDoNot_text": "Wij gebruiken geen cookies. Wij vereisen geen gebruikersaccounts of authenticatie. Wij verzamelen geen namen, e-mailadressen of telefoonnummers. Wij volgen geen individuele gebruikers over sessies heen. Wij verkopen of delen geen gegevens met adverteerders of derden.",
-    "cookies_title": "4. Cookies",
+    "cookies_title": "4. Cookies en vergelijkbare technologieën",
     "cookies_text": "airindex.today plaatst geen trackingcookies, geen analysecookies en geen advertentiecookies.",
     "thirdParties_title": "5. Diensten van derden",
     "thirdParty_openmeteo": "Leverancier van luchtkwaliteits- en weergegevens. Ontvangt alleen locatiecoördinaten. Geen persoonsgegevens.",
@@ -168,7 +168,7 @@
     "children_text": "Deze website is niet gericht op kinderen onder 16 jaar. Wij verwerken niet bewust persoonsgegevens van kinderen.",
     "changes_title": "8. Wijzigingen",
     "changes_text": "Indien onze gegevenspraktijken wezenlijk veranderen, wordt deze pagina bijgewerkt voordat de wijzigingen van kracht worden.",
-    "contact_title": "9. Contact",
+    "contact_title": "9. Contact opnemen",
     "contact_text": "Vragen over dit beleid?"
   },
   "notFound": {

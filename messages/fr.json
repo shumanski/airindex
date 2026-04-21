@@ -25,8 +25,8 @@
     "forecast": "Prévisions",
     "localTime": "Heure locale",
     "now": "Maintenant",
-    "todayMax": "Max aujourd’hui",
-    "tomorrowMax": "Max demain",
+    "todayMax": "Maximum aujourd’hui",
+    "tomorrowMax": "Maximum demain",
     "trend": "Prévisions AQI sur 5 jours",
     "trendCity": "Prévisions AQI sur 5 jours pour {city}",
     "trendPeakNote": "Valeurs AQI maximales journalières",
@@ -155,7 +155,7 @@
     "airQualityApi_text": "Lorsque vous consultez une prévision de qualité de l'air, les coordonnées du lieu sélectionné sont envoyées à Open-Meteo et à l'API CAMS pour récupérer les données de qualité de l'air et météorologiques. Aucune information personnelle n'est incluse dans ces requêtes.",
     "whatWeDoNot_title": "3. Ce que nous ne collectons PAS",
     "whatWeDoNot_text": "Nous n'utilisons pas de cookies. Nous n'exigeons pas de comptes utilisateurs ni d'authentification. Nous ne collectons pas de noms, adresses e-mail ou numéros de téléphone. Nous ne suivons pas les utilisateurs individuels entre les sessions. Nous ne vendons ni ne partageons de données avec des annonceurs ou des tiers.",
-    "cookies_title": "4. Cookies",
+    "cookies_title": "4. Cookies et technologies similaires",
     "cookies_text": "airindex.today ne place aucun cookie de suivi, aucun cookie d'analyse et aucun cookie publicitaire.",
     "thirdParties_title": "5. Services tiers",
     "thirdParty_openmeteo": "Fournisseur de données de qualité de l'air et météo. Ne reçoit que les coordonnées géographiques. Aucune donnée personnelle.",
@@ -168,7 +168,7 @@
     "children_text": "Ce site web ne s'adresse pas aux enfants de moins de 16 ans. Nous ne traitons pas sciemment les données personnelles d'enfants.",
     "changes_title": "8. Modifications",
     "changes_text": "Si nos pratiques en matière de données changent de manière substantielle, cette page sera mise à jour avant l'entrée en vigueur des changements.",
-    "contact_title": "9. Contact",
+    "contact_title": "9. Nous contacter",
     "contact_text": "Questions sur cette politique ?"
   },
   "notFound": {
@@ -183,7 +183,7 @@
     "timezone": "Fuseau horaire",
     "coordinates": "Coordonnées",
     "elevation": "Altitude",
-    "population": "Population"
+    "population": "Nombre d’habitants"
   },
   "home": {
     "hero": "Prévision de l'indice UV pour tout lieu",
