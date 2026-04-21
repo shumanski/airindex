@@ -32,24 +32,21 @@ interface Props {
 }
 
 /* ── SVG icons for feature cards ── */
-function AqiFocusIcon({ size = 20 }: { size?: number }) {
+function PollutantsIcon({ size = 20 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--color-primary)]">
-      <circle cx="12" cy="12" r="4" />
-      <path d="M12 2v2" /><path d="M12 20v2" />
-      <path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" />
-      <path d="M2 12h2" /><path d="M20 12h2" />
-      <path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" />
+      <path d="M2 20h20" />
+      <path d="M6 20v-6" /><path d="M10 20v-10" /><path d="M14 20v-4" /><path d="M18 20v-14" />
     </svg>
   );
 }
 
-function FeatherIcon({ size = 20 }: { size?: number }) {
+function CalendarIcon({ size = 20 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--color-primary)]">
-      <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z" />
-      <line x1="16" y1="8" x2="2" y2="22" />
-      <line x1="17.5" y1="15" x2="9" y2="15" />
+      <rect x="3" y="4" width="18" height="18" rx="2" />
+      <path d="M16 2v4" /><path d="M8 2v4" /><path d="M3 10h18" />
+      <path d="M8 14h.01" /><path d="M12 14h.01" /><path d="M16 14h.01" />
     </svg>
   );
 }
@@ -63,12 +60,14 @@ function ShieldIcon({ size = 20 }: { size?: number }) {
   );
 }
 
-function FlaskIcon({ size = 20 }: { size?: number }) {
+function SatelliteIcon({ size = 20 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--color-primary)]">
-      <path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2" />
-      <path d="M8.5 2h7" />
-      <path d="M7 16.5h10" />
+      <path d="M13 7 9 3 3 9l4 4" />
+      <path d="m13 7 7 7-4 4-4-4" />
+      <path d="m14 6 3-3" /><path d="m3 14 3-3" />
+      <circle cx="14" cy="10" r="2" />
+      <path d="m21 21-9-9" />
     </svg>
   );
 }
@@ -83,10 +82,10 @@ const AQI_LEVELS = [
 ] as const;
 
 const FEATURE_CARDS = [
-  { Icon: AqiFocusIcon, titleKey: 'aqiFocusTitle', descKey: 'aqiFocusDesc' },
-  { Icon: FeatherIcon, titleKey: 'fastTitle', descKey: 'fastDesc' },
-  { Icon: ShieldIcon, titleKey: 'privacyTitle', descKey: 'privacyDesc' },
-  { Icon: FlaskIcon, titleKey: 'dataTitle', descKey: 'dataDesc' },
+  { Icon: PollutantsIcon, titleKey: 'aqiFocusTitle', descKey: 'aqiFocusDesc' },
+  { Icon: CalendarIcon,  titleKey: 'fastTitle',      descKey: 'fastDesc'      },
+  { Icon: ShieldIcon,    titleKey: 'privacyTitle',   descKey: 'privacyDesc'   },
+  { Icon: SatelliteIcon, titleKey: 'dataTitle',      descKey: 'dataDesc'      },
 ] as const;
 
 export default function HomePageClient({ detectedCity, cityAqiLevels, cityAqiMax, localizedNames }: Props) {

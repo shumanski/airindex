@@ -186,18 +186,18 @@
     "population": "Population"
   },
   "home": {
-    "hero": "Air Quality Index for Any Location",
-    "heroSub": "Current AQI, hourly forecast, pollutant levels, and health advice — free, fast, and private.",
+    "hero": "Know What's in the Air You Breathe",
+    "heroSub": "Real-time AQI, hourly forecast, PM₂.₅ & 5 pollutants tracked against WHO guidelines — free, private, no sign-up needed.",
     "viewForecast": "View full AQI forecast for {city} →",
-    "whyTitle": "Why Air Index Today",
-    "aqiFocusTitle": "Pure AQI Focus",
-    "aqiFocusDesc": "Built entirely around the air quality index — current AQI, hourly chart, pollutant breakdown, and 5-day trend at a glance.",
-    "fastTitle": "Fast & Lightweight",
-    "fastDesc": "Loads instantly on any device — no sign-up, no clutter. Get your AQI forecast in seconds, even on a slow connection.",
-    "privacyTitle": "Privacy First",
-    "privacyDesc": "No cookies, no user tracking, no personal data stored. All databases are self-hosted — your location data never leaves our servers.",
-    "dataTitle": "Scientific Data",
-    "dataDesc": "AQI data from the Copernicus Atmosphere Monitoring Service (CAMS) satellite system. Health guidance follows the US EPA AirNow standard.",
+    "whyTitle": "Built Around Air Quality",
+    "aqiFocusTitle": "6 Pollutants, One Score",
+    "aqiFocusDesc": "PM₂.₅, PM₁₀, NO₂, O₃, SO₂, and CO — each measured against WHO 2021 guidelines, combined into a single color-coded AQI so you can act fast.",
+    "fastTitle": "5-Day Hourly Forecast",
+    "fastDesc": "CAMS atmospheric models give hour-by-hour AQI predictions 5 days ahead. Plan outdoor runs, school trips, or morning commutes around the air quality.",
+    "privacyTitle": "No Account, No Tracking",
+    "privacyDesc": "No cookies, no email, no personal data stored. Your searches stay on your device. Air quality data is everyone's right — not a premium feature.",
+    "dataTitle": "Satellite & WHO Standards",
+    "dataDesc": "Data from the Copernicus Atmosphere Monitoring Service (CAMS) — the same source used by European air quality agencies. AQI follows the US EPA AirNow standard.",
     "scaleTitle": "Understanding the Air Quality Index",
     "scaleIntro": "The AQI is a standardized index developed by the US EPA to communicate how clean or polluted the air is. It runs from 0 to 500 and is divided into six color-coded categories.",
     "scaleSrc": "Source: US EPA AirNow, EPA-454/B-24-002",
@@ -232,7 +232,7 @@
     "whyMattersTitle": "Why Check the AQI Daily?",
     "whyMattersText": "Air pollution causes respiratory issues, aggravates asthma and allergies, and increases the risk of cardiovascular problems. Fine particles (PM2.5) can penetrate deep into the lungs and bloodstream. The World Health Organization estimates that air pollution causes millions of premature deaths worldwide each year. Checking the AQI before outdoor activities helps you make informed decisions — especially if you're in a sensitive group.",
     "siteDescTitle": "About Air Index Today",
-    "siteDescText": "Air Index Today provides free air quality forecasts for any location worldwide. Our data comes from the Copernicus Atmosphere Monitoring Service (CAMS) via Open-Meteo. We follow the US EPA AQI standard with six color-coded categories and health guidance aligned with AirNow recommendations."
+    "siteDescText": "Air Index Today provides free real-time air quality forecasts worldwide. AQI data comes from the Copernicus Atmosphere Monitoring Service (CAMS) via Open-Meteo. We follow the US EPA AQI standard (six color-coded categories) with health guidance from EPA AirNow. Pollutant levels are compared against WHO 2021 Air Quality Guidelines."
   },
   "countries": {
     "GB": "United Kingdom",

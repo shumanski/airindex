@@ -204,8 +204,37 @@ export default function AqiPageContent({
                   <AqiTrend dailyPeaks={aqiData.dailyPeaks} tempUnit={tempUnit} cityName={cityName} />
                 </div>
               )}
+            </div>
 
-              {/* City info */}
+            <div className="contents lg:flex lg:flex-col lg:gap-4">
+              {/* Today Chart - order-3 on mobile, right after pollutant contributions */}
+              <section className="order-3 lg:order-none bg-[var(--color-surface)] rounded-2xl p-4 shadow-sm border border-[var(--color-border)]">
+                <AqiChart
+                  hourly={aqiData.todayHourly}
+                  currentHour={aqiData.currentHour}
+                  peakAqi={aqiData.todayPeak.aqi}
+                  peakHour={aqiData.todayPeak.hour}
+                  timezone={aqiData.timezone}
+                  tempUnit={tempUnit}
+                  cityName={cityName}
+                />
+              </section>
+
+              {/* Tomorrow Chart */}
+              <section className="order-4 lg:order-none bg-[var(--color-surface)] rounded-2xl p-4 shadow-sm border border-[var(--color-border)]">
+                <AqiChart
+                  hourly={aqiData.tomorrowHourly}
+                  peakAqi={aqiData.tomorrowPeak.aqi}
+                  peakHour={aqiData.tomorrowPeak.hour}
+                  timezone={aqiData.timezone}
+                  tempUnit={tempUnit}
+                  dayLabel={t('aqi.tomorrow')}
+                  chartId="-tomorrow"
+                  cityName={cityName}
+                />
+              </section>
+
+              {/* City info — right column in desktop */}
               {cityData && cityName && (
                 <section className="order-5 lg:order-none bg-[var(--color-surface)] rounded-2xl p-4 shadow-sm border border-[var(--color-border)]">
                   <h2 className="text-base font-semibold text-[var(--color-text-secondary)] mb-3">{t('cityInfo.heading', { city: cityName })}</h2>
@@ -237,35 +266,6 @@ export default function AqiPageContent({
                   </div>
                 </section>
               )}
-            </div>
-
-            <div className="contents lg:flex lg:flex-col lg:gap-4">
-              {/* Today Chart - order-3 on mobile, right after pollutant contributions */}
-              <section className="order-3 lg:order-none bg-[var(--color-surface)] rounded-2xl p-4 shadow-sm border border-[var(--color-border)]">
-                <AqiChart
-                  hourly={aqiData.todayHourly}
-                  currentHour={aqiData.currentHour}
-                  peakAqi={aqiData.todayPeak.aqi}
-                  peakHour={aqiData.todayPeak.hour}
-                  timezone={aqiData.timezone}
-                  tempUnit={tempUnit}
-                  cityName={cityName}
-                />
-              </section>
-
-              {/* Tomorrow Chart */}
-              <section className="order-4 lg:order-none bg-[var(--color-surface)] rounded-2xl p-4 shadow-sm border border-[var(--color-border)]">
-                <AqiChart
-                  hourly={aqiData.tomorrowHourly}
-                  peakAqi={aqiData.tomorrowPeak.aqi}
-                  peakHour={aqiData.tomorrowPeak.hour}
-                  timezone={aqiData.timezone}
-                  tempUnit={tempUnit}
-                  dayLabel={t('aqi.tomorrow')}
-                  chartId="-tomorrow"
-                  cityName={cityName}
-                />
-              </section>
             </div>
           </div>
         </>
