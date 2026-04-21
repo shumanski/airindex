@@ -5,7 +5,7 @@ import { getLocalizedNames } from '@/lib/geocode-api';
 import { buildCityPath } from '@/lib/city-url';
 import { CONTINENT_SLUGS, COUNTRY_SLUGS } from '@/lib/popular-cities';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 86400; // Regenerate once a day; city names don't change
 
 const BASE_URL = process.env.SITE_URL || 'https://airindex.today';
 
@@ -19,7 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const today = todayMidnight();
 
   const homePages = routing.locales.map((locale) => ({
-    url: `${BASE_URL}/${locale}`,
+    url: locale === routing.defaultLocale ? `${BASE_URL}/` : `${BASE_URL}/${locale}`,
     lastModified: today,
     changeFrequency: 'daily' as const,
     priority: locale === routing.defaultLocale ? 1.0 : 0.9,
