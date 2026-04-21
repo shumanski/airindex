@@ -45,6 +45,14 @@ function getRatioLabel(ratio: number): { text: string; color: string } {
   return { text: `${ratio.toFixed(1)}× limit`, color: '#d12020' };
 }
 
+function getAdaptiveAxisMax(value: number, guideline: number): number {
+  const raw = Math.max(guideline * 2, value * 1.1);
+  const magnitude = Math.pow(10, Math.floor(Math.log10(Math.max(raw, 1))));
+  const normalized = raw / magnitude;
+  const nice = normalized <= 2 ? 2 : normalized <= 5 ? 5 : 10;
+  return nice * magnitude;
+}
+
 export default function PollutantBreakdown({ pm25, pm10, no2, o3, so2, co }: Props) {
   const t = useTranslations('pollutants');
 
@@ -79,11 +87,10 @@ export default function PollutantBreakdown({ pm25, pm10, no2, o3, so2, co }: Pro
           const cfg = POLLUTANT_CONFIG[p.key];
           const displayValue = p.key === 'co' ? p.value / 1000 : p.value;
           const ratio = displayValue / cfg.guideline;
-          // Scale: WHO guideline sits at exactly 50% of the bar.
-          // Bar spans 0 → 2× guideline; values beyond 2× are capped visually
-          // but the ratio label still shows the true multiplier.
-          const barMax = cfg.guideline * 2;
-          const barPct = Math.min((displayValue / barMax) * 100, 100);
+          // Adaptive scale per pollutant row so high values remain visible and comparable.
+          const axisMax = getAdaptiveAxisMax(displayValue, cfg.guideline);
+          const barPct = Math.min((displayValue / axisMax) * 100, 100);
+          const guidelinePct = Math.min((cfg.guideline / axisMax) * 100, 100);
           const barColor = getBarColor(ratio);
           const ratioLabel = getRatioLabel(ratio);
           const formattedVal = p.key === 'co'
@@ -118,17 +125,20 @@ export default function PollutantBreakdown({ pm25, pm10, no2, o3, so2, co }: Pro
                 {/* WHO guideline marker at 50% = guideline value */}
                 <div
                   className="absolute top-0 bottom-0 w-[2px] rounded-full opacity-60"
-                  style={{ left: 'calc(50% - 1px)', backgroundColor: 'var(--color-text)' }}
+                  style={{ left: `calc(${guidelinePct}% - 1px)`, backgroundColor: 'var(--color-text)' }}
                 />
               </div>
 
               {/* Scale ticks */}
               <div className="relative flex justify-between text-[10px] text-[var(--color-text-muted)] mt-0.5">
                 <span>0</span>
-                <span className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap">
+                <span
+                  className="absolute -translate-x-1/2 whitespace-nowrap"
+                  style={{ left: `${guidelinePct}%` }}
+                >
                   WHO {cfg.guidelineLabel}: {cfg.guideline} {cfg.unit}
                 </span>
-                <span>{cfg.guideline * 2}+</span>
+                <span>{axisMax}</span>
               </div>
             </div>
           );

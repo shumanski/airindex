@@ -63,11 +63,14 @@ function ShieldIcon({ size = 20 }: { size?: number }) {
 function SatelliteIcon({ size = 20 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--color-primary)]">
-      <path d="M13 7 9 3 3 9l4 4" />
-      <path d="m13 7 7 7-4 4-4-4" />
-      <path d="m14 6 3-3" /><path d="m3 14 3-3" />
-      <circle cx="14" cy="10" r="2" />
-      <path d="m21 21-9-9" />
+      <rect x="9" y="9" width="6" height="6" rx="1" />
+      <path d="M4 10h5" />
+      <path d="M15 10h5" />
+      <path d="M4 14h5" />
+      <path d="M15 14h5" />
+      <path d="M12 9V5" />
+      <path d="M10 5h4" />
+      <path d="M12 15v4" />
     </svg>
   );
 }
