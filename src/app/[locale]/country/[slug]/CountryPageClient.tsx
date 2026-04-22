@@ -141,7 +141,7 @@ export default function CountryPageClient({
         const base = 'https://airindex.today';
         return (
           <>
-            <nav className="text-xs text-[var(--color-text-muted)]">
+            <nav aria-label="Breadcrumb" className="text-xs text-[var(--color-text-muted)]">
               <Link href={`/${locale}`} className="hover:underline">airindex.today</Link>
               {' › '}
               <Link href={`/${locale}/continent/${continentSlug}`} className="hover:underline">{continentName}</Link>

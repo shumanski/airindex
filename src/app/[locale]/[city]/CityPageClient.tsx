@@ -26,6 +26,13 @@ export interface CityData {
   elevation?: number;
 }
 
+export interface Breadcrumb {
+  continentKey: string;
+  continentSlug: string;
+  countryCode: string;
+  countrySlug: string;
+}
+
 interface Props {
   initialLocation: StoredLocation | null;
   fallbackName: string;
@@ -35,9 +42,10 @@ interface Props {
   nearbyAqiCurrent?: Record<string, number>;
   nearbyAqiMax?: Record<string, number>;
   cityData?: CityData;
+  breadcrumb?: Breadcrumb | null;
 }
 
-export default function CityPageClient({ initialLocation, fallbackName, initialAqiData, localizedPaths, nearbyCities, nearbyAqiCurrent, nearbyAqiMax, cityData }: Props) {
+export default function CityPageClient({ initialLocation, fallbackName, initialAqiData, localizedPaths, nearbyCities, nearbyAqiCurrent, nearbyAqiMax, cityData, breadcrumb }: Props) {
   const t = useTranslations();
   const router = useRouter();
   const locale = useLocale();
@@ -96,6 +104,40 @@ export default function CityPageClient({ initialLocation, fallbackName, initialA
           />
         </div>
       </header>
+
+      {breadcrumb && (() => {
+        const continentLabel = t(`home.${breadcrumb.continentKey}` as any);
+        const countryLabel = t(`countries.${breadcrumb.countryCode}` as any);
+        const base = 'https://airindex.today';
+        return (
+          <>
+            <nav aria-label="Breadcrumb" className="text-xs text-[var(--color-text-muted)] -mt-2">
+              <Link href={`/${locale}`} className="hover:underline">airindex.today</Link>
+              {' › '}
+              <Link href={`/${locale}/continent/${breadcrumb.continentSlug}`} className="hover:underline">{continentLabel}</Link>
+              {' › '}
+              <Link href={`/${locale}/country/${breadcrumb.countrySlug}`} className="hover:underline">{countryLabel}</Link>
+              {' › '}
+              <span className="text-[var(--color-text-secondary)]">{cityDisplayName}</span>
+            </nav>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  '@context': 'https://schema.org',
+                  '@type': 'BreadcrumbList',
+                  itemListElement: [
+                    { '@type': 'ListItem', position: 1, name: 'airindex.today', item: `${base}/${locale}` },
+                    { '@type': 'ListItem', position: 2, name: continentLabel, item: `${base}/${locale}/continent/${breadcrumb.continentSlug}` },
+                    { '@type': 'ListItem', position: 3, name: countryLabel, item: `${base}/${locale}/country/${breadcrumb.countrySlug}` },
+                    { '@type': 'ListItem', position: 4, name: cityDisplayName },
+                  ],
+                }).replace(/</g, '\\u003c').replace(/>/g, '\\u003e'),
+              }}
+            />
+          </>
+        );
+      })()}
 
       {aqiData && (() => {
         const aqiRounded = Math.round(aqiData.currentAqi);

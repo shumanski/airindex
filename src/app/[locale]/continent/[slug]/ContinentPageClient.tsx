@@ -129,6 +129,27 @@ export default function ContinentPageClient({
         </div>
       </header>
 
+      <>
+        <nav aria-label="Breadcrumb" className="text-xs text-[var(--color-text-muted)] -mt-2">
+          <Link href={`/${locale}`} className="hover:underline">airindex.today</Link>
+          {' › '}
+          <span className="text-[var(--color-text-secondary)]">{continentName}</span>
+        </nav>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                { '@type': 'ListItem', position: 1, name: 'airindex.today', item: `https://airindex.today/${locale}` },
+                { '@type': 'ListItem', position: 2, name: continentName, item: `https://airindex.today/${locale}/continent/${slug}` },
+              ],
+            }).replace(/</g, '\\u003c').replace(/>/g, '\\u003e'),
+          }}
+        />
+      </>
+
       <LocationSearch location={null} onSelect={handleLocationSelect} />
 
       <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">

@@ -4,6 +4,7 @@ import { parseGeoIdFromPath, parseNameFromPath, buildCityPath } from '@/lib/city
 import { fetchAqiData, fetchBatchCurrentAqi, fetchBatchMaxAqi } from '@/lib/aqi-api';
 import { roundCoord } from '@/lib/cache';
 import { routing } from '@/i18n/routing';
+import { COUNTRY_TO_CONTINENT, COUNTRY_CODE_TO_SLUG, CONTINENT_KEY_TO_SLUG } from '@/lib/popular-cities';
 import CityPageClient from './CityPageClient';
 
 export default async function CityPage({
@@ -52,6 +53,14 @@ export default async function CityPage({
     localizedPaths[loc] = `/${loc}/${buildCityPath(locName, geoId)}`;
   }
 
+  const countryCode = cityInfo.country_code?.toUpperCase();
+  const continentKey = countryCode ? COUNTRY_TO_CONTINENT[countryCode] : null;
+  const continentSlug = continentKey ? CONTINENT_KEY_TO_SLUG[continentKey] : null;
+  const countrySlug = countryCode ? COUNTRY_CODE_TO_SLUG[countryCode] : null;
+  const breadcrumb = (continentKey && continentSlug && countryCode && countrySlug)
+    ? { continentKey, continentSlug, countryCode, countrySlug }
+    : null;
+
   return (
     <CityPageClient
       initialLocation={initialLocation}
@@ -69,6 +78,7 @@ export default async function CityPage({
         population: cityInfo.population,
         elevation: cityInfo.elevation,
       }}
+      breadcrumb={breadcrumb}
     />
   );
 }
