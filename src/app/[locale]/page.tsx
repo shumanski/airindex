@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { headers } from 'next/headers';
 import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
-import { buildCityPath } from '@/lib/city-url';
 import { fetchAqiData, fetchBatchCurrentAqi, fetchBatchMaxAqi } from '@/lib/aqi-api';
 import { batchLocalizedNames } from '@/lib/geocode-api';
 import { POPULAR_CITIES } from '@/lib/popular-cities';
@@ -16,8 +15,9 @@ export interface DetectedCity {
   name: string;
   country: string;
   geoId: number;
-  path: string;
   currentAqi?: number;
+  currentTemp?: number;       // °C
+  currentWeatherCode?: number;
   peakAqi?: number;
   peakHour?: string;
   tomorrowPeakAqi?: number;
@@ -60,12 +60,13 @@ async function detectCity(locale: string): Promise<DetectedCity | null> {
       name: best.name,
       country: best.country || geoData.country,
       geoId: best.id,
-      path: buildCityPath(best.name, best.id),
     };
 
     try {
       const aqi = await fetchAqiData(best.latitude, best.longitude);
       city.currentAqi = Math.round(aqi.currentAqi);
+      city.currentTemp = aqi.currentTemp;
+      city.currentWeatherCode = aqi.currentWeatherCode;
       city.peakAqi = Math.round(aqi.todayPeak.aqi);
       city.peakHour = aqi.todayPeak.hour;
       city.tomorrowPeakAqi = Math.round(aqi.tomorrowPeak.aqi);

@@ -96,8 +96,10 @@ export default async function LocaleLayout({
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
         <link rel="manifest" href="/manifest.json" />
+        <link rel="preload" href="/fonts/TwemojiCountryFlags.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://scripts.simpleanalyticscdn.com" />
         <link rel="preconnect" href="https://scripts.simpleanalyticscdn.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://queue.simpleanalyticscdn.com" crossOrigin="anonymous" />
         <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
         {process.env.NEXT_PUBLIC_ADSENSE_ID && (
           <script

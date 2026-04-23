@@ -232,7 +232,18 @@
     "whyMattersTitle": "Dlaczego warto sprawdzać indeks UV codziennie?",
     "whyMattersText": "Zanieczyszczenie powietrza może powodować problemy z oddychaniem, nasilać astmę i alergie oraz zwiększać ryzyko chorób sercowo-naczyniowych. Drobne cząstki (PM2.5) mogą przenikać głęboko do płuc i krwiobiegu. WHO szacuje, że zanieczyszczenie powietrza powoduje co roku miliony przedwczesnych zgonów. Sprawdzenie AQI przed aktywnością na zewnątrz pomaga podejmować lepsze decyzje — szczególnie jeśli należysz do grupy wrażliwej.",
     "siteDescTitle": "O Air Index Today",
-    "siteDescText": "Air Index Today oferuje bezpłatne prognozy jakości powietrza w czasie rzeczywistym na całym świecie. Dane AQI pochodzą z Copernicus Atmosphere Monitoring Service (CAMS) przez Open-Meteo. Stosujemy amerykański standard AQI EPA z zaleceniami zdrowotnymi EPA AirNow, a poziomy zanieczyszczeń porównujemy z wytycznymi WHO dotyczącymi jakości powietrza z 2021 roku."
+    "siteDescText": "Air Index Today oferuje bezpłatne prognozy jakości powietrza w czasie rzeczywistym na całym świecie. Dane AQI pochodzą z Copernicus Atmosphere Monitoring Service (CAMS) przez Open-Meteo. Stosujemy amerykański standard AQI EPA z zaleceniami zdrowotnymi EPA AirNow, a poziomy zanieczyszczeń porównujemy z wytycznymi WHO dotyczącymi jakości powietrza z 2021 roku.",
+    "metaLive": "{total} miast · na żywo",
+    "detectPrompt": "Nie udało się automatycznie wykryć Twojego miasta. Użyj lokalizacji, aby przejść prosto do prognozy.",
+    "detectedTag": "Twoja lokalizacja",
+    "detectedHint": "Wykryto automatycznie · wyszukaj powyżej, aby zmienić",
+    "liveWorldMap": "Mapa świata na żywo",
+    "highestNow": "Najwyższe teraz",
+    "cityCol": "Miasto",
+    "browseTitle": "Przeglądaj według kontynentu",
+    "showAllCities": "Pokaż wszystkie {count} miast",
+    "showLess": "Pokaż mniej",
+    "metaSources": "CAMS · WHO"
   },
   "countries": {
     "GB": "Wielka Brytania",
@@ -358,5 +369,8 @@
     "MU": "Mauritius",
     "SC": "Seszele",
     "FJ": "Fidżi"
+  },
+  "ticker": {
+    "caveat": "z {total} miast"
   }
 }

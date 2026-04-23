@@ -232,7 +232,18 @@
     "whyMattersTitle": "Por que verificar o índice UV diariamente?",
     "whyMattersText": "A poluição do ar pode causar problemas respiratórios, agravar a asma e as alergias e aumentar o risco cardiovascular. As partículas finas (PM2.5) podem penetrar profundamente nos pulmões e na corrente sanguínea. A OMS estima que a poluição do ar cause milhões de mortes prematuras por ano. Verificar o AQI antes de atividades ao ar livre ajuda a tomar decisões mais informadas, sobretudo se fizer parte de um grupo sensível.",
     "siteDescTitle": "Sobre o Air Index Today",
-    "siteDescText": "O Air Index Today oferece previsões gratuitas da qualidade do ar em tempo real a nível mundial. Os dados AQI vêm do Copernicus Atmosphere Monitoring Service (CAMS) via Open-Meteo. Seguimos o padrão AQI da EPA dos EUA com orientação de saúde da EPA AirNow, enquanto os níveis de poluentes são comparados com as diretrizes de qualidade do ar da OMS de 2021."
+    "siteDescText": "O Air Index Today oferece previsões gratuitas da qualidade do ar em tempo real a nível mundial. Os dados AQI vêm do Copernicus Atmosphere Monitoring Service (CAMS) via Open-Meteo. Seguimos o padrão AQI da EPA dos EUA com orientação de saúde da EPA AirNow, enquanto os níveis de poluentes são comparados com as diretrizes de qualidade do ar da OMS de 2021.",
+    "metaLive": "{total} cidades · ao vivo",
+    "detectPrompt": "Não conseguimos detectar a sua cidade automaticamente. Use a sua localização para ir direto à previsão.",
+    "detectedTag": "A sua localização",
+    "detectedHint": "Detetado · pesquise acima para alterar",
+    "liveWorldMap": "Mapa mundial ao vivo",
+    "highestNow": "Mais alto agora",
+    "cityCol": "Cidade",
+    "browseTitle": "Explorar por continente",
+    "showAllCities": "Mostrar todas as {count} cidades",
+    "showLess": "Mostrar menos",
+    "metaSources": "CAMS · WHO"
   },
   "countries": {
     "GB": "Reino Unido",
@@ -358,5 +369,8 @@
     "MU": "Maurícia",
     "SC": "Seicheles",
     "FJ": "Fiji"
+  },
+  "ticker": {
+    "caveat": "de {total} cidades"
   }
 }

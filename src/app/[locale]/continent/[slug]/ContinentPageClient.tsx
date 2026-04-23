@@ -5,12 +5,11 @@ import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import LocationSearch from '@/components/LocationSearch';
-import SettingsMenu from '@/components/SettingsMenu';
-import Logo from '@/components/Logo';
+import TopHeader from '@/components/TopHeader';
 import { AlertTriangleIcon } from '@/components/Icons';
 import { buildCityPath } from '@/lib/city-url';
 import { getAqiTextColor } from '@/lib/aqi-utils';
+import { countryCodeToFlag } from '@/lib/flag';
 import { routing } from '@/i18n/routing';
 import { loadPreferences, savePreferences, type StoredLocation, type TempUnit, type Theme } from '@/lib/storage';
 import { CONTINENT_SLUGS, COUNTRY_CODE_TO_SLUG } from '@/lib/popular-cities';
@@ -50,12 +49,12 @@ export default function ContinentPageClient({
   const t = useTranslations();
   const locale = useLocale();
   const router = useRouter();
-  const continentName = t(`home.${continentKey}` as any);
-  const [aqiMode, setAqiMode] = useState<'now' | 'max'>('now');
-  const activeAqi = aqiMode === 'max' && cityAqiMax ? cityAqiMax : cityAqiLevels;
+  const continentName = t(`home.${continentKey}` as never);
 
   const [tempUnit, setTempUnit] = useState<TempUnit>('C');
   const [theme, setTheme] = useState<Theme>('light');
+  const [aqiMode, setAqiMode] = useState<'now' | 'max'>('now');
+  const activeAqi = aqiMode === 'max' && cityAqiMax ? cityAqiMax : cityAqiLevels;
 
   useEffect(() => {
     const prefs = loadPreferences();
@@ -71,6 +70,23 @@ export default function ContinentPageClient({
       const cityPath = buildCityPath(loc.name.split(',')[0].trim(), loc.geoId);
       router.push(`/${locale}/${cityPath}`);
     }
+  }, [locale, router]);
+
+  const handleDetectLocation = useCallback(async () => {
+    try {
+      const res = await fetch('/api/geo');
+      const data = await res.json();
+      if (data.detected && data.city) {
+        const geoRes = await fetch(`/api/geocode?q=${encodeURIComponent(data.city)}&lang=${locale}`);
+        if (geoRes.ok) {
+          const results = await geoRes.json();
+          if (Array.isArray(results) && results.length > 0) {
+            const best = results[0];
+            router.push(`/${locale}/${buildCityPath(best.name, best.id)}`);
+          }
+        }
+      }
+    } catch { /* silent */ }
   }, [locale, router]);
 
   function handleLocaleChange(newLocale: string) {
@@ -106,133 +122,113 @@ export default function ContinentPageClient({
   );
 
   return (
-    <main className="max-w-2xl lg:max-w-5xl mx-auto px-4 pb-8 pt-4 space-y-6 relative z-10">
-      <header className="flex items-center justify-between">
-        <h1 className="text-lg font-bold text-[var(--color-text)] flex items-center gap-2">
-          <Link href={`/${locale}`} aria-label="Air Index Today home" className="flex items-center">
-            <span className="relative z-[-1]"><Logo size={34} /></span>
-          </Link>
-          <span>Air Quality {continentName}</span>
-        </h1>
-        <div className="flex items-center gap-1">
-          <button
-            onClick={handleTempUnitChange}
-            className="text-sm font-medium px-2 py-1 rounded-lg border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-border)] transition-colors"
-          >°{tempUnit}</button>
-          <SettingsMenu
-            currentLocale={locale}
-            theme={theme}
-            onLocaleChange={handleLocaleChange}
-            onThemeChange={handleThemeChange}
-            localizedPaths={localizedPaths}
-          />
-        </div>
-      </header>
+    <>
+    <TopHeader
+      tempUnit={tempUnit}
+      theme={theme}
+      onTempUnitChange={handleTempUnitChange}
+      onLocaleChange={handleLocaleChange}
+      onThemeChange={handleThemeChange}
+      localizedPaths={localizedPaths}
+      onSelect={handleLocationSelect}
+      onDetectLocation={handleDetectLocation}
+    />
+    <main className="max-w-2xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 pb-8 pt-4 space-y-6 relative z-10">
 
-      <>
-        <nav aria-label="Breadcrumb" className="text-xs text-[var(--color-text-muted)] -mt-2">
-          <Link href={`/${locale}`} className="hover:underline">airindex.today</Link>
-          {' › '}
-          <span className="text-[var(--color-text-secondary)]">{continentName}</span>
+      <div className="a-hero">
+        <nav className="a-hero-eyeline" aria-label="Breadcrumb">
+          <span>
+            <Link href={`/${locale}`} prefetch={false} className="hover:underline">airindex.today</Link>
+            {' › '}{continentName}
+          </span>
         </nav>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'BreadcrumbList',
-              itemListElement: [
-                { '@type': 'ListItem', position: 1, name: 'airindex.today', item: `https://airindex.today/${locale}` },
-                { '@type': 'ListItem', position: 2, name: continentName, item: `https://airindex.today/${locale}/continent/${slug}` },
-              ],
-            }).replace(/</g, '\\u003c').replace(/>/g, '\\u003e'),
-          }}
-        />
-      </>
+        <h2 className="a-hero-h1">Air Quality <span className="text-[var(--color-city-name)]">{continentName}</span></h2>
+        <p className="a-hero-sub">{t(`home.continentIntro_${continentKey}` as never)}</p>
+      </div>
 
-      <LocationSearch location={null} onSelect={handleLocationSelect} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'airindex.today', item: `https://airindex.today/${locale}` },
+              { '@type': 'ListItem', position: 2, name: continentName, item: `https://airindex.today/${locale}/continent/${slug}` },
+            ],
+          }).replace(/</g, '\\u003c').replace(/>/g, '\\u003e'),
+        }}
+      />
 
-      <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">
-        {t(`home.continentIntro_${continentKey}` as any)}
-      </p>
-
-      <div className="flex gap-1">
+      <div className="flex items-center gap-2">
+        <div className="inline-flex rounded-lg border border-[var(--color-border)] overflow-hidden text-xs font-medium">
           <button
             onClick={() => setAqiMode('now')}
-            className={`text-xs px-2 py-0.5 rounded-full border transition-colors ${
-              aqiMode === 'now'
-                ? 'bg-[var(--color-accent)] text-white border-[var(--color-accent)]'
-                : 'border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-border)]'
-            }`}
-          >
-            {t('aqi.now')}
-          </button>
+            className={`px-2.5 py-1 transition-colors ${aqiMode === 'now' ? 'bg-[var(--color-primary)] text-white' : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-border)]'}`}
+          >{t('aqi.now')}</button>
           <button
             onClick={() => setAqiMode('max')}
-            className={`text-xs px-2 py-0.5 rounded-full border transition-colors ${
-              aqiMode === 'max'
-                ? 'bg-[var(--color-accent)] text-white border-[var(--color-accent)]'
-                : 'border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-border)]'
-            }`}
-          >
-            {t('aqi.todayMax')}
-          </button>
+            className={`px-2.5 py-1 transition-colors ${aqiMode === 'max' ? 'bg-[var(--color-primary)] text-white' : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-border)]'}`}
+          >{t('aqi.todayMax')}</button>
         </div>
+      </div>
 
       <HomeMap cities={cities.map(c => ({ ...c, name: cityName(c.geoId, c.name) }))} aqiLevels={activeAqi} center={view.center} zoom={view.zoom} fitCities />
 
-      <section className="space-y-4">
-        {Object.entries(byCountry)
-          .sort(([a], [b]) => (t(`countries.${a}` as any) || countryNames[a] || a).localeCompare(t(`countries.${b}` as any) || countryNames[b] || b))
-          .map(([cc, countryCities]) => (
-          <div key={cc}>
-            <h2 className="text-sm font-semibold text-[var(--color-text)] mb-1">
-              {COUNTRY_CODE_TO_SLUG[cc] ? (
-                <Link
-                  href={`/${locale}/country/${COUNTRY_CODE_TO_SLUG[cc]}`}
-                  prefetch={false}
-                  className="text-[var(--color-accent)] hover:underline"
-                >
-                  {t(`countries.${cc}` as any) || countryNames[cc] || cc} →
-                </Link>
-              ) : (
-                t(`countries.${cc}` as any) || countryNames[cc] || cc
-              )}
-            </h2>
-            <div className="flex flex-wrap gap-x-1 gap-y-0.5">
-              {[...countryCities].sort((a, b) => cityName(a.geoId, a.name).localeCompare(cityName(b.geoId, b.name))).map((city, i) => {
-                const aqiKey = `${city.lat},${city.lon}`;
-                const aqi = activeAqi[aqiKey];
-                return (
-                  <span key={city.geoId}>
-                    <Link
-                      href={cityLink(city.name, city.geoId)}
-                      prefetch={false}
-                      className="text-sm text-[var(--color-accent)] hover:underline"
-                    >
-                      {cityName(city.geoId, city.name)}
-                      {aqi != null && (
-                        <span
-                          className="ml-0.5 text-xs font-medium"
-                          style={{ color: getAqiTextColor(aqi) }}
-                        >
-                          {aqi}
+      <section className="space-y-2">
+        <h2 className="a-section-h">{t('home.browseTitle')}</h2>
+        <div className="a-country-grid">
+          {Object.entries(byCountry)
+            .sort(([a], [b]) => (t(`countries.${a}` as never) || countryNames[a] || a).localeCompare(t(`countries.${b}` as never) || countryNames[b] || b))
+            .map(([cc, countryCities]) => {
+              const flag = countryCodeToFlag(cc);
+              const label = (t(`countries.${cc}` as never) as string) || countryNames[cc] || cc;
+              const sortedCities = [...countryCities].sort((a, b) => cityName(a.geoId, a.name).localeCompare(cityName(b.geoId, b.name)));
+              return (
+                <div key={cc} className="a-country-card">
+                  <h3>
+                    {flag && <span className="a-flag" aria-hidden="true">{flag}</span>}
+                    {COUNTRY_CODE_TO_SLUG[cc] ? (
+                      <Link href={`/${locale}/country/${COUNTRY_CODE_TO_SLUG[cc]}`} prefetch={false}>
+                        {label} <span style={{ color: 'var(--color-text-muted)', fontWeight: 500 }}>({countryCities.length})</span>
+                      </Link>
+                    ) : (<>{label} <span style={{ color: 'var(--color-text-muted)', fontWeight: 500 }}>({countryCities.length})</span></>)}
+                  </h3>
+                  <div className="cities">
+                    {sortedCities.slice(0, 12).map((city, i) => {
+                      const aqiKey = `${city.lat},${city.lon}`;
+                      const aqi = activeAqi[aqiKey];
+                      return (
+                        <span key={city.geoId}>
+                          <Link href={cityLink(city.name, city.geoId)} prefetch={false}>
+                            {cityName(city.geoId, city.name)}
+                            {aqi != null && (
+                              <span className="ml-0.5 text-xs font-medium" style={{ color: getAqiTextColor(aqi) }}>{aqi}</span>
+                            )}
+                          </Link>
+                          {i < Math.min(sortedCities.length, 12) - 1 && (
+                            <span className="text-[var(--color-text-muted)]"> · </span>
+                          )}
                         </span>
-                      )}
-                    </Link>
-                    {i < countryCities.length - 1 && (
-                      <span className="text-[var(--color-text-muted)]"> · </span>
+                      );
+                    })}
+                    {sortedCities.length > 12 && COUNTRY_CODE_TO_SLUG[cc] && (
+                      <>
+                        <span className="text-[var(--color-text-muted)]"> · </span>
+                        <Link href={`/${locale}/country/${COUNTRY_CODE_TO_SLUG[cc]}`} prefetch={false} className="text-[var(--color-primary)] font-semibold">
+                          +{sortedCities.length - 12} →
+                        </Link>
+                      </>
                     )}
-                  </span>
-                );
-              })}
-            </div>
-          </div>
-        ))}
+                  </div>
+                </div>
+              );
+            })}
+        </div>
       </section>
 
       <nav className="pt-2 border-t border-[var(--color-border)]">
-        <p className="text-xs font-semibold text-[var(--color-text-muted)] mb-1">
+        <p className="a-section-h mb-2">
           {t('home.citiesTitle')}
         </p>
         <div className="flex flex-wrap gap-x-2 gap-y-1">
@@ -243,7 +239,7 @@ export default function ContinentPageClient({
               prefetch={false}
               className="text-sm text-[var(--color-accent)] hover:underline"
             >
-              {t(`home.${key}` as any)}
+              {t(`home.${key}` as never)}
             </Link>
           ))}
         </div>
@@ -283,5 +279,6 @@ export default function ContinentPageClient({
         </div>
       </footer>
     </main>
+    </>
   );
 }

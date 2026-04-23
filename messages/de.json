@@ -232,7 +232,18 @@
     "whyMattersTitle": "Warum den AQI täglich prüfen?",
     "whyMattersText": "Luftverschmutzung kann Atemwegsprobleme verursachen, Asthma und Allergien verschlimmern und das Risiko für Herz-Kreislauf-Erkrankungen erhöhen. Feine Partikel (PM2.5) können tief in die Lunge und in den Blutkreislauf gelangen. Die WHO schätzt, dass Luftverschmutzung jedes Jahr Millionen vorzeitiger Todesfälle verursacht. Wenn Sie den AQI vor Aktivitäten im Freien prüfen, können Sie fundiertere Entscheidungen treffen — besonders wenn Sie zu einer empfindlichen Gruppe gehören.",
     "siteDescTitle": "Über Air Index Today",
-    "siteDescText": "Air Index Today bietet kostenlose Luftqualitätsprognosen in Echtzeit weltweit. Die AQI-Daten stammen vom Copernicus Atmosphere Monitoring Service (CAMS) über Open-Meteo. Wir folgen dem US-AQI-Standard der EPA mit Gesundheitshinweisen von EPA AirNow, während die Schadstoffwerte mit den WHO-Luftqualitätsrichtlinien von 2021 verglichen werden."
+    "siteDescText": "Air Index Today bietet kostenlose Luftqualitätsprognosen in Echtzeit weltweit. Die AQI-Daten stammen vom Copernicus Atmosphere Monitoring Service (CAMS) über Open-Meteo. Wir folgen dem US-AQI-Standard der EPA mit Gesundheitshinweisen von EPA AirNow, während die Schadstoffwerte mit den WHO-Luftqualitätsrichtlinien von 2021 verglichen werden.",
+    "metaLive": "{total} Städte · live",
+    "detectPrompt": "Wir konnten deine Stadt nicht automatisch erkennen. Nutze deinen Standort, um direkt zur Vorhersage zu springen.",
+    "detectedTag": "Dein Standort",
+    "detectedHint": "Automatisch · oben suchen zum Ändern",
+    "liveWorldMap": "Live-Weltkarte",
+    "highestNow": "Aktuell am höchsten",
+    "cityCol": "Stadt",
+    "browseTitle": "Nach Kontinent durchsuchen",
+    "showAllCities": "Alle {count} Städte anzeigen",
+    "showLess": "Weniger anzeigen",
+    "metaSources": "CAMS · WHO"
   },
   "countries": {
     "GB": "Vereinigtes Königreich",
@@ -358,5 +369,8 @@
     "MU": "Mauritius",
     "SC": "Seychellen",
     "FJ": "Fidschi"
+  },
+  "ticker": {
+    "caveat": "aus {total} Städten"
   }
 }

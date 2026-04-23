@@ -232,7 +232,18 @@
     "whyMattersTitle": "Hvorfor sjekke AQI-indeksen daglig?",
     "whyMattersText": "Luftforurensning kan gi luftveisproblemer, forverre astma og allergier og øke risikoen for hjerte- og karsykdommer. Fine partikler (PM2.5) kan trenge dypt ned i lungene og inn i blodbanen. WHO anslår at luftforurensning forårsaker millioner av for tidlige dødsfall hvert år. Å sjekke AQI før utendørsaktiviteter hjelper deg å ta bedre informerte valg — spesielt hvis du tilhører en sensitiv gruppe.",
     "siteDescTitle": "Om Air Index Today",
-    "siteDescText": "Air Index Today tilbyr gratis luftkvalitetsprognoser i sanntid verden over. AQI-data kommer fra Copernicus Atmosphere Monitoring Service (CAMS) via Open-Meteo. Vi følger den amerikanske EPA AQI-standarden med helseråd fra EPA AirNow, mens forurensningsnivåer sammenlignes med WHOs luftkvalitetsretningslinjer fra 2021."
+    "siteDescText": "Air Index Today tilbyr gratis luftkvalitetsprognoser i sanntid verden over. AQI-data kommer fra Copernicus Atmosphere Monitoring Service (CAMS) via Open-Meteo. Vi følger den amerikanske EPA AQI-standarden med helseråd fra EPA AirNow, mens forurensningsnivåer sammenlignes med WHOs luftkvalitetsretningslinjer fra 2021.",
+    "metaLive": "{total} byer · live",
+    "detectPrompt": "Vi kunne ikke finne byen din automatisk. Bruk plasseringen din for å gå rett til varslet.",
+    "detectedTag": "Din plassering",
+    "detectedHint": "Automatisk · søk over for å endre",
+    "liveWorldMap": "Live verdenskart",
+    "highestNow": "Høyest akkurat nå",
+    "cityCol": "By",
+    "browseTitle": "Bla etter kontinent",
+    "showAllCities": "Vis alle {count} byer",
+    "showLess": "Vis færre",
+    "metaSources": "CAMS · WHO"
   },
   "countries": {
     "GB": "Storbritannia",
@@ -358,5 +369,8 @@
     "MU": "Mauritius",
     "SC": "Seychellene",
     "FJ": "Fiji"
+  },
+  "ticker": {
+    "caveat": "fra {total} byer"
   }
 }

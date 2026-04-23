@@ -232,7 +232,18 @@
     "whyMattersTitle": "Waarom de AQI dagelijks controleren?",
     "whyMattersText": "Luchtvervuiling kan ademhalingsproblemen veroorzaken, astma en allergieën verergeren en het cardiovasculaire risico verhogen. Fijne deeltjes (PM2.5) kunnen diep in de longen en in de bloedbaan doordringen. Volgens de WHO veroorzaakt luchtvervuiling elk jaar miljoenen vroegtijdige sterfgevallen. Door de AQI te controleren vóór buitenactiviteiten kun je beter geïnformeerde keuzes maken, vooral als je tot een gevoelige groep behoort.",
     "siteDescTitle": "Over Air Index Today",
-    "siteDescText": "Air Index Today biedt wereldwijd gratis realtime luchtkwaliteitsverwachtingen. De AQI-gegevens komen van de Copernicus Atmosphere Monitoring Service (CAMS) via Open-Meteo. We volgen de Amerikaanse EPA AQI-standaard met gezondheidsadvies van EPA AirNow, terwijl vervuilingsniveaus worden vergeleken met de WHO-luchtkwaliteitsrichtlijnen van 2021."
+    "siteDescText": "Air Index Today biedt wereldwijd gratis realtime luchtkwaliteitsverwachtingen. De AQI-gegevens komen van de Copernicus Atmosphere Monitoring Service (CAMS) via Open-Meteo. We volgen de Amerikaanse EPA AQI-standaard met gezondheidsadvies van EPA AirNow, terwijl vervuilingsniveaus worden vergeleken met de WHO-luchtkwaliteitsrichtlijnen van 2021.",
+    "metaLive": "{total} steden · live",
+    "detectPrompt": "We konden je stad niet automatisch detecteren. Gebruik je locatie om direct naar de voorspelling te gaan.",
+    "detectedTag": "Je locatie",
+    "detectedHint": "Automatisch · zoek hierboven om te wijzigen",
+    "liveWorldMap": "Live wereldkaart",
+    "highestNow": "Nu het hoogst",
+    "cityCol": "Stad",
+    "browseTitle": "Bladeren per continent",
+    "showAllCities": "Toon alle {count} steden",
+    "showLess": "Toon minder",
+    "metaSources": "CAMS · WHO"
   },
   "countries": {
     "GB": "Verenigd Koninkrijk",
@@ -358,5 +369,8 @@
     "MU": "Mauritius",
     "SC": "Seychellen",
     "FJ": "Fiji"
+  },
+  "ticker": {
+    "caveat": "uit {total} steden"
   }
 }

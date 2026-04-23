@@ -232,7 +232,18 @@
     "whyMattersTitle": "Why Check the AQI Daily?",
     "whyMattersText": "Air pollution causes respiratory issues, aggravates asthma and allergies, and increases the risk of cardiovascular problems. Fine particles (PM2.5) can penetrate deep into the lungs and bloodstream. The World Health Organization estimates that air pollution causes millions of premature deaths worldwide each year. Checking the AQI before outdoor activities helps you make informed decisions — especially if you're in a sensitive group.",
     "siteDescTitle": "About Air Index Today",
-    "siteDescText": "Air Index Today provides free real-time air quality forecasts worldwide. AQI data comes from the Copernicus Atmosphere Monitoring Service (CAMS) via Open-Meteo. We follow the U.S. EPA AQI standard with health guidance from EPA AirNow, while pollutant levels are compared against WHO 2021 Air Quality Guidelines."
+    "siteDescText": "Air Index Today provides free real-time air quality forecasts worldwide. AQI data comes from the Copernicus Atmosphere Monitoring Service (CAMS) via Open-Meteo. We follow the U.S. EPA AQI standard with health guidance from EPA AirNow, while pollutant levels are compared against WHO 2021 Air Quality Guidelines.",
+    "metaLive": "{total} cities · live",
+    "detectPrompt": "We couldn't detect your city automatically. Use your location to jump straight to your forecast.",
+    "detectedTag": "Your location",
+    "detectedHint": "Auto-located · search above to change",
+    "liveWorldMap": "Live world map",
+    "highestNow": "Highest right now",
+    "cityCol": "City",
+    "browseTitle": "Browse by continent",
+    "showAllCities": "Show all {count} cities",
+    "showLess": "Show less",
+    "metaSources": "CAMS · WHO"
   },
   "countries": {
     "GB": "United Kingdom",
@@ -358,5 +369,8 @@
     "MU": "Mauritius",
     "SC": "Seychelles",
     "FJ": "Fiji"
+  },
+  "ticker": {
+    "caveat": "from {total} cities"
   }
 }

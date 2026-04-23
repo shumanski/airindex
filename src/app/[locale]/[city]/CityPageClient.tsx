@@ -1,17 +1,17 @@
 'use client';
 
 import { useCallback } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { useLocale } from 'next-intl';
-import LocationSearch from '@/components/LocationSearch';
-import SettingsMenu from '@/components/SettingsMenu';
 import Link from 'next/link';
-import Logo from '@/components/Logo';
+import Image from 'next/image';
+import TopHeader from '@/components/TopHeader';
 import AqiPageContent from '@/components/AqiPageContent';
 import { type StoredLocation } from '@/lib/storage';
 import { buildCityPath } from '@/lib/city-url';
 import { getAqiCategory, getAqiTextColor } from '@/lib/aqi-utils';
+import { countryCodeToFlag } from '@/lib/flag';
+import { getWeatherIcon } from '@/lib/weather-icons';
 import { pickClosest } from '@/lib/geocode-api';
 import { useAqiPage } from '@/lib/useAqiPage';
 import type { AqiData } from '@/lib/aqi-api';
@@ -84,98 +84,103 @@ export default function CityPageClient({ initialLocation, fallbackName, initialA
 
   return (
     <>
-    <main className="max-w-xl lg:max-w-5xl mx-auto px-4 pb-8 pt-4 space-y-4 relative z-10">
-      <header className="flex items-center justify-between">
-        <h1 className="text-lg font-bold text-[var(--color-text)] flex items-center gap-2">
-          <Link href="/" aria-label="Air Index Today home" className="flex items-center"><span className="relative z-[-1]"><Logo size={34} /></span></Link>
-          <span>{t('city.h1Prefix')}{' '}<span className="text-[var(--color-city-name)]">{cityDisplayName}</span></span>
-        </h1>
-        <div className="flex items-center gap-1">
-          <button
-            onClick={handleTempUnitChange}
-            className="text-sm font-medium px-2 py-1 rounded-lg border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-border)] transition-colors"
-          >°{tempUnit}</button>
-          <SettingsMenu
-            currentLocale={locale}
-            theme={theme}
-            onLocaleChange={handleLocaleChange}
-            onThemeChange={handleThemeChange}
-            localizedPaths={localizedPaths}
-          />
-        </div>
-      </header>
-
-      {breadcrumb && (() => {
-        const continentLabel = t(`home.${breadcrumb.continentKey}` as any);
-        const countryLabel = t(`countries.${breadcrumb.countryCode}` as any);
-        const base = 'https://airindex.today';
+    <TopHeader
+      tempUnit={tempUnit}
+      theme={theme}
+      onTempUnitChange={handleTempUnitChange}
+      onLocaleChange={handleLocaleChange}
+      onThemeChange={handleThemeChange}
+      localizedPaths={localizedPaths || {}}
+      onSelect={handleLocationChange}
+      onDetectLocation={handleDetectLocation}
+    />
+    <main className="max-w-xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 pb-8 pt-4 space-y-4 relative z-10">
+      {(() => {
+        const continentLabel = breadcrumb ? t(`home.${breadcrumb.continentKey}` as never) : null;
+        const countryLabel = breadcrumb ? t(`countries.${breadcrumb.countryCode}` as never) : null;
+        const currentRounded = aqiData ? Math.round(aqiData.currentAqi) : null;
+        const peakRounded = aqiData ? Math.round(aqiData.todayPeak.aqi) : null;
+        const tomorrowRounded = aqiData ? Math.round(aqiData.tomorrowPeak.aqi) : null;
         return (
-          <>
-            <nav aria-label="Breadcrumb" className="text-xs text-[var(--color-text-muted)] -mt-2">
-              <Link href={`/${locale}`} className="hover:underline">airindex.today</Link>
-              {' › '}
-              <Link href={`/${locale}/continent/${breadcrumb.continentSlug}`} className="hover:underline">{continentLabel}</Link>
-              {' › '}
-              <Link href={`/${locale}/country/${breadcrumb.countrySlug}`} className="hover:underline">{countryLabel}</Link>
-              {' › '}
-              <span className="text-[var(--color-text-secondary)]">{cityDisplayName}</span>
-            </nav>
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{
-                __html: JSON.stringify({
-                  '@context': 'https://schema.org',
-                  '@type': 'BreadcrumbList',
-                  itemListElement: [
-                    { '@type': 'ListItem', position: 1, name: 'airindex.today', item: `${base}/${locale}` },
-                    { '@type': 'ListItem', position: 2, name: continentLabel, item: `${base}/${locale}/continent/${breadcrumb.continentSlug}` },
-                    { '@type': 'ListItem', position: 3, name: countryLabel, item: `${base}/${locale}/country/${breadcrumb.countrySlug}` },
-                    { '@type': 'ListItem', position: 4, name: cityDisplayName },
-                  ],
-                }).replace(/</g, '\\u003c').replace(/>/g, '\\u003e'),
-              }}
-            />
-          </>
-        );
-      })()}
-
-      {aqiData && (() => {
-        const aqiRounded = Math.round(aqiData.currentAqi);
-        const peakAqi = Math.round(aqiData.todayPeak.aqi);
-        const tomorrowAqi = Math.round(aqiData.tomorrowPeak.aqi);
-        return (
-          <div className="text-sm leading-relaxed -mt-2 space-y-0.5">
-            <p className="text-[var(--color-text-muted)]">
-              {t('city.summaryDesc', { city: cityDisplayName, country: countryDisplay })}
-            </p>
-            <p className="text-[var(--color-text-secondary)]">
-              {aqiData.currentAqi > 0 && (
-                <>
-                  {t('city.summaryNow')}{' '}
-                  <span className="font-medium" style={{ color: getAqiTextColor(aqiRounded) }}>
-                    AQI {aqiRounded} ({t(`aqi.${getAqiCategory(aqiRounded)}`)})
+          <div className="a-hero">
+            {breadcrumb && (
+              <nav className="a-hero-eyeline" aria-label="Breadcrumb">
+                <span className="truncate">
+                  <Link href={`/${locale}`} className="hover:underline">airindex.today</Link>
+                  {' › '}
+                  <Link href={`/${locale}/continent/${breadcrumb.continentSlug}`} className="hover:underline">{continentLabel}</Link>
+                  {' › '}
+                  <Link href={`/${locale}/country/${breadcrumb.countrySlug}`} className="hover:underline">
+                    {countryCodeToFlag(breadcrumb.countryCode) && <span className="a-flag" aria-hidden="true">{countryCodeToFlag(breadcrumb.countryCode)}</span>}
+                    {countryLabel}
+                  </Link>
+                </span>
+                {aqiData && (
+                  <span className="a-hero-weather">
+                    <span className="chip">
+                      <Image src={getWeatherIcon(aqiData.currentWeatherCode).src} alt={getWeatherIcon(aqiData.currentWeatherCode).alt} width={22} height={22} />
+                      <span>{tempUnit === 'F' ? Math.round(aqiData.currentTemp * 9 / 5 + 32) : Math.round(aqiData.currentTemp)}°{tempUnit}</span>
+                    </span>
                   </span>
-                  {' · '}
-                </>
-              )}
-              {t('city.summaryPeak')}{' '}
-              <span className="font-medium" style={{ color: getAqiTextColor(peakAqi) }}>
-                AQI {peakAqi}
-              </span>
-              {' '}{t('aqi.at')} {aqiData.todayPeak.hour}
-            </p>
-            <p className="text-[var(--color-text-secondary)]">
-              {t('aqi.tomorrow')}{': '}
-              <span className="font-medium" style={{ color: getAqiTextColor(tomorrowAqi) }}>
-                AQI {tomorrowAqi}
-              </span>
-              {' '}{t('aqi.at')} {aqiData.tomorrowPeak.hour}
-            </p>
+                )}
+              </nav>
+            )}
+            <h2 className="a-hero-h1">
+              {t('city.h1Prefix')}{' '}
+              <span className="text-[var(--color-city-name)]">{cityDisplayName}</span>
+            </h2>
+            {aqiData && currentRounded != null && peakRounded != null && tomorrowRounded != null && (
+              <p className="a-hero-sub">
+                {t('city.summaryDesc', { city: cityDisplayName, country: countryDisplay })}
+                {' '}
+                {aqiData.currentAqi > 0 && (
+                  <>
+                    {t('city.summaryNow')}{' '}
+                    <span className="font-semibold" style={{ color: getAqiTextColor(currentRounded) }}>
+                      AQI {currentRounded} ({t(`aqi.${getAqiCategory(currentRounded)}`)})
+                    </span>
+                    {' · '}
+                  </>
+                )}
+                {t('city.summaryPeak')}{' '}
+                <span className="font-semibold" style={{ color: getAqiTextColor(peakRounded) }}>
+                  AQI {peakRounded}
+                </span>
+                {' '}{t('aqi.at')} {aqiData.todayPeak.hour}
+                {' · '}
+                {t('aqi.tomorrow')}{': '}
+                <span className="font-semibold" style={{ color: getAqiTextColor(tomorrowRounded) }}>
+                  AQI {tomorrowRounded}
+                </span>
+                {' '}{t('aqi.at')} {aqiData.tomorrowPeak.hour}
+              </p>
+            )}
           </div>
         );
       })()}
 
-      <LocationSearch location={location} onSelect={handleLocationChange} onDetectLocation={handleDetectLocation} tempUnit={tempUnit} weather={aqiData ? { weatherCode: aqiData.currentWeatherCode, temperature: aqiData.currentTemp } : undefined} />
+      {breadcrumb && (() => {
+        const continentLabel = t(`home.${breadcrumb.continentKey}` as never);
+        const countryLabel = t(`countries.${breadcrumb.countryCode}` as never);
+        const base = 'https://airindex.today';
+        return (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                  { '@type': 'ListItem', position: 1, name: 'airindex.today', item: `${base}/${locale}` },
+                  { '@type': 'ListItem', position: 2, name: continentLabel, item: `${base}/${locale}/continent/${breadcrumb.continentSlug}` },
+                  { '@type': 'ListItem', position: 3, name: countryLabel, item: `${base}/${locale}/country/${breadcrumb.countrySlug}` },
+                  { '@type': 'ListItem', position: 4, name: cityDisplayName },
+                ],
+              }).replace(/</g, '\\u003c').replace(/>/g, '\\u003e'),
+            }}
+          />
+        );
+      })()}
 
       <AqiPageContent
         aqiData={aqiData}

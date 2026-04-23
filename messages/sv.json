@@ -232,7 +232,18 @@
     "whyMattersTitle": "Varför kontrollera AQIet dagligen?",
     "whyMattersText": "Luftföroreningar kan orsaka andningsproblem, förvärra astma och allergier och öka risken för hjärt-kärlsjukdomar. Fina partiklar (PM2.5) kan tränga djupt ner i lungorna och in i blodomloppet. WHO uppskattar att luftföroreningar orsakar miljontals förtida dödsfall varje år. Att kontrollera AQI före utomhusaktiviteter hjälper dig att fatta bättre beslut — särskilt om du tillhör en känslig grupp.",
     "siteDescTitle": "Om Air Index Today",
-    "siteDescText": "Air Index Today erbjuder gratis luftkvalitetsprognoser i realtid över hela världen. AQI-data kommer från Copernicus Atmosphere Monitoring Service (CAMS) via Open-Meteo. Vi följer den amerikanska EPA AQI-standarden med hälsoråd från EPA AirNow, medan föroreningsnivåer jämförs med WHO:s riktlinjer för luftkvalitet från 2021."
+    "siteDescText": "Air Index Today erbjuder gratis luftkvalitetsprognoser i realtid över hela världen. AQI-data kommer från Copernicus Atmosphere Monitoring Service (CAMS) via Open-Meteo. Vi följer den amerikanska EPA AQI-standarden med hälsoråd från EPA AirNow, medan föroreningsnivåer jämförs med WHO:s riktlinjer för luftkvalitet från 2021.",
+    "metaLive": "{total} städer · live",
+    "detectPrompt": "Vi kunde inte identifiera din stad automatiskt. Använd din plats för att gå direkt till prognosen.",
+    "detectedTag": "Din plats",
+    "detectedHint": "Automatiskt · sök ovan för att ändra",
+    "liveWorldMap": "Världskarta live",
+    "highestNow": "Högst just nu",
+    "cityCol": "Stad",
+    "browseTitle": "Bläddra efter kontinent",
+    "showAllCities": "Visa alla {count} städer",
+    "showLess": "Visa färre",
+    "metaSources": "CAMS · WHO"
   },
   "countries": {
     "GB": "Storbritannien",
@@ -358,5 +369,8 @@
     "MU": "Mauritius",
     "SC": "Seychellerna",
     "FJ": "Fiji"
+  },
+  "ticker": {
+    "caveat": "från {total} städer"
   }
 }

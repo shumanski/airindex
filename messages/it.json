@@ -232,7 +232,18 @@
     "whyMattersTitle": "Perché controllare l'indice UV ogni giorno?",
     "whyMattersText": "L’inquinamento atmosferico può causare problemi respiratori, aggravare asma e allergie e aumentare il rischio cardiovascolare. Le particelle fini (PM2.5) possono penetrare in profondità nei polmoni e nel sangue. L’OMS stima che l’inquinamento atmosferico provochi milioni di morti premature ogni anno. Controllare l’AQI prima delle attività all’aperto aiuta a prendere decisioni più informate, soprattutto se fai parte di un gruppo sensibile.",
     "siteDescTitle": "Informazioni su Air Index Today",
-    "siteDescText": "Air Index Today offre previsioni gratuite della qualità dell’aria in tempo reale in tutto il mondo. I dati AQI provengono dal Copernicus Atmosphere Monitoring Service (CAMS) tramite Open-Meteo. Seguiamo lo standard AQI della U.S. EPA con indicazioni sanitarie da EPA AirNow, mentre i livelli degli inquinanti vengono confrontati con le linee guida OMS 2021 sulla qualità dell’aria."
+    "siteDescText": "Air Index Today offre previsioni gratuite della qualità dell’aria in tempo reale in tutto il mondo. I dati AQI provengono dal Copernicus Atmosphere Monitoring Service (CAMS) tramite Open-Meteo. Seguiamo lo standard AQI della U.S. EPA con indicazioni sanitarie da EPA AirNow, mentre i livelli degli inquinanti vengono confrontati con le linee guida OMS 2021 sulla qualità dell’aria.",
+    "metaLive": "{total} città · live",
+    "detectPrompt": "Non siamo riusciti a rilevare la tua città automaticamente. Usa la tua posizione per andare direttamente alle previsioni.",
+    "detectedTag": "La tua posizione",
+    "detectedHint": "Rilevato · cerca sopra per cambiare",
+    "liveWorldMap": "Mappa mondiale live",
+    "highestNow": "Più alto ora",
+    "cityCol": "Città",
+    "browseTitle": "Sfoglia per continente",
+    "showAllCities": "Mostra tutte le {count} città",
+    "showLess": "Mostra meno",
+    "metaSources": "CAMS · WHO"
   },
   "countries": {
     "GB": "Regno Unito",
@@ -358,5 +369,8 @@
     "MU": "Mauritius",
     "SC": "Seychelles",
     "FJ": "Figi"
+  },
+  "ticker": {
+    "caveat": "da {total} città"
   }
 }

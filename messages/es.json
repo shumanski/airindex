@@ -232,7 +232,18 @@
     "whyMattersTitle": "¿Por qué consultar el índice UV a diario?",
     "whyMattersText": "La contaminación del aire puede causar problemas respiratorios, agravar el asma y las alergias, y aumentar el riesgo cardiovascular. Las partículas finas (PM2.5) pueden penetrar profundamente en los pulmones y en el torrente sanguíneo. La OMS estima que la contaminación del aire provoca millones de muertes prematuras al año. Consultar el AQI antes de actividades al aire libre te ayuda a tomar decisiones mejor informadas, especialmente si perteneces a un grupo sensible.",
     "siteDescTitle": "Acerca de Air Index Today",
-    "siteDescText": "Air Index Today ofrece pronósticos gratuitos de calidad del aire en tiempo real en todo el mundo. Los datos AQI provienen del Copernicus Atmosphere Monitoring Service (CAMS) a través de Open-Meteo. Seguimos el estándar AQI de la EPA de EE. UU. con orientación sanitaria de EPA AirNow, mientras que los niveles de contaminantes se comparan con las directrices de calidad del aire de la OMS de 2021."
+    "siteDescText": "Air Index Today ofrece pronósticos gratuitos de calidad del aire en tiempo real en todo el mundo. Los datos AQI provienen del Copernicus Atmosphere Monitoring Service (CAMS) a través de Open-Meteo. Seguimos el estándar AQI de la EPA de EE. UU. con orientación sanitaria de EPA AirNow, mientras que los niveles de contaminantes se comparan con las directrices de calidad del aire de la OMS de 2021.",
+    "metaLive": "{total} ciudades · en vivo",
+    "detectPrompt": "No pudimos detectar tu ciudad automáticamente. Usa tu ubicación para ir directamente al pronóstico.",
+    "detectedTag": "Tu ubicación",
+    "detectedHint": "Autodetectado · busca arriba para cambiar",
+    "liveWorldMap": "Mapa mundial en vivo",
+    "highestNow": "Más alto ahora",
+    "cityCol": "Ciudad",
+    "browseTitle": "Explorar por continente",
+    "showAllCities": "Mostrar las {count} ciudades",
+    "showLess": "Mostrar menos",
+    "metaSources": "CAMS · WHO"
   },
   "countries": {
     "GB": "Reino Unido",
@@ -358,5 +369,8 @@
     "MU": "Mauricio",
     "SC": "Seychelles",
     "FJ": "Fiyi"
+  },
+  "ticker": {
+    "caveat": "de {total} ciudades"
   }
 }

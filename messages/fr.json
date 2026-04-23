@@ -232,7 +232,18 @@
     "whyMattersTitle": "Pourquoi vérifier l'indice UV chaque jour ?",
     "whyMattersText": "La pollution de l’air peut provoquer des problèmes respiratoires, aggraver l’asthme et les allergies, et augmenter le risque cardiovasculaire. Les particules fines (PM2.5) peuvent pénétrer profondément dans les poumons et le sang. L’OMS estime que la pollution de l’air cause des millions de décès prématurés chaque année. Vérifier l’AQI avant une activité extérieure aide à prendre de meilleures décisions, surtout si vous faites partie d’un groupe sensible.",
     "siteDescTitle": "À propos de Air Index Today",
-    "siteDescText": "Air Index Today fournit des prévisions gratuites de qualité de l’air en temps réel dans le monde entier. Les données AQI proviennent du Copernicus Atmosphere Monitoring Service (CAMS) via Open-Meteo. Nous suivons la norme AQI de l’EPA américaine avec les conseils santé d’EPA AirNow, tandis que les niveaux de polluants sont comparés aux lignes directrices de l’OMS sur la qualité de l’air de 2021."
+    "siteDescText": "Air Index Today fournit des prévisions gratuites de qualité de l’air en temps réel dans le monde entier. Les données AQI proviennent du Copernicus Atmosphere Monitoring Service (CAMS) via Open-Meteo. Nous suivons la norme AQI de l’EPA américaine avec les conseils santé d’EPA AirNow, tandis que les niveaux de polluants sont comparés aux lignes directrices de l’OMS sur la qualité de l’air de 2021.",
+    "metaLive": "{total} villes · en direct",
+    "detectPrompt": "Nous n'avons pas pu détecter votre ville automatiquement. Utilisez votre position pour accéder directement à la prévision.",
+    "detectedTag": "Votre position",
+    "detectedHint": "Auto-détecté · recherchez ci-dessus pour changer",
+    "liveWorldMap": "Carte du monde en direct",
+    "highestNow": "Le plus élevé en ce moment",
+    "cityCol": "Ville",
+    "browseTitle": "Parcourir par continent",
+    "showAllCities": "Afficher les {count} villes",
+    "showLess": "Afficher moins",
+    "metaSources": "CAMS · WHO"
   },
   "countries": {
     "GB": "Royaume-Uni",
@@ -358,5 +369,8 @@
     "MU": "Maurice",
     "SC": "Seychelles",
     "FJ": "Fidji"
+  },
+  "ticker": {
+    "caveat": "de {total} villes"
   }
 }

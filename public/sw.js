@@ -1,11 +1,14 @@
 // Service worker for Air Index Today PWA
 // Minimal SW to enable installability + basic offline shell caching
 
-const CACHE_NAME = 'airindex-v1';
+const CACHE_NAME = 'airindex-v2';
 const SHELL_ASSETS = [
   '/',
   '/manifest.json',
   '/favicon.svg',
+  '/fonts/TwemojiCountryFlags.woff2',
+  '/icon-192.png',
+  '/icon-512.png',
 ];
 
 self.addEventListener('install', (event) => {
