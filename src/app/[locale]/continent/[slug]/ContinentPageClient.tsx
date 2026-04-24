@@ -173,7 +173,29 @@ export default function ContinentPageClient({
         </div>
       </div>
 
-      <HomeMap cities={cities.map(c => ({ ...c, name: cityName(c.geoId, c.name) }))} aqiLevels={activeAqi} center={view.center} zoom={view.zoom} fitCities />
+      {(() => {
+        const lats = cities.map(c => c.lat);
+        const lons = cities.map(c => c.lon);
+        const pad = 3;
+        const bbox: [number, number, number, number] = [
+          Math.max(-85, Math.min(...lats) - pad),
+          Math.max(-180, Math.min(...lons) - pad),
+          Math.min(85, Math.max(...lats) + pad),
+          Math.min(180, Math.max(...lons) + pad),
+        ];
+        return (
+          <HomeMap
+            cities={cities.map(c => ({ ...c, name: cityName(c.geoId, c.name) }))}
+            aqiLevels={activeAqi}
+            center={view.center}
+            zoom={view.zoom}
+            fitCities
+            overlayBbox={bbox}
+            overlaySpacing={0.5}
+            overlayStorageKey={`aqiOverlay.continent.${slug}`}
+          />
+        );
+      })()}
 
       <section className="space-y-2">
         <h2 className="a-section-h">{t('home.browseTitle')}</h2>

@@ -376,5 +376,9 @@
   },
   "ticker": {
     "caveat": "de {total} villes"
+  },
+  "map": {
+    "overlay": "Superposition",
+    "overlayHelp": "Activer/désactiver la superposition des couleurs de prévision"
   }
 }

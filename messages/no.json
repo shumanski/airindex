@@ -376,5 +376,9 @@
   },
   "ticker": {
     "caveat": "fra {total} byer"
+  },
+  "map": {
+    "overlay": "Overlegg",
+    "overlayHelp": "Slå på eller av varslet AQI-fargeoverlegg"
   }
 }

@@ -185,7 +185,27 @@ export default function CountryPageClient({
         </div>
       </div>
 
-      <HomeMap cities={cities.map(c => ({ ...c, name: cityName(c.geoId, c.name) }))} aqiLevels={activeAqi} fitCities />
+      {(() => {
+        const lats = cities.map(c => c.lat);
+        const lons = cities.map(c => c.lon);
+        const pad = 1;
+        const bbox: [number, number, number, number] = [
+          Math.max(-85, Math.min(...lats) - pad),
+          Math.max(-180, Math.min(...lons) - pad),
+          Math.min(85, Math.max(...lats) + pad),
+          Math.min(180, Math.max(...lons) + pad),
+        ];
+        return (
+          <HomeMap
+            cities={cities.map(c => ({ ...c, name: cityName(c.geoId, c.name) }))}
+            aqiLevels={activeAqi}
+            fitCities
+            overlayBbox={bbox}
+            overlaySpacing={0.25}
+            overlayStorageKey={`aqiOverlay.country.${countryCode}`}
+          />
+        );
+      })()}
 
       <section className="space-y-2">
         <h2 className="a-section-h">{translatedCountryName}</h2>

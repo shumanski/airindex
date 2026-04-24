@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { getAqiColor } from '@/lib/aqi-utils';
 import AqiLegend from './AqiLegend';
 import type { NearbyCityResult } from '@/lib/geocode-api';
+import { createAqiGridLayer, type AqiGridLayerHandle } from './AqiGridLayer';
 
 interface Props {
   lat: number;
@@ -30,10 +31,27 @@ export default function CityMap({ lat, lon, cityName, currentAqi, todayPeakAqi, 
   const observerRef = useRef<MutationObserver | null>(null);
   const mainMarkerRef = useRef<any>(null);
   const leafletRef = useRef<any>(null);
+  const overlayRef = useRef<AqiGridLayerHandle | null>(null);
   const [inView, setInView] = useState(false);
   const [mapReady, setMapReady] = useState(false);
   const [aqiMode, setAqiMode] = useState<'now' | 'max'>('now');
   const activeAqi = aqiMode === 'max' ? todayPeakAqi : currentAqi;
+
+  // Overlay — default ON, persisted per city.
+  const overlayStorageKey = `aqiOverlay.city`;
+  const [overlayOn, setOverlayOn] = useState<boolean>(true);
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const stored = window.localStorage.getItem(overlayStorageKey);
+    if (stored === '0') setOverlayOn(false);
+    else if (stored === '1') setOverlayOn(true);
+  }, [overlayStorageKey]);
+  const handleOverlayToggle = (next: boolean) => {
+    setOverlayOn(next);
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(overlayStorageKey, next ? '1' : '0');
+    }
+  };
 
   useEffect(() => {
     const el = containerRef.current;
@@ -222,6 +240,31 @@ export default function CityMap({ lat, lon, cityName, currentAqi, todayPeakAqi, 
     });
   }, [activeAqi, nearbyAqi, lat, lon, cityName, nearbyCities, locale, mapReady]);
 
+  // Mount / unmount the AQI grid overlay for this city (±1° bbox, 0.1° spacing).
+  useEffect(() => {
+    const L = leafletRef.current;
+    const map = mapRef.current;
+    if (!L || !map) return;
+    if (!overlayOn) {
+      overlayRef.current?.remove();
+      overlayRef.current = null;
+      return;
+    }
+    const layer = createAqiGridLayer(L, {
+      minLat: lat - 1,
+      maxLat: lat + 1,
+      minLon: lon - 1,
+      maxLon: lon + 1,
+      spacing: 0.1,
+    });
+    layer.addTo(map);
+    overlayRef.current = layer;
+    return () => {
+      layer.remove();
+      if (overlayRef.current === layer) overlayRef.current = null;
+    };
+  }, [mapReady, overlayOn, lat, lon]);
+
   return (
     <section>
       <div className="flex items-center gap-2 mb-2">
@@ -240,7 +283,7 @@ export default function CityMap({ lat, lon, cityName, currentAqi, todayPeakAqi, 
         ref={containerRef}
         className="relative z-0 h-[220px] lg:h-[380px] rounded-xl overflow-hidden border border-[var(--color-border)] bg-[var(--color-bg)]"
       />
-      <AqiLegend />
+      <AqiLegend overlay={{ enabled: overlayOn, onToggle: handleOverlayToggle }} />
       <style jsx global>{`
         .map-label {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;

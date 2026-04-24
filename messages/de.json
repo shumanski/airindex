@@ -376,5 +376,9 @@
   },
   "ticker": {
     "caveat": "aus {total} Städten"
+  },
+  "map": {
+    "overlay": "Überlagerung",
+    "overlayHelp": "Vorhersage-Farbüberlagerung ein- oder ausschalten"
   }
 }

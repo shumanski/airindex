@@ -376,5 +376,9 @@
   },
   "ticker": {
     "caveat": "uit {total} steden"
+  },
+  "map": {
+    "overlay": "Overlay",
+    "overlayHelp": "Zet de voorspellings-AQI-overlay op de kaart aan of uit"
   }
 }

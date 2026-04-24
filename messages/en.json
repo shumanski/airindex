@@ -376,5 +376,9 @@
   },
   "ticker": {
     "caveat": "from {total} cities"
+  },
+  "map": {
+    "overlay": "Overlay",
+    "overlayHelp": "Toggle the forecast AQI color overlay on the map"
   }
 }

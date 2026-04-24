@@ -5,6 +5,7 @@ import { useLocale } from 'next-intl';
 import { buildCityPath } from '@/lib/city-url';
 import { getAqiColor } from '@/lib/aqi-utils';
 import AqiLegend from './AqiLegend';
+import { createAqiGridLayer, type AqiGridLayerHandle } from './AqiGridLayer';
 
 interface City {
   name: string;
@@ -19,6 +20,12 @@ interface Props {
   center?: [number, number];
   zoom?: number;
   fitCities?: boolean;
+  /** Bbox [minLat, minLon, maxLat, maxLon] for the AQI color overlay. If omitted, no overlay. */
+  overlayBbox?: [number, number, number, number];
+  /** Grid spacing in degrees (default 2 for global). */
+  overlaySpacing?: number;
+  /** localStorage key used to remember the per-map toggle state. */
+  overlayStorageKey?: string;
 }
 
 const LOCALE_MAP: Record<string, string> = {
@@ -26,15 +33,31 @@ const LOCALE_MAP: Record<string, string> = {
   nl: 'nl', it: 'it', es: 'es', fr: 'fr', pt: 'pt', pl: 'pl',
 };
 
-export default function HomeMap({ cities, aqiLevels, center, zoom, fitCities }: Props) {
+export default function HomeMap({ cities, aqiLevels, center, zoom, fitCities, overlayBbox, overlaySpacing, overlayStorageKey }: Props) {
   const locale = useLocale();
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<any>(null);
   const observerRef = useRef<MutationObserver | null>(null);
   const markersRef = useRef<any>(null); // L.LayerGroup
   const leafletRef = useRef<any>(null); // L module
+  const overlayRef = useRef<AqiGridLayerHandle | null>(null);
   const [inView, setInView] = useState(false);
   const [mapReady, setMapReady] = useState(false);
+
+  // Toggle state — default ON, persisted per map via storage key.
+  const [overlayOn, setOverlayOn] = useState<boolean>(true);
+  useEffect(() => {
+    if (!overlayBbox || !overlayStorageKey || typeof window === 'undefined') return;
+    const stored = window.localStorage.getItem(overlayStorageKey);
+    if (stored === '0') setOverlayOn(false);
+    else if (stored === '1') setOverlayOn(true);
+  }, [overlayBbox, overlayStorageKey]);
+  const handleOverlayToggle = (next: boolean) => {
+    setOverlayOn(next);
+    if (overlayStorageKey && typeof window !== 'undefined') {
+      window.localStorage.setItem(overlayStorageKey, next ? '1' : '0');
+    }
+  };
 
   // Stabilise cities reference — include name so locale/localized-name updates propagate
   const citiesKey = useMemo(() => cities.map(c => `${c.geoId}:${c.name}`).join('|'), [cities]);
@@ -200,13 +223,39 @@ export default function HomeMap({ cities, aqiLevels, center, zoom, fitCities }: 
     });
   }, [aqiLevels, stableCities, locale, mapReady]);
 
+  // Mount / unmount the AQI grid overlay whenever toggle or map readiness changes.
+  useEffect(() => {
+    const L = leafletRef.current;
+    const map = mapRef.current;
+    if (!L || !map || !overlayBbox) return;
+    if (!overlayOn) {
+      overlayRef.current?.remove();
+      overlayRef.current = null;
+      return;
+    }
+    const [minLat, minLon, maxLat, maxLon] = overlayBbox;
+    const layer = createAqiGridLayer(L, {
+      minLat,
+      maxLat,
+      minLon,
+      maxLon,
+      spacing: overlaySpacing ?? 2,
+    });
+    layer.addTo(map);
+    overlayRef.current = layer;
+    return () => {
+      layer.remove();
+      if (overlayRef.current === layer) overlayRef.current = null;
+    };
+  }, [mapReady, overlayOn, overlayBbox, overlaySpacing]);
+
   return (
     <div>
       <div
         ref={containerRef}
         className="relative z-0 h-[260px] sm:h-[320px] lg:h-[420px] rounded-xl overflow-hidden border border-[var(--color-border)] bg-[var(--color-bg)]"
       />
-      <AqiLegend />
+      <AqiLegend overlay={overlayBbox ? { enabled: overlayOn, onToggle: handleOverlayToggle } : undefined} />
       <style jsx global>{`
         .leaflet-control-zoom {
           border: none !important;

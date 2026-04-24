@@ -376,5 +376,9 @@
   },
   "ticker": {
     "caveat": "z {total} miast"
+  },
+  "map": {
+    "overlay": "Nakładka",
+    "overlayHelp": "Włącz lub wyłącz nakładkę kolorów prognozy"
   }
 }

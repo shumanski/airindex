@@ -341,7 +341,13 @@ export default function HomePageClient({ detectedCity, cityAqiLevels, cityAqiMax
             <div className="a-snap-panel">
               <h3>{t('home.liveWorldMap')}</h3>
               <div className="-mx-2 -mb-2 rounded-lg overflow-hidden">
-                <HomeMap cities={homeMapCities} aqiLevels={activeAqi} />
+                <HomeMap
+                  cities={homeMapCities}
+                  aqiLevels={activeAqi}
+                  overlayBbox={[-60, -180, 75, 180]}
+                  overlaySpacing={2}
+                  overlayStorageKey="aqiOverlay.home"
+                />
               </div>
             </div>
             <div className="a-snap-panel">

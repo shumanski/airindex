@@ -376,5 +376,9 @@
   },
   "ticker": {
     "caveat": "från {total} städer"
+  },
+  "map": {
+    "overlay": "Överlägg",
+    "overlayHelp": "Slå på eller av prognos-AQI-färgöverlägget"
   }
 }
