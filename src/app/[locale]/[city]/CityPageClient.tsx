@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import TopHeader from '@/components/TopHeader';
 import AqiPageContent from '@/components/AqiPageContent';
+import ModelDataNotice from '@/components/ModelDataNotice';
 import { type StoredLocation } from '@/lib/storage';
 import { buildCityPath } from '@/lib/city-url';
 import { getAqiCategory, getAqiTextColor } from '@/lib/aqi-utils';
@@ -158,6 +159,8 @@ export default function CityPageClient({ initialLocation, fallbackName, initialA
           </div>
         );
       })()}
+
+      <ModelDataNotice />
 
       {breadcrumb && (() => {
         const continentLabel = t(`home.${breadcrumb.continentKey}` as never);

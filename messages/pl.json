@@ -1,4 +1,8 @@
 {
+  "notice": {
+    "title": "Dane modelu prognostycznego.",
+    "body": "Wartości AQI pochodzą z modeli atmosferycznych (CAMS przez Open-Meteo), a nie z lokalnych stacji pomiarowych. Odczyty mogą różnić się od rzeczywistych warunków — aby uzyskać dokładne wartości na poziomie ulicy, skorzystaj z oficjalnej stacji jakości powietrza w pobliżu."
+  },
   "meta": {
     "title": "Indeks jakości powietrza — Prognoza AQI i porady zdrowotne",
     "description": "Sprawdź indeks jakości powietrza dla dowolnej lokalizacji. Godzinowa prognoza AQI, poziomy zanieczyszczeń (PM2.5, PM10, NO₂, O₃) i porady zdrowotne.",

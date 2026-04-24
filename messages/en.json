@@ -4,6 +4,10 @@
     "description": "Check the air quality index today for any location. Hourly AQI forecast, pollutant levels (PM2.5, PM10, NO₂, O₃), and health advice.",
     "h1": "Air Quality Index Today"
   },
+  "notice": {
+    "title": "Modeled forecast data.",
+    "body": "AQI values come from atmospheric models (CAMS via Open-Meteo), not local monitoring stations. Readings can differ from ground-level conditions — for exact street-level values, consult an official air quality station near you."
+  },
   "location": {
     "searchPlaceholder": "Search for a location...",
     "detectingLocation": "Detecting your location...",

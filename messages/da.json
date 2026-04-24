@@ -1,4 +1,8 @@
 {
+  "notice": {
+    "title": "Prognosemodel-data.",
+    "body": "AQI-værdier kommer fra atmosfæriske modeller (CAMS via Open-Meteo), ikke fra lokale målestationer. Aflæsninger kan afvige fra de faktiske forhold — for nøjagtige værdier på gadeniveau, konsulter en officiel luftkvalitetsstation i nærheden af dig."
+  },
   "meta": {
     "title": "Luftkvalitetsindeks i dag — AQI-prognose og sundhedsråd",
     "description": "Tjek luftkvalitetsindekset i dag for en hvilken som helst placering. Timevis AQI-prognose, forureningsniveauer (PM2.5, PM10, NO₂, O₃) og sundhedsråd.",

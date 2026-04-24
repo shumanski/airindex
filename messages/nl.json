@@ -1,4 +1,8 @@
 {
+  "notice": {
+    "title": "Voorspelmodelgegevens.",
+    "body": "AQI-waarden komen uit atmosferische modellen (CAMS via Open-Meteo), niet van lokale meetstations. Metingen kunnen afwijken van de werkelijke omstandigheden — raadpleeg voor exacte waarden op straatniveau een officieel luchtkwaliteitsstation bij u in de buurt."
+  },
   "meta": {
     "title": "Luchtkwaliteitsindex vandaag — AQI-voorspelling en gezondheidsadvies",
     "description": "Controleer de luchtkwaliteitsindex vandaag voor elke locatie. Uurlijkse AQI-voorspelling, verontreinigingsniveaus (PM2.5, PM10, NO₂, O₃) en gezondheidsadvies.",

@@ -1,4 +1,8 @@
 {
+  "notice": {
+    "title": "Prognosemodelldaten.",
+    "body": "Die AQI-Werte stammen aus atmosphärischen Modellen (CAMS über Open-Meteo), nicht von lokalen Messstationen. Die Werte können von den tatsächlichen Bedingungen abweichen — für genaue Werte auf Straßenebene konsultieren Sie eine offizielle Luftqualitätsstation in Ihrer Nähe."
+  },
   "meta": {
     "title": "Luftqualitätsindex heute — AQI-Vorhersage und Gesundheitshinweise",
     "description": "Prüfen Sie den Luftqualitätsindex heute für jeden Standort. Stündliche AQI-Vorhersage, Schadstoffwerte (PM2.5, PM10, NO₂, O₃) und Gesundheitshinweise.",

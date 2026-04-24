@@ -1,4 +1,8 @@
 {
+  "notice": {
+    "title": "Datos de modelo de pronóstico.",
+    "body": "Los valores de AQI provienen de modelos atmosféricos (CAMS a través de Open-Meteo), no de estaciones de monitoreo locales. Las lecturas pueden diferir de las condiciones reales — para valores exactos a nivel de calle, consulta una estación oficial de calidad del aire cerca de ti."
+  },
   "meta": {
     "title": "Índice de calidad del aire hoy — Pronóstico AQI y consejos de salud",
     "description": "Consulta el índice de calidad del aire hoy para cualquier ubicación. Pronóstico AQI por horas, niveles de contaminantes (PM2.5, PM10, NO₂, O₃) y consejos de salud.",

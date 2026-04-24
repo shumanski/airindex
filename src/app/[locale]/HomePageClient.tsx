@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import TopHeader from '@/components/TopHeader';
+import ModelDataNotice from '@/components/ModelDataNotice';
 import { AlertTriangleIcon, MapPinIcon } from '@/components/Icons';
 import { buildCityPath } from '@/lib/city-url';
 import { getAqiColor, getAqiFgColor, getAqiTextColor, getAqiCategory } from '@/lib/aqi-utils';
@@ -204,6 +205,7 @@ export default function HomePageClient({ detectedCity, cityAqiLevels, cityAqiMax
             <h2 className="a-hero-h1">{t('home.hero')}</h2>
             <p className="a-hero-sub">{t('home.heroSub')}</p>
           </div>
+          <ModelDataNotice />
         </section>
 
         {/* Snapshot: (optional detected) + map + leaderboard */}

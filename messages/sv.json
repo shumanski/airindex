@@ -1,4 +1,8 @@
 {
+  "notice": {
+    "title": "Prognosmodelldata.",
+    "body": "AQI-värden kommer från atmosfäriska modeller (CAMS via Open-Meteo), inte från lokala mätstationer. Avläsningar kan skilja sig från faktiska förhållanden — för exakta värden på gatunivå, konsultera en officiell luftkvalitetsstation nära dig."
+  },
   "meta": {
     "title": "Luftkvalitetsindex idag — AQI-prognos och hälsoråd",
     "description": "Kontrollera luftkvalitetsindex idag för valfri plats. Timvis AQI-prognos, föroreningsnivåer (PM2.5, PM10, NO₂, O₃) och hälsoråd.",
