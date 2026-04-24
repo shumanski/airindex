@@ -3,14 +3,17 @@
 /**
  * Leaflet canvas layer that renders a discrete AQI grid as semi-transparent
  * colored cells. Grid data is fetched once from /api/aqi-grid and decoded
- * from binary. Cells are drawn in map-pixel space and re-drawn on zoom/pan.
+ * from binary. Cells are drawn in container-pixel space.
  *
- * Colors come from getAqiColor() to match the site's palette.
+ * Positioning strategy (the tricky part):
+ *   The canvas is appended directly to map.getContainer() — NOT to an
+ *   overlayPane whose own CSS transform would compound with ours. The
+ *   canvas is a plain full-viewport overlay; every cell's screen position
+ *   is recomputed via map.latLngToContainerPoint(…) on each redraw.
  *
- * Usage:
- *   const layer = createAqiGridLayer(L, { minLat, maxLat, minLon, maxLon, spacing, opacity? });
- *   layer.addTo(map);
- *   layer.remove();
+ *   During a zoom animation we intercept the `zoomanim` event and apply a
+ *   CSS `scale+translate` to the canvas so it visually tracks the zoom; at
+ *   `zoomend` we reset the transform and redraw from scratch.
  */
 import { getAqiColor } from '@/lib/aqi-utils';
 
@@ -20,7 +23,7 @@ export interface AqiGridLayerOptions {
   minLon: number;
   maxLon: number;
   spacing: number;
-  opacity?: number;  // default 0.45
+  opacity?: number; // default 0.45
 }
 
 interface DecodedGrid {
@@ -53,25 +56,12 @@ function decodeGrid(buf: ArrayBuffer): DecodedGrid {
   return { minLat, maxLat, minLon, maxLon, spacing, width, height, aqi };
 }
 
-// Minimal Leaflet types (we don't want to add runtime dep on L at import).
-interface LatLng { lat: number; lng: number }
-interface Point { x: number; y: number; }
-interface Bounds { getNorthWest(): LatLng; getSouthEast(): LatLng }
-interface LMap {
-  getBounds(): Bounds;
-  getSize(): Point;
-  getPixelBounds(): { min: Point; max: Point };
-  latLngToLayerPoint(ll: LatLng | [number, number]): Point;
-  on(ev: string, fn: () => void): void;
-  off(ev: string, fn: () => void): void;
-  getPanes(): { overlayPane: HTMLElement };
-  _mapPane?: HTMLElement;
-}
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type L = any;
 
 export interface AqiGridLayerHandle {
-  addTo(map: LMap): AqiGridLayerHandle;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  addTo(map: any): AqiGridLayerHandle;
   remove(): void;
   setOpacity(o: number): void;
 }
@@ -81,51 +71,6 @@ export function createAqiGridLayer(
   opts: AqiGridLayerOptions,
 ): AqiGridLayerHandle {
   const opacity = opts.opacity ?? 0.45;
-
-  const Layer = L.Layer.extend({
-    onAdd(this: { _canvas?: HTMLCanvasElement; _map?: LMap }, map: LMap) {
-      this._map = map;
-      const pane = map.getPanes().overlayPane;
-      const canvas = document.createElement('canvas');
-      canvas.className = 'aqi-grid-layer';
-      canvas.style.position = 'absolute';
-      canvas.style.pointerEvents = 'none';
-      canvas.style.opacity = String(opacity);
-      canvas.style.zIndex = '200';
-      canvas.style.imageRendering = 'pixelated';
-      this._canvas = canvas;
-      pane.appendChild(canvas);
-
-      fetchGrid().then((g) => {
-        (this as unknown as { _grid: DecodedGrid })._grid = g;
-        redraw(this as unknown as DrawCtx);
-      }).catch((e) => console.error('[aqi-grid] fetch failed:', e));
-
-      const onMove = () => redraw(this as unknown as DrawCtx);
-      (this as unknown as { _onMove: () => void })._onMove = onMove;
-      map.on('zoomend', onMove);
-      map.on('moveend', onMove);
-      map.on('resize', onMove);
-      // Also redraw during zoom animation frames so the canvas stays aligned.
-      map.on('zoom', onMove);
-      map.on('move', onMove);
-    },
-    onRemove(this: { _canvas?: HTMLCanvasElement; _map?: LMap; _onMove?: () => void }) {
-      if (this._canvas?.parentNode) this._canvas.parentNode.removeChild(this._canvas);
-      if (this._map && this._onMove) {
-        this._map.off('zoomend', this._onMove);
-        this._map.off('moveend', this._onMove);
-        this._map.off('resize', this._onMove);
-        this._map.off('zoom', this._onMove);
-        this._map.off('move', this._onMove);
-      }
-      this._canvas = undefined;
-      this._map = undefined;
-    },
-    setOpacity(this: { _canvas?: HTMLCanvasElement }, o: number) {
-      if (this._canvas) this._canvas.style.opacity = String(o);
-    },
-  });
 
   async function fetchGrid(): Promise<DecodedGrid> {
     const url = new URL('/api/aqi-grid', window.location.origin);
@@ -140,65 +85,156 @@ export function createAqiGridLayer(
     return decodeGrid(buf);
   }
 
-  interface DrawCtx {
-    _canvas?: HTMLCanvasElement;
-    _map?: LMap;
-    _grid?: DecodedGrid;
-  }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const proto: any = {
+    onAdd(this: unknown, map: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const self = this as any;
+      self._map = map;
+      const canvas = L.DomUtil.create('canvas', 'aqi-grid-layer');
+      canvas.style.position = 'absolute';
+      canvas.style.top = '0';
+      canvas.style.left = '0';
+      canvas.style.pointerEvents = 'none';
+      canvas.style.opacity = String(opacity);
+      canvas.style.zIndex = '200';
+      canvas.style.transformOrigin = '0 0';
+      self._canvas = canvas;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (map as any).getContainer().appendChild(canvas);
 
-  function redraw(self: DrawCtx) {
-    const canvas = self._canvas;
+      self._redraw = () => redraw(self);
+      self._animateZoom = (
+        e: { center: { lat: number; lng: number }; zoom: number },
+      ) => animateZoom(self, e);
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const m = map as any;
+      m.on('moveend', self._redraw);
+      m.on('zoomend', self._redraw);
+      m.on('viewreset', self._redraw);
+      m.on('resize', self._redraw);
+      m.on('zoomanim', self._animateZoom);
+
+      fetchGrid().then((g) => {
+        self._grid = g;
+        self._redraw();
+      }).catch((err) => console.error('[aqi-grid] fetch failed:', err));
+    },
+
+    onRemove(this: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const self = this as any;
+      if (self._canvas?.parentNode) {
+        self._canvas.parentNode.removeChild(self._canvas);
+      }
+      const m = self._map;
+      if (m && self._redraw) {
+        m.off('moveend', self._redraw);
+        m.off('zoomend', self._redraw);
+        m.off('viewreset', self._redraw);
+        m.off('resize', self._redraw);
+        m.off('zoomanim', self._animateZoom);
+      }
+      self._canvas = undefined;
+      self._map = undefined;
+    },
+
+    setOpacity(this: unknown, o: number) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const self = this as any;
+      if (self._canvas) self._canvas.style.opacity = String(o);
+    },
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function redraw(self: any) {
+    const canvas: HTMLCanvasElement | undefined = self._canvas;
     const map = self._map;
-    const grid = self._grid;
+    const grid: DecodedGrid | undefined = self._grid;
     if (!canvas || !map || !grid) return;
 
-    const pixelBounds = map.getPixelBounds();
-    const topLeft = pixelBounds.min;
     const size = map.getSize();
     const dpr = window.devicePixelRatio || 1;
     canvas.width = Math.ceil(size.x * dpr);
     canvas.height = Math.ceil(size.y * dpr);
     canvas.style.width = size.x + 'px';
     canvas.style.height = size.y + 'px';
-    // Anchor the canvas to the top-left pixel of the current map viewport.
-    // Leaflet's overlayPane is translated by -pixelOrigin, so we counter that
-    // by positioning canvas at pixelBounds.min (= current pixel origin).
-    canvas.style.transform = `translate3d(${topLeft.x}px, ${topLeft.y}px, 0)`;
+    canvas.style.transform = '';
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.scale(dpr, dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, size.x, size.y);
 
     const { minLat, maxLat, minLon, maxLon, spacing, width: gw, height: gh, aqi } = grid;
+    void minLon; void maxLon;
+
+    // Viewport bbox in lat/lon — used to skip off-screen cells cheaply.
+    const bounds = map.getBounds();
+    const vMinLat = bounds.getSouth();
+    const vMaxLat = bounds.getNorth();
+    const vMinLon = bounds.getWest();
+    const vMaxLon = bounds.getEast();
+    const half = spacing / 2;
+    const crossesAntimeridian = vMaxLon < vMinLon;
 
     for (let y = 0; y < gh; y++) {
-      const cellLatTop = maxLat - y * spacing + spacing / 2;
-      const cellLatBot = maxLat - y * spacing - spacing / 2;
+      const cLat = maxLat - y * spacing;
+      const cellTop = cLat + half;
+      const cellBot = cLat - half;
+      if (cellBot > vMaxLat || cellTop < vMinLat) continue;
+
       for (let x = 0; x < gw; x++) {
         const v = aqi[y * gw + x];
         if (v < 0) continue;
-        const cellLonL = minLon + x * spacing - spacing / 2;
-        const cellLonR = minLon + x * spacing + spacing / 2;
-        // Convert cell bounds to layer pixels.
-        const p1 = map.latLngToLayerPoint({ lat: cellLatTop, lng: cellLonL });
-        const p2 = map.latLngToLayerPoint({ lat: cellLatBot, lng: cellLonR });
-        const px = p1.x - topLeft.x;
-        const py = p1.y - topLeft.y;
+        const cLon = minLon + x * spacing;
+        const cellLeft = cLon - half;
+        const cellRight = cLon + half;
+        if (!crossesAntimeridian) {
+          if (cellRight < vMinLon || cellLeft > vMaxLon) continue;
+        }
+
+        const p1 = map.latLngToContainerPoint([cellTop, cellLeft]);
+        const p2 = map.latLngToContainerPoint([cellBot, cellRight]);
+        const px = p1.x;
+        const py = p1.y;
         const w = p2.x - p1.x;
         const h = p2.y - p1.y;
-        if (px + w < 0 || py + h < 0 || px > size.x || py > size.y) continue;
         if (w <= 0 || h <= 0) continue;
+        if (px + w < 0 || py + h < 0 || px > size.x || py > size.y) continue;
         ctx.fillStyle = getAqiColor(v);
+        // +0.5 to avoid sub-pixel gaps between adjacent cells.
         ctx.fillRect(px, py, w + 0.5, h + 0.5);
       }
     }
-
-    // Reset transform for next redraw pass.
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    void minLon; void maxLon;
   }
 
-  const handle = new Layer() as AqiGridLayerHandle;
-  return handle;
+  // During Leaflet's zoom animation, match the map's CSS transform so the
+  // canvas appears to scale/translate along with the basemap. After the
+  // animation ends, `zoomend` triggers a fresh redraw that resets transform.
+  function animateZoom(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    self: any,
+    e: { center: { lat: number; lng: number }; zoom: number },
+  ) {
+    const canvas: HTMLCanvasElement | undefined = self._canvas;
+    const map = self._map;
+    if (!canvas || !map) return;
+    const scale = map.getZoomScale(e.zoom, map.getZoom());
+    // Translate vector: where the current top-left should move to.
+    const offset = map._latLngToNewLayerPoint
+      ? map._latLngToNewLayerPoint(
+          map.containerPointToLatLng([0, 0]),
+          e.zoom,
+          e.center,
+        )
+      : { x: 0, y: 0 };
+    canvas.style.transformOrigin = '0 0';
+    canvas.style.transform = `translate3d(${offset.x}px, ${offset.y}px, 0) scale(${scale})`;
+  }
+
+  const LayerClass = L.Layer.extend(proto);
+  return new LayerClass();
 }
+
