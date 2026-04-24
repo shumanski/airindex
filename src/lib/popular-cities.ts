@@ -174,8 +174,6 @@ export const POPULAR_CITIES: Record<string, PopularCity[]> = {
     { name: 'Kaohsiung', geoId: 1673820, lat: 22.62, lon: 120.31, country: 'TW' },
     { name: 'Tehran', geoId: 112931, lat: 35.69, lon: 51.42, country: 'IR' },
     { name: 'Mashhad', geoId: 124665, lat: 36.3, lon: 59.61, country: 'IR' },
-    { name: 'Riyadh', geoId: 108410, lat: 24.69, lon: 46.72, country: 'SA' },
-    { name: 'Jeddah', geoId: 105343, lat: 21.49, lon: 39.19, country: 'SA' },
     { name: 'Baghdad', geoId: 98182, lat: 33.34, lon: 44.4, country: 'IQ' },
     { name: 'Erbil', geoId: 95446, lat: 36.19, lon: 44.01, country: 'IQ' },
     { name: 'Kabul', geoId: 1138958, lat: 34.53, lon: 69.17, country: 'AF' },

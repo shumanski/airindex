@@ -109,16 +109,7 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  // Temporary: exclude Saudi Arabia cities from homepage ranking.
-  // Open-Meteo (our data source) computes US AQI via CAMS PM10 × a formula that
-  // linearly extrapolates past EPA's 500-cap (see Sources/App/Helper/AirQuality.swift
-  // positionExtrapolated). Over the Arabian Peninsula CAMS forecasts very high dust
-  // (PM10 > 1000 µg/m³), producing AQI 1000+ while ground stations report AQI < 50.
-  // Until we clamp at 500 and/or switch data source, hide these cities from rankings.
-  const EXCLUDED_COUNTRIES = new Set(['SA']);
-  const allCities = Object.values(POPULAR_CITIES)
-    .flat()
-    .filter(c => !c.country || !EXCLUDED_COUNTRIES.has(c.country));
+  const allCities = Object.values(POPULAR_CITIES).flat();
   const [detectedCity, aqiMap, aqiMaxMap, localizedNames] = await Promise.all([
     detectCity(locale),
     fetchBatchCurrentAqi(allCities),
