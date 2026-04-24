@@ -205,7 +205,6 @@ export default function HomePageClient({ detectedCity, cityAqiLevels, cityAqiMax
             <h2 className="a-hero-h1">{t('home.hero')}</h2>
             <p className="a-hero-sub">{t('home.heroSub')}</p>
           </div>
-          <ModelDataNotice />
         </section>
 
         {/* Snapshot: (optional detected) + map + leaderboard */}
@@ -380,6 +379,8 @@ export default function HomePageClient({ detectedCity, cityAqiLevels, cityAqiMax
             </div>
           </div>
         </section>
+
+        <ModelDataNotice />
 
       {/* Why airindex */}
       <section className="space-y-3">

@@ -8,6 +8,7 @@ import AqiChart from './AqiChart';
 import PollutantBreakdown from './PollutantBreakdown';
 import PollutantAqi from './PollutantAqi';
 import { AlertTriangleIcon } from './Icons';
+import ModelDataNotice from './ModelDataNotice';
 import { getAqiCategory } from '@/lib/aqi-utils';
 import { slugify } from '@/lib/city-url';
 import type { TempUnit } from '@/lib/storage';
@@ -158,7 +159,7 @@ export default function AqiPageContent({
                   peakTime={tabPeakTime}
                   isPeak={activeTab !== 'now'}
                 />
-                <p className="text-xs text-[var(--color-text-muted)] text-center -mt-1 mb-1">{t('aqi.modelNote')}</p>
+                <ModelDataNotice />
                 {/* Pollutant sub-AQI inline */}
                 <PollutantAqi
                   aqiPm25={aqiData.currentAqiPm25}

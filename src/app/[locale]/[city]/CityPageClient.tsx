@@ -160,8 +160,6 @@ export default function CityPageClient({ initialLocation, fallbackName, initialA
         );
       })()}
 
-      <ModelDataNotice />
-
       {breadcrumb && (() => {
         const continentLabel = t(`home.${breadcrumb.continentKey}` as never);
         const countryLabel = t(`countries.${breadcrumb.countryCode}` as never);
