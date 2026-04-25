@@ -31,9 +31,10 @@ export async function generateMetadata({
   if (!countryCode) return {};
 
   const t = await getTranslations({ locale, namespace: 'countries' });
+  const tMeta = await getTranslations({ locale, namespace: 'meta' });
   const countryName = t(countryCode as any) || COUNTRY_NAMES[countryCode] || slug;
-  const title = `Air Quality ${countryName} – AQI for Cities`;
-  const description = `Current air quality index for cities in ${countryName}. Real-time AQI data, pollutant levels, and health advice.`;
+  const title = tMeta('countryTitle', { country: countryName });
+  const description = tMeta('countryDescription', { country: countryName });
 
   const languages: Record<string, string> = {};
   for (const loc of routing.locales) {
@@ -41,12 +42,29 @@ export async function generateMetadata({
   }
   languages['x-default'] = `${BASE_URL}/en/country/${slug}`;
 
+  const url = `${BASE_URL}/${locale}/country/${slug}`;
   return {
     title,
     description,
+    metadataBase: new URL(BASE_URL),
     alternates: {
-      canonical: `${BASE_URL}/${locale}/country/${slug}`,
+      canonical: url,
       languages,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: 'Air Index Today',
+      locale,
+      type: 'website',
+      images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Air Index Today' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/og-image.png'],
     },
   };
 }

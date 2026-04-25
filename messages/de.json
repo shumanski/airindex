@@ -6,7 +6,11 @@
   "meta": {
     "title": "Luftqualitätsindex heute — AQI-Vorhersage und Gesundheitshinweise",
     "description": "Prüfen Sie den Luftqualitätsindex heute für jeden Standort. Stündliche AQI-Vorhersage, Schadstoffwerte (PM2.5, PM10, NO₂, O₃) und Gesundheitshinweise.",
-    "h1": "Luftqualitätsindex heute"
+    "h1": "Luftqualitätsindex heute",
+    "continentTitle": "Luftqualität in {continent} — AQI für die wichtigsten Städte",
+    "continentDescription": "Aktueller Luftqualitätsindex für große Städte in {continent}. AQI-Daten in Echtzeit, Schadstoffwerte und Gesundheitshinweise.",
+    "countryTitle": "Luftqualität in {country} — AQI für Städte",
+    "countryDescription": "Aktueller Luftqualitätsindex für Städte in {country}. AQI-Daten in Echtzeit, Schadstoffwerte und Gesundheitshinweise."
   },
   "location": {
     "searchPlaceholder": "Standort suchen...",
@@ -190,16 +194,16 @@
     "population": "Einwohner"
   },
   "home": {
-    "hero": "AQI-Vorhersage für jeden Ort",
+    "hero": "Wissen, was in der Luft liegt, die Sie atmen",
     "heroSub": "Aktueller AQI, Stundenprognose, Schadstoffwerte und Gesundheitshinweise — kostenlos, privat und ohne Anmeldung.",
-    "viewForecast": "Vollständige UV-Vorhersage für {city} ansehen →",
-    "whyTitle": "Warum Air Index Today",
-    "aqiFocusTitle": "Reiner UV-Fokus",
+    "viewForecast": "Vollständige AQI-Vorhersage für {city} ansehen →",
+    "whyTitle": "Konzipiert für Luftqualität",
+    "aqiFocusTitle": "6 Schadstoffe, ein Wert",
     "aqiFocusDesc": "PM₂.₅, PM₁₀, NO₂, O₃, SO₂ und CO — mit aktuellen Konzentrationen und im Kontext der WHO-Luftqualitätsrichtlinien von 2021. Der AQI wird separat nach dem US-Standard von EPA AirNow berechnet.",
-    "fastTitle": "Schnell & leichtgewichtig",
-    "fastDesc": "Lädt sofort auf jedem Gerät — keine Registrierung, kein Ballast. UV-Vorhersage in Sekunden, selbst bei langsamer Verbindung.",
-    "privacyTitle": "Datenschutz zuerst",
-    "privacyDesc": "Keine Cookies, kein Tracking, keine persönlichen Daten gespeichert. Alle Datenbanken werden selbst gehostet — Ihre Standortdaten verlassen niemals unsere Server.",
+    "fastTitle": "5-Tage-Stundenprognose",
+    "fastDesc": "CAMS-Atmosphärenmodelle liefern AQI-Prognosen Stunde für Stunde bis zu 5 Tage im Voraus. Planen Sie Outdoor-Sport, Schulausflüge oder den Arbeitsweg nach der Luftqualität.",
+    "privacyTitle": "Kein Konto, kein Tracking",
+    "privacyDesc": "Keine Cookies, keine E-Mail, keine personenbezogenen Daten gespeichert. Ihre Suchanfragen bleiben auf Ihrem Gerät. Luftqualitätsdaten sind ein Recht für alle — keine Premium-Funktion.",
     "dataTitle": "CAMS-Daten und EPA-AQI",
     "dataDesc": "Die Daten stammen vom Copernicus Atmosphere Monitoring Service (CAMS) über Open-Meteo. Der AQI folgt dem US-Standard von EPA AirNow; die Schadstoffkarten werden mit den WHO-Luftqualitätsrichtlinien von 2021 verglichen.",
     "scaleTitle": "Den AQI verstehen",
@@ -217,7 +221,7 @@
     "veryUnhealthyDesc": "Alle sollten längere oder intensive Anstrengung im Freien vermeiden.",
     "hazardousRange": "301+",
     "hazardousDesc": "Gesundheitswarnung — alle sollten jede körperliche Aktivität im Freien vermeiden.",
-    "citiesTitle": "AQI nach Stadt prüfen",
+    "citiesTitle": "Luftqualität nach Stadt prüfen",
     "citiesIntro": "Erkunden Sie den aktuellen Luftqualitätsindex für große Städte weltweit. Klicken Sie auf eine Stadt, um eine detaillierte stündliche AQI-Prognose und Gesundheitshinweise zu sehen.",
     "continentIntro_europe": "Aktuelle Luftqualitätswerte für Städte in Europa. Von Industriezentren bis zu Küstenstädten — prüfen Sie die AQI-Bedingungen vor dem Hinausgehen.",
     "continentIntro_northAmerica": "Luftqualität in Echtzeit für Städte in Nordamerika. Von Waldbrandregionen bis zu Ballungsräumen — sehen Sie, wo die AQI-Werte am höchsten sind.",

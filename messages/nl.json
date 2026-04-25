@@ -6,7 +6,11 @@
   "meta": {
     "title": "Luchtkwaliteitsindex vandaag — AQI-voorspelling en gezondheidsadvies",
     "description": "Controleer de luchtkwaliteitsindex vandaag voor elke locatie. Uurlijkse AQI-voorspelling, verontreinigingsniveaus (PM2.5, PM10, NO₂, O₃) en gezondheidsadvies.",
-    "h1": "Luchtkwaliteitsindex vandaag"
+    "h1": "Luchtkwaliteitsindex vandaag",
+    "continentTitle": "Luchtkwaliteit in {continent} — AQI voor de grootste steden",
+    "continentDescription": "Actuele luchtkwaliteitsindex voor grote steden in {continent}. Realtime AQI-gegevens, verontreinigingsniveaus en gezondheidsadvies.",
+    "countryTitle": "Luchtkwaliteit in {country} — AQI voor steden",
+    "countryDescription": "Actuele luchtkwaliteitsindex voor steden in {country}. Realtime AQI-gegevens, verontreinigingsniveaus en gezondheidsadvies."
   },
   "location": {
     "searchPlaceholder": "Zoek een locatie...",
@@ -190,16 +194,16 @@
     "population": "Bevolking"
   },
   "home": {
-    "hero": "AQIvoorspelling voor elke locatie",
+    "hero": "Weet wat er in de lucht zit die je inademt",
     "heroSub": "Huidige AQI, uurlijkse voorspelling, vervuilingsniveaus en gezondheidsadvies — gratis, privé en zonder aanmelding.",
-    "viewForecast": "Volledige UV-voorspelling voor {city} bekijken →",
-    "whyTitle": "Waarom Air Index Today",
-    "aqiFocusTitle": "Puur UV-focus",
+    "viewForecast": "Volledige AQI-voorspelling voor {city} bekijken →",
+    "whyTitle": "Gebouwd voor luchtkwaliteit",
+    "aqiFocusTitle": "6 stoffen, één score",
     "aqiFocusDesc": "PM₂.₅, PM₁₀, NO₂, O₃, SO₂ en CO — getoond met actuele concentraties en in de context van de WHO-luchtkwaliteitsrichtlijnen van 2021. De AQI wordt apart berekend volgens de Amerikaanse EPA AirNow-standaard.",
-    "fastTitle": "Snel & lichtgewicht",
-    "fastDesc": "Laadt direct op elk apparaat — geen registratie, geen rommel. Krijg je UV-voorspelling in seconden, zelfs met een trage verbinding.",
-    "privacyTitle": "Privacy voorop",
-    "privacyDesc": "Geen cookies, geen tracking, geen persoonlijke gegevens opgeslagen. Alle databases zijn zelf gehost — je locatiegegevens verlaten nooit onze servers.",
+    "fastTitle": "5-daagse uurvoorspelling",
+    "fastDesc": "CAMS-atmosfeermodellen geven uur voor uur AQI-voorspellingen tot 5 dagen vooruit. Plan buitensport, schooluitstapjes of de ochtendrit op basis van de luchtkwaliteit.",
+    "privacyTitle": "Geen account, geen tracking",
+    "privacyDesc": "Geen cookies, geen e-mail, geen persoonlijke gegevens opgeslagen. Je zoekopdrachten blijven op je apparaat. Luchtkwaliteitsdata is een recht voor iedereen — geen premiumfunctie.",
     "dataTitle": "CAMS-gegevens en EPA-AQI",
     "dataDesc": "De gegevens komen van de Copernicus Atmosphere Monitoring Service (CAMS) via Open-Meteo. De AQI volgt de Amerikaanse EPA AirNow-standaard; de vervuilingskaarten worden vergeleken met de WHO-luchtkwaliteitsrichtlijnen van 2021.",
     "scaleTitle": "De AQI begrijpen",
@@ -217,7 +221,7 @@
     "veryUnhealthyDesc": "Iedereen moet langdurige of intense inspanning buiten vermijden.",
     "hazardousRange": "301+",
     "hazardousDesc": "Gezondheidswaarschuwing — iedereen moet alle fysieke activiteit buiten vermijden.",
-    "citiesTitle": "AQI per stad bekijken",
+    "citiesTitle": "Luchtkwaliteit per stad bekijken",
     "citiesIntro": "Bekijk de actuele luchtkwaliteitsindex voor grote steden over de hele wereld. Klik op een stad voor een gedetailleerde uurlijkse AQI-verwachting en gezondheidsadvies.",
     "continentIntro_europe": "Actuele luchtkwaliteitsniveaus voor steden in Europa. Van industriële centra tot kuststeden: controleer de AQI voordat je naar buiten gaat.",
     "continentIntro_northAmerica": "Realtime luchtkwaliteit voor steden in Noord-Amerika. Van gebieden met bosbranden tot grote stedelijke centra: bekijk waar de AQI het hoogst is.",

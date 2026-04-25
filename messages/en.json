@@ -2,7 +2,11 @@
   "meta": {
     "title": "Air Quality Index Today — Check AQI Forecast & Health Advice",
     "description": "Check the air quality index today for any location. Hourly AQI forecast, pollutant levels (PM2.5, PM10, NO₂, O₃), and health advice.",
-    "h1": "Air Quality Index Today"
+    "h1": "Air Quality Index Today",
+    "continentTitle": "Air Quality in {continent} — AQI for Top Cities",
+    "continentDescription": "Current air quality index for major cities in {continent}. Real-time AQI data, pollutant levels, and health advice.",
+    "countryTitle": "Air Quality in {country} — AQI for Cities",
+    "countryDescription": "Current air quality index for cities in {country}. Real-time AQI data, pollutant levels, and health advice."
   },
   "notice": {
     "title": "Modeled forecast data.",

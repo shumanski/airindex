@@ -199,19 +199,19 @@ export default function HomePageClient({ detectedCity, cityAqiLevels, cityAqiMax
         <section className="space-y-4">
           <div className="a-hero">
             <div className="a-hero-meta" aria-hidden="true">
-              <span><span className="dot" />{t('home.metaLive', { total: allCitiesFlat.length })}</span>
+              <span><span className="dot" />{t('home.metaLive', { total: '200k+' })}</span>
               <span>{t('home.metaSources')}</span>
             </div>
-            <h2 className="a-hero-h1">{t('home.hero')}</h2>
+            <h1 className="a-hero-h1">{t('home.hero')}</h1>
             <p className="a-hero-sub">{t('home.heroSub')}</p>
           </div>
         </section>
 
         {/* Snapshot: (optional detected) + map + leaderboard */}
         <section className="space-y-3">
-          <div className="flex items-center justify-between gap-2">
+          <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between">
             <h2 className="a-section-h">{t('home.citiesTitle')}</h2>
-            <div className="inline-flex rounded-lg border border-[var(--color-border)] overflow-hidden text-xs font-medium">
+            <div className="inline-flex rounded-lg border border-[var(--color-border)] overflow-hidden text-xs font-medium self-start sm:self-auto">
               <button
                 onClick={() => setAqiMode('now')}
                 className={`px-2.5 py-1 transition-colors ${aqiMode === 'now' ? 'bg-[var(--color-primary)] text-white' : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-border)]'}`}
@@ -375,7 +375,7 @@ export default function HomePageClient({ detectedCity, cityAqiLevels, cityAqiMax
                   })()}
                 </tbody>
               </table>
-              <p className="caveat">{t('ticker.caveat', { total: allCitiesFlat.length })}</p>
+              <p className="caveat">{t('ticker.caveat', { total: '200k+' })}</p>
             </div>
           </div>
         </section>

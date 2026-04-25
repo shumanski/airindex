@@ -6,7 +6,11 @@
   "meta": {
     "title": "Luftkvalitetsindeks i dag — AQI-prognose og sundhedsråd",
     "description": "Tjek luftkvalitetsindekset i dag for en hvilken som helst placering. Timevis AQI-prognose, forureningsniveauer (PM2.5, PM10, NO₂, O₃) og sundhedsråd.",
-    "h1": "Luftkvalitetsindeks i dag"
+    "h1": "Luftkvalitetsindeks i dag",
+    "continentTitle": "Luftkvalitet i {continent} — AQI for de største byer",
+    "continentDescription": "Aktuelt luftkvalitetsindeks for større byer i {continent}. AQI-data i realtid, forureningsniveauer og sundhedsråd.",
+    "countryTitle": "Luftkvalitet i {country} — AQI for byer",
+    "countryDescription": "Aktuelt luftkvalitetsindeks for byer i {country}. AQI-data i realtid, forureningsniveauer og sundhedsråd."
   },
   "location": {
     "searchPlaceholder": "Søg efter en placering...",
@@ -190,16 +194,16 @@
     "population": "Befolkning"
   },
   "home": {
-    "hero": "AQI-indeksprognose for alle steder",
+    "hero": "Vid hvad der er i luften, du trækker vejret i",
     "heroSub": "Aktuelt AQI, timeprognose, forureningsniveauer og sundhedsråd — gratis, hurtigt og privat.",
-    "viewForecast": "Se fuld UV-prognose for {city} →",
-    "whyTitle": "Hvorfor Air Index Today",
-    "aqiFocusTitle": "Rent UV-fokus",
+    "viewForecast": "Se fuld AQI-prognose for {city} →",
+    "whyTitle": "Bygget til luftkvalitet",
+    "aqiFocusTitle": "6 forureninger, én værdi",
     "aqiFocusDesc": "PM₂.₅, PM₁₀, NO₂, O₃, SO₂ og CO — vist med aktuelle koncentrationer og sat i forhold til WHOs luftkvalitetsretningslinjer fra 2021. AQI beregnes separat efter den amerikanske EPA AirNow-standard.",
-    "fastTitle": "Hurtigt & let",
-    "fastDesc": "Indlæses øjeblikkeligt på alle enheder — ingen tilmelding, intet rod. Få din UV-prognose på sekunder, selv med langsom forbindelse.",
-    "privacyTitle": "Privatliv først",
-    "privacyDesc": "Ingen cookies, ingen sporing, ingen persondata gemmes. Alle databaser er selvhostede — dine placeringsdata forlader aldrig vores servere.",
+    "fastTitle": "5-dages timeprognose",
+    "fastDesc": "CAMS atmosfæriske modeller giver AQI-prognoser time for time op til 5 dage frem. Planlæg udeture, skoleudflugter og morgenpendling efter luftkvaliteten.",
+    "privacyTitle": "Ingen konto, ingen sporing",
+    "privacyDesc": "Ingen cookies, ingen e-mail, ingen persondata gemmes. Dine søgninger forbliver på din enhed. Luftkvalitetsdata er en ret for alle — ikke en premium-funktion.",
     "dataTitle": "CAMS-data og EPA-AQI",
     "dataDesc": "Data kommer fra Copernicus Atmosphere Monitoring Service (CAMS) via Open-Meteo. AQI følger den amerikanske EPA AirNow-standard, mens forureningskortene sammenlignes med WHOs luftkvalitetsretningslinjer fra 2021.",
     "scaleTitle": "Forstå AQI-indekset",
@@ -217,7 +221,7 @@
     "veryUnhealthyDesc": "Alle bør undgå langvarig eller intens anstrengelse udendørs.",
     "hazardousRange": "301+",
     "hazardousDesc": "Sundhedsadvarsel — alle bør undgå al fysisk aktivitet udendørs.",
-    "citiesTitle": "Tjek AQI-indeks efter by",
+    "citiesTitle": "Tjek luftkvalitet efter by",
     "citiesIntro": "Udforsk det aktuelle luftkvalitetsindeks for større byer verden over. Klik på en by for en detaljeret timeprognose for AQI og sundhedsråd.",
     "continentIntro_europe": "Aktuelle luftkvalitetsniveauer for byer i Europa. Fra industribyer til kystområder — tjek AQI-forholdene før du går ud.",
     "continentIntro_northAmerica": "Luftkvalitet i realtid for byer i Nordamerika. Fra områder ramt af skovbrande til storbycentre — se hvor AQI-niveauerne er højest.",

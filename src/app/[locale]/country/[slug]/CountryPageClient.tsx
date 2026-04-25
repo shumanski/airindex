@@ -154,7 +154,7 @@ export default function CountryPageClient({
             {' › '}{translatedCountryName}
           </span>
         </nav>
-        <h2 className="a-hero-h1">Air Quality <span className="text-[var(--color-city-name)]">{flag && <span className="a-flag" aria-hidden="true">{flag}</span>}{translatedCountryName}</span></h2>
+        <h1 className="a-hero-h1">{t('city.h1Prefix')} <span className="text-[var(--color-city-name)]">{flag && <span className="a-flag" aria-hidden="true">{flag}</span>}{translatedCountryName}</span></h1>
       </div>
 
       {continentSlug && continentName && (() => {

@@ -3,6 +3,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import Clouds from '@/components/Clouds';
+import FeedbackWidget from '@/components/FeedbackWidget';
 import '../globals.css';
 
 const BASE_URL = process.env.SITE_URL || 'https://airindex.today';
@@ -157,6 +158,7 @@ export default async function LocaleLayout({
         <div className="relative" style={{ zIndex: 'auto' }}>
           <NextIntlClientProvider messages={messages}>
             {children}
+            <FeedbackWidget />
           </NextIntlClientProvider>
         </div>
         <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="Analytics" referrerPolicy="no-referrer-when-downgrade" /></noscript>

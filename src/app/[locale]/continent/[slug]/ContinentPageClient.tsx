@@ -142,7 +142,7 @@ export default function ContinentPageClient({
             {' › '}{continentName}
           </span>
         </nav>
-        <h2 className="a-hero-h1">Air Quality <span className="text-[var(--color-city-name)]">{continentName}</span></h2>
+        <h1 className="a-hero-h1">{t('city.h1Prefix')} <span className="text-[var(--color-city-name)]">{continentName}</span></h1>
         <p className="a-hero-sub">{t(`home.continentIntro_${continentKey}` as never)}</p>
       </div>
 

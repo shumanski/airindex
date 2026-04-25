@@ -18,7 +18,6 @@ import Link from 'next/link';
 
 const AqiTrend = dynamic(() => import('./AqiTrend'));
 const SeoContent = dynamic(() => import('./SeoContent'));
-const FeedbackWidget = dynamic(() => import('./FeedbackWidget'), { ssr: false });
 const CityMap = dynamic(() => import('./CityMap'), {
   ssr: false,
   loading: () => <div className="h-[220px] lg:h-[380px] rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)]" />,
@@ -43,7 +42,6 @@ interface Props {
   nearbyAqiCurrent?: Record<string, number>;
   nearbyAqiMax?: Record<string, number>;
   cityData?: CityData;
-  showFeedback?: boolean;
 }
 
 function pickDefaultTab(aqiData: AqiData): 'now' | 'peakToday' | 'peakTomorrow' {
@@ -80,7 +78,6 @@ export default function AqiPageContent({
   nearbyAqiCurrent,
   nearbyAqiMax,
   cityData,
-  showFeedback,
 }: Props) {
   const t = useTranslations();
   const locale = useLocale();
@@ -382,8 +379,6 @@ export default function AqiPageContent({
           project</div>
         </div>
       </footer>
-
-      {showFeedback && <FeedbackWidget />}
     </>
   );
 }

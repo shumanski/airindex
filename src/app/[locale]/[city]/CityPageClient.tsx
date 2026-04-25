@@ -126,10 +126,10 @@ export default function CityPageClient({ initialLocation, fallbackName, initialA
                 )}
               </nav>
             )}
-            <h2 className="a-hero-h1">
+            <h1 className="a-hero-h1">
               {t('city.h1Prefix')}{' '}
               <span className="text-[var(--color-city-name)]">{cityDisplayName}</span>
-            </h2>
+            </h1>
             {aqiData && currentRounded != null && peakRounded != null && tomorrowRounded != null && (
               <p className="a-hero-sub">
                 {t('city.summaryDesc', { city: cityDisplayName, country: countryDisplay })}
@@ -193,7 +193,6 @@ export default function CityPageClient({ initialLocation, fallbackName, initialA
         nearbyAqiCurrent={nearbyAqiCurrent}
         nearbyAqiMax={nearbyAqiMax}
         cityData={cityData}
-        showFeedback
       />
     </main>
     </>
