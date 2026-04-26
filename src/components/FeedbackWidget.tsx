@@ -130,7 +130,7 @@ export default function FeedbackWidget() {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder={t('placeholder')}
-                maxLength={2000}
+                maxLength={1000}
                 rows={3}
                 className="w-full rounded-xl border border-[var(--color-border)] bg-transparent p-3 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] resize-none focus:outline-none focus:border-[var(--color-accent)]"
               />
